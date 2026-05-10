@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .arcana-card-hover:hover {
+            box-shadow: 0 0 40px rgba(242, 202, 80, 0.6);
+            border-color: #f2ca50 !important;
+            transform: translateY(-8px);
+        }
+        body {
+            background-color: #111317;
+            color: #e2e2e8;
+        }
+        .glass-panel {
+            background: rgba(12, 14, 18, 0.6);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#343d96",
+                        "error": "#ffb4ab",
+                        "surface-container-high": "#282a2e",
+                        "on-tertiary-fixed-variant": "#45474b",
+                        "surface-container-low": "#1a1c20",
+                        "primary-fixed-dim": "#e9c349",
+                        "surface": "#111317",
+                        "error-container": "#93000a",
+                        "on-surface": "#e2e2e8",
+                        "on-error-container": "#ffdad6",
+                        "surface-variant": "#333539",
+                        "inverse-surface": "#e2e2e8",
+                        "on-secondary": "#1b247f",
+                        "surface-container-highest": "#333539",
+                        "on-primary-container": "#554300",
+                        "secondary-fixed": "#e0e0ff",
+                        "on-error": "#690005",
+                        "secondary": "#bdc2ff",
+                        "secondary-fixed-dim": "#bdc2ff",
+                        "primary-fixed": "#ffe088",
+                        "on-surface-variant": "#d0c5af",
+                        "on-primary-fixed-variant": "#574500",
+                        "tertiary": "#cdced3",
+                        "surface-bright": "#37393e",
+                        "background": "#111317",
+                        "inverse-on-surface": "#2f3035",
+                        "on-secondary-fixed": "#000767",
+                        "outline-variant": "#4d4635",
+                        "on-primary": "#3c2f00",
+                        "on-background": "#e2e2e8",
+                        "on-tertiary-fixed": "#1a1c20",
+                        "tertiary-container": "#b2b2b8",
+                        "surface-container-lowest": "#0c0e12",
+                        "inverse-primary": "#735c00",
+                        "surface-container": "#1e2024",
+                        "on-primary-fixed": "#241a00",
+                        "tertiary-fixed": "#e2e2e8",
+                        "primary": "#f2ca50",
+                        "surface-tint": "#e9c349",
+                        "surface-dim": "#111317",
+                        "on-secondary-fixed-variant": "#343d96",
+                        "tertiary-fixed-dim": "#c6c6cc",
+                        "outline": "#99907c",
+                        "on-tertiary-container": "#434549",
+                        "primary-container": "#d4af37",
+                        "on-tertiary": "#2f3035",
+                        "on-secondary-container": "#a8afff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "display-lg": ["EB Garamond"],
+                        "headline-sm": ["EB Garamond"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["EB Garamond"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .text-gold-metallic {
+            background: linear-gradient(to bottom, #f2ca50 22%, #ffe088 45%, #d4af37 50%, #ffe088 55%, #f2ca50 78%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: #f2ca50;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+        }
+        .decorative-border {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #f2ca50 50%, transparent 100%);
+            position: relative;
+        }
+        .decorative-border::after {
+            content: '◆';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #f2ca50;
+            background: #111317;
+            padding: 0 10px;
+            font-size: 14px;
+        }
+        .holographic-hover:hover::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 45%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 55%, rgba(255,255,255,0) 100%);
+            z-index: 10;
+            background-size: 200% 200%;
+            animation: holo-shimmer 2s infinite linear;
+            pointer-events: none;
+        }
+        @keyframes holo-shimmer {
+            0% { background-position: 200% 200%; }
+            100% { background-position: -200% -200%; }
+        }
+    </style></head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopAppBar -->
+<main class="flex-grow pb-40 px-margin-mobile md:px-margin-desktop max-w-[1200px] mx-auto w-full pt-16">
+<!-- Hero Section / Context -->
+<section class="mb-16 text-center max-w-3xl mx-auto">
+<div class="decorative-border mb-6 opacity-60"></div>
+<h2 class="font-display-lg text-[56px] leading-tight text-gold-metallic mb-6 tracking-wider uppercase">
+        Baraja de Tarot: Arcanos Mayores
+    </h2>
+<div class="decorative-border mt-6 opacity-60"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-8 italic">El viaje del alma a través de los misterios eternos.</p>
+</section>
+<!-- The 22 Cards Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16"><!-- Card 0: The Fool -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="The Fool Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugOq4k1yZ0uk681Qo9DTZDURl0KTyad90L0p913Zk6r0f622Ep9o1bHJpJMq-7VjVUBEyEbe4LN2pm8Cw_KQgTMt2NIU0g0Azv6Hj_XAMd6OLzRSMrFqX9b8fuSOzBg01Ohi5PaVdqhVbfwtdG-QLDhAT-D5Onw3NPnhX0u8D0DFXEE9AND3epnFmGoAmH96zkyYjFD8hvbVTTAZ3nzFznhOJO_jgStJ6lusGFE8Fz2XMoAq9Hsra-YlwxX8RoOJSn4wyZfr3C2Aw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">0</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL LOCO</span>
+</div>
+</div>
+<!-- Card 1: The Magician -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="The Magician Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugaiN0EziA_WGHh4f-K8p2VhZaXCnGtJZQ8r3LnNzJO-FHo0a2QYGUEnSqhWKPVTyvPYmpkLNrOcl1Q4MsVQ7rQX47xI5FNrCXzMqniI1i5uOrdBADR3g4dfxXadF67wd8p9_-aw_ST_Cy2BV_MPjFizOjpaCGnw8X_s8W3tf2X1SnbM8cZpgXP9_CtR0EjZvesXY-RKYPyguC6hs_OgSxy39OM0qChW4Sbq9LYIQlu4aoajl9awhqeNDvBSUGSHmDJeUA3lpqjUQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">I</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL MAGO</span>
+</div>
+</div>
+<!-- Card 2: The High Priestess -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="The High Priestess Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uh5AYQCQEkOgMm5Ve7JRi29HE1acKL537TAWgmsN_fgM1qoMtJUzLaqOxmvRAew7j76ASPtt9kLeAmsDuuVOSRSowWumzCwIKNR2LsrcnCpjh1UxlYZ7os5ZWjiaqcHF9xgmTXXL64DdqT_AwKgIF7BXRHdOL4Z7NT2Njk-MzVnOa0d68rE1eynAfViWApJJD1TXyUGqpR_ELW-9qTrd7EqSK4LGzPnjlCU-m3XWEvZXx01hJGEwRB8RcB-oiFiW1qGre8JH4UhXA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">II</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA SACERDOTISA</span>
+</div>
+</div>
+<!-- Card 3: The Empress -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="The Empress Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugANGu4N9Ar-Ti6A2DR4qb-Eva0sXgpgomqcpx3bEx8kxMwHcanE3msHU2WEl1DXIViGyzK2DxxJYPLZmsB3MgcFNKsDadyapYG1dn8BzMEycpwEgMtcz_rpRzavdh0v3qRNKIe7rK_6ARyQ0_YFU5iFlPRo0a_X40zhvo6NxeFjHj501kXgGG0IlUVr6_UenDfX7m2-qneJbcOjpU9zeFHUYTv2fOLGTtN8LzUNMe_uzC2JAkDylZgWdhNdhHHLLAlGoUrkBzHyA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">III</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA EMPERATRIZ</span>
+</div>
+</div>
+<!-- Card 4: The Emperor -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="The Emperor Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujR_N8SZI2lDwGyxbHgObXc7t4V2Gq8FoqwT1NBka1Z7DTLbZZ7ipZxU3bPk6C-WWSFKLY7_Q96FFKdcCuIZZSiB_b7xpsD3of5dbT3Mh5A9WTfMlo3ttQR1vSZ33B4hWjgZAS5s4uyiTt3zHs07J3ZaM5ziBmty1OOqIokaBGKhoYwuWEQf_YnvdpLpY0eGuH4dpI6uWCXabQmnWKUnSVLo8Q5EiLgnVpBf_oOf-sTL04Hr3JgweuLvbB4FTGrxR6CiLn5lxkJlw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">IV</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL EMPERADOR</span>
+</div>
+</div>
+<!-- Card 5: The Hierophant -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="The Hierophant Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujQGf2HBxsWfeUlUjw-MzSekMnSO8yyyYQdWgQuJMQ1m1mTOTEoC1KrArUpyy1pSYpIjHjeSwRBPOzlo0WBlos920uIAMKMy2CMwLoUdyWY8g328FgZ4kxTjOZ600DiliJUMK7u9VRfd8RVipiblDOoYnW8NK7qaghLpZeYfFJfosl9B5X_zk3_IgmICBMf2e3kQqiaUa-fro06D0fNaAUI_eISk4KV7jZe6673Oxl6VaVHSmlq8_s4Sdt-pjpzrWLPF-2BeiQBsQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">V</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL SUMO SACERDOTE</span>
+</div>
+</div>
+<!-- More Cards -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="Arcana Card" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ugcYxtBS7s_iXl3Z8E_9SbfR_BSkiqKPsRalpBKb8329QS-BVlrKvtf0iSyh2KYW468h4GLtxVy0ncyCleE-lhDtrzhxUP7GdWJGQtVQxGvOAqLTWCA3M37kjTQGE4g6bZ-_DCH-rpq_pspRMDVNEfM1Wch23MoSV7LNeoosbtRqPVhmPwNQkZp4Ulr-yFnoNRyXIMUUfmObHh-TfSlDZpFlMVuONKD04Sw-Wf6k3cSL8xMfAD6rQh4TqQ5hMZoYX01ittwKRUbFA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">VI</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LOS ENAMORADOS</span>
+</div>
+</div>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="Arcana Card" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ujcrMBhPHABPoFLIWLl3LTBHGvUikYOZXeBPgq3ObgavokMJfNAgk5vpVjP0HuVyLMqMi-SYJxp9d46v98-mAxjaMhhjDxfJAoaSDtWRPttFFFu7Mw04ftYJwqlXsrIwwAvcrzZQF63SEmvmG7MhsW2BazbCWLQdo1IHFvJbaxECZefDd_4aNiSWbO0NBZHrpymMoTR6ug_c6zY5oiqpvB9Fkt3BZt9LcLbggy56BC8pFmtRDN4iEBRhXALoiRqO2V7Nrm_gwOz"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">VII</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL CARRO</span>
+</div>
+</div>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="Arcana Card" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uhLNOQOq2mEVbjHI_QfFdazIHo_etly2cfOtVAOZRHp27oKkELZGBWDJDZF_A-r_ipw0tMW-MoEtRPzCiEHmQ_WD-saUFyJJx_epqVsW-amwjMAG_JOvZqYFuc1sDojmdopRZpzv4Q5KNJAOTPakqS6NLFlUH-jstr3Bj23qLrZbyB15mcuVCS4CTE05iAKfxdu_qGyAOT_KdNSpoGFeIulV-5z8KU9_FrK7xkvyGrJJXTIIiaqLpH2Nf--6vUS15gtZQJk1Vmp3A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">VIII</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA FUERZA</span>
+</div>
+</div>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="Arcana Card" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ugrGCfRO43qQpax1-oguH5aIDJkUYYRInNdOh1CQs84rGcbB7rFzpBPajEhwGW8tzE72TAbvIeyL9Mp3NUpjlMpMisjuFxvxJ0AaLviFTEvIN2nWp5WTTDfX8ceVUXOWMk5wel6vg-SVygD8MfkIX16ImR-hZ2GkSFM3yIrMYPcazYeCjNOTkvYu_pX354Z8FkLiAyHNwtMrZlvsRccL3uFLjidzZKIrhWzW5nsBFAIDEUIpy98OL7u4_G3DMAQn-U7nSwFFDMO7A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">IX</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL ERMITAÑO</span>
+</div>
+</div>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="La Rueda de la Fortuna Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uhSCTqTo61CO8H4x5-g0LKlRf75oh1QHC-Si4rBID-mH2cFr1KxnSCVc-IXOaYaA76eaKorKsNqdAVGJ_B1i4HvhciRq8bqfVhqg6neDnMJn0K3cpCqIGmr_GBfUiiiZXA1Y4jjkmDtuAtwiNdPOs8gHK7j2cmscMuznSyex60PE6QrIJrpbZ8Q3-ZFE_nqv5yZSZCTnXXhsLQY2RjkEwkTVt-tar2GNVRSF-4ZgWg5M7AEUMQey6JlmBZS93Xk1vYsPcd5FKI9"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">X</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA RUEDA DE LA FORTUNA</span>
+</div>
+</div>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="La Justicia Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uhgcU_IcOnda9y6fkWkWYfcX6M6hk4Sk23gksv2SqZfF0GBB_V7WG5DQTK47GGiZnbq85no6KLT6C4hSS0CPAMfZY5e1wxDrLBAVpXOgZjTXqjt08Odtgqkm-ybAp5wUyLZzlGZ2UlZg9lf_2bkvFoMvN_gurP5mnI7OtobfTuujHuO6pDXWVMCWVO6YZKYm1PKhiIp5kdznA40SFyVRd9ZRiBk8cvQ0xpP_r-zWJ8EDL0fDFwX_bCdozLJwYnm_EL6esV7iPFF6g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XI</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA JUSTICIA</span>
+</div>
+</div>
+<!-- Card 12: The Hanged Man -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="El Colgado Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uiootJF9IxWVxjY_VtRRyrD8jrgVCSruEJGuf-RyZUEZmehrUoX8KQP80jrsX3iKj6ya__TLyx1yCNBW3Hoy6AdS4HX2PQGZheOYuTkyavx23xsO9XSv5di24Vc6lpZdYBHkfjQnZMMNXELcYvMN7IFN1UJKbgE4UyxEUHM2bUUyhqgu_Ye0SZCQ82gOwl6A6Cs8jWKHPrSQsJMg2dg1R3zf5AOdvdnjLgRrYo3L-RIybHzKSuRcK8IlrsY8EWiLPSNkrRHk1r7uA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XII</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL COLGADO</span>
+</div>
+</div>
+<!-- Card 13: Death -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="La Muerte Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujcCBzbZnYNQEfPQkojRHb7C8xqybhrwKQIpaAqIM2QF3kLlD5PXe8k_VT7W_eD2AeMVJxCGsNTlCwWQQzmiyYk6jS-vZS2RnhfX9NYOLsone3OLS6Jg3PwuqVtJLxHBK3rzAviS0swCvYthx_tRCSxwcUx-4v8iDulRcVLoa_3JP5t3VEyXr5XvzeNJdJVkodUXKjtoaRYyC8nr_R3CrM1Sy2Tf8rqzLmB2SNuYWQYWpgOyJccK-L2E-o6hGW7OKNK7kqQ4X8lvg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XIII</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA MUERTE</span>
+</div>
+</div>
+<!-- Card 14: Temperance -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="La Templanza Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uim7eNLRtNuLj1y_qVQfUcNIR4aQsLIQLMdezHPbqahTQPnUKpRO9e1wHZTPbdja6Lde_PHZ4ktQFgqdhuT1N1vH-QYXN28lsIpttqhc1gMiZOjlZQZOk7QruNFyzqqzXo3ar-HxlYC5d2m1puk_GIQTZExPB39sgWfJWL1mEGPUPw6PpWD5q0wUCtyAJJr8Zj3GHhYfqN37oW1T_F9kMTQ4d9yhuM4eAXrJ4e6_IULX0p478HClRaizmGZHgiNRIiWjwXWZEIS7Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XIV</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA TEMPLANZA</span>
+</div>
+</div>
+<!-- Card 15: The Devil -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="The Devil Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uiFYZhsfDB3K4B9-IuQ4s89BxlY6_eN1LZ8_X414lCxZuCvE-UbUrY5v0NbdjmzMw4FbtVlEwf5SwiwVM5dLjNKtDqQ0uwvoP5jY1AYSIeWRSKLrcVOHDwVZnAtsLjjMLayP01peus9aWi4mYF8g6fTHrZsjcgBj-bRQEWO5KJ6o7aG-nHrOSTGkrZcQb_p-M6-9Mfy_DwZufy_qMT6SB0tC-EMHwzlArEVIyud3wFszvLaMnFxLwYq3uPehVyau0Qzh44vnQtqxg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XV</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL DIABLO</span>
+</div>
+</div>
+<!-- Card 16: The Tower -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="The Tower Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uh8OEu6JPv-b11mRgcKKDv_k60zXLqFXZMluezfhpM-Dk33JuwdpPNPkNA04DIb4eilzZMurKqPkzHp0ixr2GG_eweEjfv41QyWNiambCtT7URsDw6A_bikdlFq_Gp622IWIAIpy6ck3OUv6i0NiVSdk-VR-bhjGX6tNtKGAod7yd2nuqL96DH0SNcSePapm_QCHtH-0UmChWfCZxA0kalT4YPfFbDXd19evZLk_vxnS-xzYroot3EnNw3XlfSjBGmUGqnR_gmDdQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XVI</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA TORRE</span>
+</div>
+</div>
+<!-- Card 17: The Star -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="The Star Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uhLsuuF85SvltJGAGr0tu2jEgEhSz2GO2Uq3v9NC__nvpSJPROrfnErCw8BpKpeYUB-MBE54ZTRFo4Zspk8YGB7s19e1KLzCFUnwo1lvI54ZK27neYuWd7S6MYjV_SIgpogCjEH8CKFJ4rA3lrCGt9YcxxuVuLVwWg3ablFI7Im_wGv6mm6tgZVPBK-dLMR_WG4R379eaenY-LS7TGWVAa08LmhhxOvNoKCO7mymNdzVEXK9wRb_e559FaMBX6ojHnnlDyLc6yWKQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XVII</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA ESTRELLA</span>
+</div>
+</div>
+<!-- Card 18: The Moon -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="The Moon Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugZlQvOU8Wtc2vlyaHXBXzW3mj00TcFUF1Fm5aCf2s0IuqXppQx_ly5LeHYb5V6SQLBrCseTUvVg2ez9ybiVJwN9yucGkHLuMm09tKz9KgvH8prl2U8jC2OanwIjDsJ_I4CxCegyAusl86fDtnMreihxFdX0xcRyxP_FGSOwwMtRrRQwjIVo9cr_PloPqi30u8xG-cU4z1tP7Js8kwXPAi47xoCjFI-Bcb2qLWad0DCcCqHHd_qOw5OEt9Ek3HFlPxM_FqTMxCP"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XVIII</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA LUNA</span>
+</div>
+</div>
+<!-- Card 19: The Sun -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="The Sun Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uichlB1HF6H9BOAWsJdTTbC2hbmW4zvMR691uZpGgUjmExwfAwLbUAwrsmsY6zOtEJkRxrV3Tu0ZjIZwTfoMaqUm1e1LiwnYka3IqPng5qVKslKiFZUMPBqUzxaHm_gW3bhdWGEHmalN-OS-WoNX2oVSUyRMR7HpxKxhYIavhoTTSLDY8YZwBuw1ElN7ivth8JTcOL16Z2RHyHckiJCwB7I9bU0qoDwttYIOSQlkkuf0q89LbrE8wHxiU48kR5jxkjgcAcnTrVTMw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XIX</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL SOL</span>
+</div>
+</div>
+<!-- Card 20: Judgement -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="Judgement Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uiXuj7VUesWx-IV1w4GcPkv2qfJU8FgG4jPjqnesnm7cI7zf0a4U_BvyuKq5FjD1x-11eDShC_PAdILNnXdB5_pkWV2Y3wPpPCJusVOSvTruOHKoJwjn_JQJo7J3bHKs_TfhLMWUkR6nRe-h8O_60PwOIyeW1F10mMuU9oPmxh1CbhoK8mzqYy3S-UBzMO5P6KhccfClrjfWbusZDzPSJzR7iAH7Oe4cFoFQ8zaWHDFRCz55cbPYWwzJw-L0nu_MMYKrgs-yTmPEg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XX</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL JUICIO</span>
+</div>
+</div>
+<!-- Card 21: The World -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
+<img alt="The World Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugQzMPIWIb4XS6qQKHM26QZ98uowVZuWNsg4Ky8YcwL2NCDT-nq2kf6DLP4TOqMsPUzDvmTD_8mVgC_Jm6DIuqt8JuNLKi3FhSACCNmEjG1kRPm41H32_0HdokRn7DzSsnfM9k7Wtf-Zz6qVNbHcK6SVyWIUHjNSW-nKVizBejTNdBN3Ebl_8q8JDFqIgOzSoy2JZugaK37X3s8n_XDgGWneycVhPn-bG_rUV8WMnuVUOxq51uaANJHns-EBkWFLgdtKokfT_9T"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XXI</span>
+<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL MUNDO</span>
+</div>
+</div></section>
+<!-- Detail Reveal Section (Simulated Interaction) -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-8 bg-surface/90 backdrop-blur-md" id="card-modal">
+<div class="max-w-4xl w-full glass-panel border border-primary/20 rounded-xl overflow-hidden flex flex-col md:flex-row shadow-[0_0_50px_rgba(0,0,0,0.8)]">
+<div class="w-full md:w-1/2 aspect-[2/3] relative">
+<img alt="Detailed Card" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_kkBJF-UZZcbMOR0sG-nsimKxzIkdUsI9pfHe--6qlOonQRlWvK-ZKoAnPmgeznQHhdsz-DRHGAIqKVUEzGy4NBiKoCneKATgmzUEwv6xfcFtwh3ZxRlbl2pzoXFtVwgbSE1uKq0fDjoTKVgtlC4RrkgP9vXS1znx7Jm1VD-tKKisX5J_Wz8NP83yUam8wZ27EKBRETrd1IdaT0Sbqsd_LFe5jNJa0FKIwiu4v43X5EZxTaAVkAw68sBzrLWl-jHX2fpF1K3WKyY"/>
+<div class="absolute inset-0 ring-1 ring-inset ring-primary/30"></div>
+</div>
+<div class="w-full md:w-1/2 p-12 flex flex-col">
+<div class="flex justify-between items-start mb-8">
+<div>
+<span class="font-label-caps text-label-caps text-primary tracking-widest block mb-2">ARCANO MAYOR 0</span>
+<h3 class="font-display-lg text-display-lg text-on-surface">EL LOCO</h3>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<div class="space-y-6 flex-grow">
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-2">SIGNIFICADO GENERAL</h4>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                                Representa nuevos comienzos, inocencia y fe en el universo. Es el salto al vacío, la aventura sin prejuicios y el potencial ilimitado de quien no conoce el miedo.
+                            </p>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4">
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-1">ELEMENTO</h4>
+<p class="font-body-md text-body-md">Aire</p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-primary mb-1">PLANETA</h4>
+<p class="font-body-md text-body-md">Urano</p>
+</div>
+</div>
+<div class="pt-8">
+<button class="w-full border border-primary text-primary py-4 font-label-caps text-label-caps tracking-[0.2em] hover:bg-primary hover:text-on-primary transition-all duration-500 uppercase">
+                                Añadir al Diario
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center py-4 px-8 bg-surface-container-lowest/80 backdrop-blur-2xl border-t border-outline-variant/20 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-50">
+<a class="flex flex-col items-center justify-center text-primary drop-shadow-[0_0_8px_rgba(242,202,80,0.6)] scale-110 duration-500 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories" data-weight="fill" style='font-variation-settings: "FILL" 1;'>auto_stories</span>
+<span class="font-label-caps text-label-caps">Sanctum</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-tertiary-fixed-variant opacity-60 hover:opacity-100 hover:text-primary transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="flare">flare</span>
+<span class="font-label-caps text-label-caps">Divination</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-tertiary-fixed-variant opacity-60 hover:opacity-100 hover:text-primary transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-label-caps text-label-caps">Lore</span>
+</a>
+</nav>
+<!-- Scroll Indicator Decoration -->
+<div class="fixed right-12 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 hidden lg:flex">
+<div class="w-px h-32 bg-gradient-to-b from-transparent via-primary/40 to-transparent"></div>
+<span class="font-label-caps text-label-caps text-primary/40 vertical-rl transform rotate-180 tracking-[0.5em]">DESCENSO</span>
+<div class="w-px h-32 bg-gradient-to-b from-transparent via-primary/40 to-transparent"></div>
+</div>
+</body></html>
