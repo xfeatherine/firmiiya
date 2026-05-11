@@ -1,120 +1,80 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html class="dark" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries">function openCardModal(index, title, user, img, desc, meanings) {
+        const modal = document.getElementById('card-modal');
+        const modalContent = modal.querySelector('.glass-panel');
+        const modalTitle = document.getElementById('modal-title');
+        
+        document.getElementById('modal-img').src = img;
+        modalTitle.textContent = title;
+        document.getElementById('modal-user').textContent = user;
+        document.getElementById('modal-desc').textContent = desc;
+        // The word "Izquierdo" is replaced with "Invertido" as per request
+        document.getElementById('modal-meanings').innerHTML = meanings.replace(/Izquierdo/g, "Invertido");
+        
+        // Adjust font size for specific long titles to keep them on one line
+        if (title.includes('Los Enamorados')) {
+            modalTitle.classList.add('text-3xl', 'md:text-4xl');
+            modalTitle.classList.remove('text-4xl', 'md:text-5xl');
+        } else {
+            modalTitle.classList.remove('text-3xl', 'md:text-4xl');
+            modalTitle.classList.add('text-4xl', 'md:text-5xl');
+        }
 
-<html class="dark" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.classList.add('modal-open');
+        
+        setTimeout(() => {
+            modal.classList.add('opacity-100');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }, 10);
+    }
+
+    function closeCardModal() {
+        const modal = document.getElementById('card-modal');
+        const modalContent = modal.querySelector('.glass-panel');
+        
+        modal.classList.remove('opacity-100');
+        modalContent.classList.remove('scale-100');
+        modalContent.classList.add('scale-95');
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.classList.remove('modal-open');
+        }, 300);
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeCardModal();
+    });
+
+    document.getElementById('card-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'card-modal') closeCardModal();
+    });</script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
         .arcana-card-hover:hover {
-            box-shadow: 0 0 40px rgba(242, 202, 80, 0.6);
+            box-shadow: 0 0 40px rgba(242, 202, 80, 0.4);
             border-color: #f2ca50 !important;
             transform: translateY(-8px);
         }
         body {
             background-color: #111317;
             color: #e2e2e8;
+            overflow-x: hidden;
         }
         .glass-panel {
-            background: rgba(12, 14, 18, 0.6);
-            backdrop-filter: blur(20px);
+            background: rgba(12, 14, 18, 0.9);
+            backdrop-filter: blur(24px);
         }
-    </style>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "secondary-container": "#343d96",
-                        "error": "#ffb4ab",
-                        "surface-container-high": "#282a2e",
-                        "on-tertiary-fixed-variant": "#45474b",
-                        "surface-container-low": "#1a1c20",
-                        "primary-fixed-dim": "#e9c349",
-                        "surface": "#111317",
-                        "error-container": "#93000a",
-                        "on-surface": "#e2e2e8",
-                        "on-error-container": "#ffdad6",
-                        "surface-variant": "#333539",
-                        "inverse-surface": "#e2e2e8",
-                        "on-secondary": "#1b247f",
-                        "surface-container-highest": "#333539",
-                        "on-primary-container": "#554300",
-                        "secondary-fixed": "#e0e0ff",
-                        "on-error": "#690005",
-                        "secondary": "#bdc2ff",
-                        "secondary-fixed-dim": "#bdc2ff",
-                        "primary-fixed": "#ffe088",
-                        "on-surface-variant": "#d0c5af",
-                        "on-primary-fixed-variant": "#574500",
-                        "tertiary": "#cdced3",
-                        "surface-bright": "#37393e",
-                        "background": "#111317",
-                        "inverse-on-surface": "#2f3035",
-                        "on-secondary-fixed": "#000767",
-                        "outline-variant": "#4d4635",
-                        "on-primary": "#3c2f00",
-                        "on-background": "#e2e2e8",
-                        "on-tertiary-fixed": "#1a1c20",
-                        "tertiary-container": "#b2b2b8",
-                        "surface-container-lowest": "#0c0e12",
-                        "inverse-primary": "#735c00",
-                        "surface-container": "#1e2024",
-                        "on-primary-fixed": "#241a00",
-                        "tertiary-fixed": "#e2e2e8",
-                        "primary": "#f2ca50",
-                        "surface-tint": "#e9c349",
-                        "surface-dim": "#111317",
-                        "on-secondary-fixed-variant": "#343d96",
-                        "tertiary-fixed-dim": "#c6c6cc",
-                        "outline": "#99907c",
-                        "on-tertiary-container": "#434549",
-                        "primary-container": "#d4af37",
-                        "on-tertiary": "#2f3035",
-                        "on-secondary-container": "#a8afff"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "container-max": "1200px",
-                        "unit": "8px",
-                        "gutter": "24px",
-                        "margin-desktop": "64px",
-                        "margin-mobile": "16px"
-                    },
-                    "fontFamily": {
-                        "body-lg": ["Inter"],
-                        "headline-lg-mobile": ["EB Garamond"],
-                        "display-lg": ["EB Garamond"],
-                        "headline-sm": ["EB Garamond"],
-                        "label-caps": ["Inter"],
-                        "headline-md": ["EB Garamond"],
-                        "body-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                        "headline-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
-                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
-                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
-                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
-                        "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "500"}],
-                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
-                    }
-                },
-            },
-        }
-    </script>
-<style>
         .text-gold-metallic {
             background: linear-gradient(to bottom, #f2ca50 22%, #ffe088 45%, #d4af37 50%, #ffe088 55%, #f2ca50 78%);
             -webkit-background-clip: text;
@@ -152,23 +112,116 @@
             0% { background-position: 200% 200%; }
             100% { background-position: -200% -200%; }
         }
-    </style></head>
-<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md">
-<!-- TopAppBar -->
+        .modal-open {
+            overflow: hidden;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#f2ca50",
+                        "secondary-fixed-dim": "#bdc2ff",
+                        "on-secondary": "#1b247f",
+                        "surface-container-low": "#1a1c20",
+                        "secondary": "#bdc2ff",
+                        "on-primary-fixed": "#241a00",
+                        "surface-container-lowest": "#0c0e12",
+                        "on-primary": "#3c2f00",
+                        "tertiary-fixed-dim": "#c6c6cc",
+                        "on-tertiary-container": "#434549",
+                        "on-primary-container": "#554300",
+                        "surface-container-highest": "#333539",
+                        "inverse-surface": "#e2e2e8",
+                        "inverse-on-surface": "#2f3035",
+                        "primary-fixed": "#ffe088",
+                        "surface-variant": "#333539",
+                        "on-surface-variant": "#d0c5af",
+                        "surface-tint": "#e9c349",
+                        "on-primary-fixed-variant": "#574500",
+                        "on-secondary-fixed-variant": "#343d96",
+                        "on-tertiary": "#2f3035",
+                        "surface-container": "#1e2024",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed": "#e2e2e8",
+                        "tertiary": "#cdced3",
+                        "on-secondary-fixed": "#000767",
+                        "secondary-fixed": "#e0e0ff",
+                        "primary-fixed-dim": "#e9c349",
+                        "tertiary-container": "#b2b2b8",
+                        "surface-dim": "#111317",
+                        "secondary-container": "#343d96",
+                        "outline-variant": "#4d4635",
+                        "on-surface": "#e2e2e8",
+                        "on-error": "#690005",
+                        "background": "#111317",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#735c00",
+                        "surface-bright": "#37393e",
+                        "surface": "#111317",
+                        "on-tertiary-fixed": "#1a1c20",
+                        "on-background": "#e2e2e8",
+                        "primary-container": "#d4af37",
+                        "error": "#ffb4ab",
+                        "surface-container-high": "#282a2e",
+                        "on-secondary-container": "#a8afff",
+                        "on-tertiary-fixed-variant": "#45474b",
+                        "outline": "#99907c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "container-max": "1200px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["EB Garamond"],
+                        "label-caps": ["Inter"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["EB Garamond"],
+                        "headline-sm": ["EB Garamond"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md text-body-md relative">
 <main class="flex-grow pb-40 px-margin-mobile md:px-margin-desktop max-w-[1200px] mx-auto w-full pt-16">
-<!-- Hero Section / Context -->
+<!-- Hero Section -->
 <section class="mb-16 text-center max-w-3xl mx-auto">
 <div class="decorative-border mb-6 opacity-60"></div>
 <h2 class="font-display-lg text-[56px] leading-tight text-gold-metallic mb-6 tracking-wider uppercase">
-        Baraja de Tarot: Arcanos Mayores
-    </h2>
+            Baraja de Tarot: Arcanos Mayores
+        </h2>
 <div class="decorative-border mt-6 opacity-60"></div>
 <p class="font-body-lg text-body-lg text-on-surface-variant mt-8 italic">El viaje del alma a través de los misterios eternos.</p>
 </section>
 <!-- The 22 Cards Grid -->
-<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16"><!-- Card 0: The Fool -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="The Fool Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugOq4k1yZ0uk681Qo9DTZDURl0KTyad90L0p913Zk6r0f622Ep9o1bHJpJMq-7VjVUBEyEbe4LN2pm8Cw_KQgTMt2NIU0g0Azv6Hj_XAMd6OLzRSMrFqX9b8fuSOzBg01Ohi5PaVdqhVbfwtdG-QLDhAT-D5Onw3NPnhX0u8D0DFXEE9AND3epnFmGoAmH96zkyYjFD8hvbVTTAZ3nzFznhOJO_jgStJ6lusGFE8Fz2XMoAq9Hsra-YlwxX8RoOJSn4wyZfr3C2Aw"/>
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+<!-- Card 0: The Fool -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(0, '0. El Loco', 'Corvus C. Montclair — Cloudew', 'https://lh3.googleusercontent.com/aida/ADBb0ugOq4k1yZ0uk681Qo9DTZDURl0KTyad90L0p913Zk6r0f622Ep9o1bHJpJMq-7VjVUBEyEbe4LN2pm8Cw_KQgTMt2NIU0g0Azv6Hj_XAMd6OLzRSMrFqX9b8fuSOzBg01Ohi5PaVdqhVbfwtdG-QLDhAT-D5Onw3NPnhX0u8D0DFXEE9AND3epnFmGoAmH96zkyYjFD8hvbVTTAZ3nzFznhOJO_jgStJ6lusGFE8Fz2XMoAq9Hsra-YlwxX8RoOJSn4wyZfr3C2Aw', 'Es el inicio absoluto. No tiene número porque no pertenece al orden, es pura posibilidad. Representa el impulso de lanzarse sin garantías, la confianza en la vida incluso sin saber a dónde vas. Es el momento en el que alguien dice: \'no sé qué pasará, pero tengo que hacerlo\'.', '&lt;strong&gt;Derecho:&lt;/strong&gt; libertad, espontaneidad, fe, autenticidad.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; imprudencia, ingenuidad, huida de responsabilidades.')">
+<img alt="The Fool Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugOq4k1yZ0uk681Qo9DTZDURl0KTyad90L0p913Zk6r0f622Ep9o1bHJpJMq-7VjVUBEyEbe4LN2pm8Cw_KQgTMt2NIU0g0Azv6Hj_XAMd6OLzRSMrFqX9b8fuSOzBg01Ohi5PaVdqhVbfwtdG-QLDhAT-D5Onw3NPnhX0u8D0DFXEE9AND3epnFmGoAmH96zkyYjFD8hvbVTTAZ3nzFznhOJO_jgStJ6lusGFE8Fz2XMoAq9Hsra-YlwxX8RoOJSn4wyZfr3C2Aw">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">0</span>
@@ -176,8 +229,8 @@
 </div>
 </div>
 <!-- Card 1: The Magician -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="The Magician Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugaiN0EziA_WGHh4f-K8p2VhZaXCnGtJZQ8r3LnNzJO-FHo0a2QYGUEnSqhWKPVTyvPYmpkLNrOcl1Q4MsVQ7rQX47xI5FNrCXzMqniI1i5uOrdBADR3g4dfxXadF67wd8p9_-aw_ST_Cy2BV_MPjFizOjpaCGnw8X_s8W3tf2X1SnbM8cZpgXP9_CtR0EjZvesXY-RKYPyguC6hs_OgSxy39OM0qChW4Sbq9LYIQlu4aoajl9awhqeNDvBSUGSHmDJeUA3lpqjUQ"/>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(1, '1. El Mago', 'Dante Infernus — Fudofudini', 'https://lh3.googleusercontent.com/aida/ADBb0ugaiN0EziA_WGHh4f-K8p2VhZaXCnGtJZQ8r3LnNzJO-FHo0a2QYGUEnSqhWKPVTyvPYmpkLNrOcl1Q4MsVQ7rQX47xI5FNrCXzMqniI1i5uOrdBADR3g4dfxXadF67wd8p9_-aw_ST_Cy2BV_MPjFizOjpaCGnw8X_s8W3tf2X1SnbM8cZpgXP9_CtR0EjZvesXY-RKYPyguC6hs_OgSxy39OM0qChW4Sbq9LYIQlu4aoajl9awhqeNDvBSUGSHmDJeUA3lpqjUQ', 'Es la toma de poder tras el impulso inicial. Tiene todos los elementos sobre la mesa: sabe que tiene recursos y capacidad. Aquí aparece el \'puedo hacerlo realidad\'.', '&lt;strong&gt;Derecho:&lt;/strong&gt; iniciativa, habilidad, comunicación, manifestación.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; manipulación, engaño, usar el poder de forma egoísta.')">
+<img alt="The Magician Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugaiN0EziA_WGHh4f-K8p2VhZaXCnGtJZQ8r3LnNzJO-FHo0a2QYGUEnSqhWKPVTyvPYmpkLNrOcl1Q4MsVQ7rQX47xI5FNrCXzMqniI1i5uOrdBADR3g4dfxXadF67wd8p9_-aw_ST_Cy2BV_MPjFizOjpaCGnw8X_s8W3tf2X1SnbM8cZpgXP9_CtR0EjZvesXY-RKYPyguC6hs_OgSxy39OM0qChW4Sbq9LYIQlu4aoajl9awhqeNDvBSUGSHmDJeUA3lpqjUQ">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">I</span>
@@ -185,8 +238,8 @@
 </div>
 </div>
 <!-- Card 2: The High Priestess -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="The High Priestess Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uh5AYQCQEkOgMm5Ve7JRi29HE1acKL537TAWgmsN_fgM1qoMtJUzLaqOxmvRAew7j76ASPtt9kLeAmsDuuVOSRSowWumzCwIKNR2LsrcnCpjh1UxlYZ7os5ZWjiaqcHF9xgmTXXL64DdqT_AwKgIF7BXRHdOL4Z7NT2Njk-MzVnOa0d68rE1eynAfViWApJJD1TXyUGqpR_ELW-9qTrd7EqSK4LGzPnjlCU-m3XWEvZXx01hJGEwRB8RcB-oiFiW1qGre8JH4UhXA"/>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(2, '2. La Sacerdotisa', 'Galatea de Thalassa — Zelda', 'https://lh3.googleusercontent.com/aida/ADBb0uh5AYQCQEkOgMm5Ve7JRi29HE1acKL537TAWgmsN_fgM1qoMtJUzLaqOxmvRAew7j76ASPtt9kLeAmsDuuVOSRSowWumzCwIKNR2LsrcnCpjh1UxlYZ7os5ZWjiaqcHF9xgmTXXL64DdqT_AwKgIF7BXRHdOL4Z7NT2Njk-MzVnOa0d68rE1eynAfViWApJJD1TXyUGqpR_ELW-9qTrd7EqSK4LGzPnjlCU-m3XWEvZXx01hJGEwRB8RcB-oiFiW1qGre8JH4UhXA', 'Es el mundo interior. Silencio, intuición, lo que no se ve pero se siente. Guarda secretos y conocimiento profundo. Es la voz que susurra cuando todo calla.', '&lt;strong&gt;Derecho:&lt;/strong&gt; intuición, sabiduría interna, conexión espiritual.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; bloqueo emocional, pasividad, secretos ocultos.')">
+<img alt="The High Priestess Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uh5AYQCQEkOgMm5Ve7JRi29HE1acKL537TAWgmsN_fgM1qoMtJUzLaqOxmvRAew7j76ASPtt9kLeAmsDuuVOSRSowWumzCwIKNR2LsrcnCpjh1UxlYZ7os5ZWjiaqcHF9xgmTXXL64DdqT_AwKgIF7BXRHdOL4Z7NT2Njk-MzVnOa0d68rE1eynAfViWApJJD1TXyUGqpR_ELW-9qTrd7EqSK4LGzPnjlCU-m3XWEvZXx01hJGEwRB8RcB-oiFiW1qGre8JH4UhXA">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">II</span>
@@ -194,8 +247,8 @@
 </div>
 </div>
 <!-- Card 3: The Empress -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="The Empress Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugANGu4N9Ar-Ti6A2DR4qb-Eva0sXgpgomqcpx3bEx8kxMwHcanE3msHU2WEl1DXIViGyzK2DxxJYPLZmsB3MgcFNKsDadyapYG1dn8BzMEycpwEgMtcz_rpRzavdh0v3qRNKIe7rK_6ARyQ0_YFU5iFlPRo0a_X40zhvo6NxeFjHj501kXgGG0IlUVr6_UenDfX7m2-qneJbcOjpU9zeFHUYTv2fOLGTtN8LzUNMe_uzC2JAkDylZgWdhNdhHHLLAlGoUrkBzHyA"/>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(3, '3. La Emperatriz', 'Eowyn Jones — Majestrix', 'https://lh3.googleusercontent.com/aida/ADBb0ugANGu4N9Ar-Ti6A2DR4qb-Eva0sXgpgomqcpx3bEx8kxMwHcanE3msHU2WEl1DXIViGyzK2DxxJYPLZmsB3MgcFNKsDadyapYG1dn8BzMEycpwEgMtcz_rpRzavdh0v3qRNKIe7rK_6ARyQ0_YFU5iFlPRo0a_X40zhvo6NxeFjHj501kXgGG0IlUVr6_UenDfX7m2-qneJbcOjpU9zeFHUYTv2fOLGTtN8LzUNMe_uzC2JAkDylZgWdhNdhHHLLAlGoUrkBzHyA', 'La Emperatriz es la vida que florece. Representa la creación en todas sus formas: arte, proyectos, relaciones. En una sola frase: «esto crece porque lo nutro».', '&lt;strong&gt;Derecho:&lt;/strong&gt; abundancia, creatividad, amor, cuidado.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; dependencia emocional, exceso, sobreprotección.')">
+<img alt="The Empress Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugANGu4N9Ar-Ti6A2DR4qb-Eva0sXgpgomqcpx3bEx8kxMwHcanE3msHU2WEl1DXIViGyzK2DxxJYPLZmsB3MgcFNKsDadyapYG1dn8BzMEycpwEgMtcz_rpRzavdh0v3qRNKIe7rK_6ARyQ0_YFU5iFlPRo0a_X40zhvo6NxeFjHj501kXgGG0IlUVr6_UenDfX7m2-qneJbcOjpU9zeFHUYTv2fOLGTtN8LzUNMe_uzC2JAkDylZgWdhNdhHHLLAlGoUrkBzHyA">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">III</span>
@@ -203,8 +256,8 @@
 </div>
 </div>
 <!-- Card 4: The Emperor -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="The Emperor Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujR_N8SZI2lDwGyxbHgObXc7t4V2Gq8FoqwT1NBka1Z7DTLbZZ7ipZxU3bPk6C-WWSFKLY7_Q96FFKdcCuIZZSiB_b7xpsD3of5dbT3Mh5A9WTfMlo3ttQR1vSZ33B4hWjgZAS5s4uyiTt3zHs07J3ZaM5ziBmty1OOqIokaBGKhoYwuWEQf_YnvdpLpY0eGuH4dpI6uWCXabQmnWKUnSVLo8Q5EiLgnVpBf_oOf-sTL04Hr3JgweuLvbB4FTGrxR6CiLn5lxkJlw"/>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(4, '4. El Emperador', 'Helene Eisenwald — Myssie', 'https://lh3.googleusercontent.com/aida/ADBb0ujR_N8SZI2lDwGyxbHgObXc7t4V2Gq8FoqwT1NBka1Z7DTLbZZ7ipZxU3bPk6C-WWSFKLY7_Q96FFKdcCuIZZSiB_b7xpsD3of5dbT3Mh5A9WTfMlo3ttQR1vSZ33B4hWjgZAS5s4uyiTt3zHs07J3ZaM5ziBmty1OOqIokaBGKhoYwuWEQf_YnvdpLpY0eGuH4dpI6uWCXabQmnWKUnSVLo8Q5EiLgnVpBf_oOf-sTL04Hr3JgweuLvbB4FTGrxR6CiLn5lxkJlw', 'Es la estructura que da forma al caos. Donde la Emperatriz crea, el Emperador organiza. Es decir, representa el orden necesario para sostener lo creado.', '&lt;strong&gt;Derecho:&lt;/strong&gt; liderazgo, estabilidad, disciplina.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; rigidez, control excesivo, autoritarismo.')">
+<img alt="The Emperor Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujR_N8SZI2lDwGyxbHgObXc7t4V2Gq8FoqwT1NBka1Z7DTLbZZ7ipZxU3bPk6C-WWSFKLY7_Q96FFKdcCuIZZSiB_b7xpsD3of5dbT3Mh5A9WTfMlo3ttQR1vSZ33B4hWjgZAS5s4uyiTt3zHs07J3ZaM5ziBmty1OOqIokaBGKhoYwuWEQf_YnvdpLpY0eGuH4dpI6uWCXabQmnWKUnSVLo8Q5EiLgnVpBf_oOf-sTL04Hr3JgweuLvbB4FTGrxR6CiLn5lxkJlw">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">IV</span>
@@ -212,191 +265,123 @@
 </div>
 </div>
 <!-- Card 5: The Hierophant -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="The Hierophant Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujQGf2HBxsWfeUlUjw-MzSekMnSO8yyyYQdWgQuJMQ1m1mTOTEoC1KrArUpyy1pSYpIjHjeSwRBPOzlo0WBlos920uIAMKMy2CMwLoUdyWY8g328FgZ4kxTjOZ600DiliJUMK7u9VRfd8RVipiblDOoYnW8NK7qaghLpZeYfFJfosl9B5X_zk3_IgmICBMf2e3kQqiaUa-fro06D0fNaAUI_eISk4KV7jZe6673Oxl6VaVHSmlq8_s4Sdt-pjpzrWLPF-2BeiQBsQ"/>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(5, '5. El Sumo Sacerdote', 'Ezekiel Sinclair — Aesth', 'https://lh3.googleusercontent.com/aida/ADBb0ujQGf2HBxsWfeUlUjw-MzSekMnSO8yyyYQdWgQuJMQ1m1mTOTEoC1KrArUpyy1pSYpIjHjeSwRBPOzlo0WBlos920uIAMKMy2CMwLoUdyWY8g328FgZ4kxTjOZ600DiliJUMK7u9VRfd8RVipiblDOoYnW8NK7qaghLpZeYfFJfosl9B5X_zk3_IgmICBMf2e3kQqiaUa-fro06D0fNaAUI_eISk4KV7jZe6673Oxl6VaVHSmlq8_s4Sdt-pjpzrWLPF-2BeiQBsQ', 'Es el maestro de lo establecido: tradición, normas, aprendizaje formal. Simboliza la búsqueda de conocimiento, el respeto por las normas, el consejo sabio y la unión entre lo terrenal y lo divino, actuando como puente.', '&lt;strong&gt;Derecho:&lt;/strong&gt; guía, enseñanza, valores, comunidad.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; dogma, conformismo, falta de pensamiento propio.')">
+<img alt="The Hierophant Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujQGf2HBxsWfeUlUjw-MzSekMnSO8yyyYQdWgQuJMQ1m1mTOTEoC1KrArUpyy1pSYpIjHjeSwRBPOzlo0WBlos920uIAMKMy2CMwLoUdyWY8g328FgZ4kxTjOZ600DiliJUMK7u9VRfd8RVipiblDOoYnW8NK7qaghLpZeYfFJfosl9B5X_zk3_IgmICBMf2e3kQqiaUa-fro06D0fNaAUI_eISk4KV7jZe6673Oxl6VaVHSmlq8_s4Sdt-pjpzrWLPF-2BeiQBsQ">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">V</span>
 <span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL SUMO SACERDOTE</span>
 </div>
 </div>
-<!-- More Cards -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="Arcana Card" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ugcYxtBS7s_iXl3Z8E_9SbfR_BSkiqKPsRalpBKb8329QS-BVlrKvtf0iSyh2KYW468h4GLtxVy0ncyCleE-lhDtrzhxUP7GdWJGQtVQxGvOAqLTWCA3M37kjTQGE4g6bZ-_DCH-rpq_pspRMDVNEfM1Wch23MoSV7LNeoosbtRqPVhmPwNQkZp4Ulr-yFnoNRyXIMUUfmObHh-TfSlDZpFlMVuONKD04Sw-Wf6k3cSL8xMfAD6rQh4TqQ5hMZoYX01ittwKRUbFA"/>
+<!-- Card 6: The Lovers -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(6, '6. Los Enamorados', 'Señora Norris &amp; Filch', 'https://lh3.googleusercontent.com/aida/ADBb0ugcYxtBS7s_iXl3Z8E_9SbfR_BSkiqKPsRalpBKb8329QS-BVlrKvtf0iSyh2KYW468h4GLtxVy0ncyCleE-lhDtrzhxUP7GdWJGQtVQxGvOAqLTWCA3M37kjTQGE4g6bZ-_DCH-rpq_pspRMDVNEfM1Wch23MoSV7LNeoosbtRqPVhmPwNQkZp4Ulr-yFnoNRyXIMUUfmObHh-TfSlDZpFlMVuONKD04Sw-Wf6k3cSL8xMfAD6rQh4TqQ5hMZoYX01ittwKRUbFA', 'No es solo amor: es elección. Elegir implica renunciar a algo. Representa el momento de decidir quién eres y qué eliges, la maduración y el compromiso con la voz interior.', '&lt;strong&gt;Derecho:&lt;/strong&gt; unión, conexión, decisiones alineadas con el corazón.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; indecisión, conflicto interno, dependencia.')">
+<img alt="The Lovers Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugcYxtBS7s_iXl3Z8E_9SbfR_BSkiqKPsRalpBKb8329QS-BVlrKvtf0iSyh2KYW468h4GLtxVy0ncyCleE-lhDtrzhxUP7GdWJGQtVQxGvOAqLTWCA3M37kjTQGE4g6bZ-_DCH-rpq_pspRMDVNEfM1Wch23MoSV7LNeoosbtRqPVhmPwNQkZp4Ulr-yFnoNRyXIMUUfmObHh-TfSlDZpFlMVuONKD04Sw-Wf6k3cSL8xMfAD6rQh4TqQ5hMZoYX01ittwKRUbFA">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">VI</span>
 <span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LOS ENAMORADOS</span>
 </div>
 </div>
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="Arcana Card" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ujcrMBhPHABPoFLIWLl3LTBHGvUikYOZXeBPgq3ObgavokMJfNAgk5vpVjP0HuVyLMqMi-SYJxp9d46v98-mAxjaMhhjDxfJAoaSDtWRPttFFFu7Mw04ftYJwqlXsrIwwAvcrzZQF63SEmvmG7MhsW2BazbCWLQdo1IHFvJbaxECZefDd_4aNiSWbO0NBZHrpymMoTR6ug_c6zY5oiqpvB9Fkt3BZt9LcLbggy56BC8pFmtRDN4iEBRhXALoiRqO2V7Nrm_gwOz"/>
+<!-- Card 7: The Chariot -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(7, '7. El Carro', 'Clydas Mander — Karionu', 'https://lh3.googleusercontent.com/aida/ADBb0ujcrMBhPHABPoFLIWLl3LTBHGvUikYOZXeBPgq3ObgavokMJfNAgk5vpVjP0HuVyLMqMi-SYJxp9d46v98-mAxjaMhhjDxfJAoaSDtWRPttFFFu7Mw04ftYJwqlXsrIwwAvcrzZQF63SEmvmG7MhsW2BazbCWLQdo1IHFvJbaxECZefDd_4aNiSWbO0NBZHrpymMoTR6ug_c6zY5oiqpvB9Fkt3BZt9LcLbggy56BC8pFmtRDN4iEBRhXALoiRqO2V7Nrm_gwOz', 'Es el avance consciente. Representa el control de fuerzas opuestas como las emociones y los impulsos para así poder avanzar.', '&lt;strong&gt;Derecho:&lt;/strong&gt; determinación, éxito, voluntad.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; agresividad, falta de control interno.')">
+<img alt="The Chariot Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujcrMBhPHABPoFLIWLl3LTBHGvUikYOZXeBPgq3ObgavokMJfNAgk5vpVjP0HuVyLMqMi-SYJxp9d46v98-mAxjaMhhjDxfJAoaSDtWRPttFFFu7Mw04ftYJwqlXsrIwwAvcrzZQF63SEmvmG7MhsW2BazbCWLQdo1IHFvJbaxECZefDd_4aNiSWbO0NBZHrpymMoTR6ug_c6zY5oiqpvB9Fkt3BZt9LcLbggy56BC8pFmtRDN4iEBRhXALoiRqO2V7Nrm_gwOz">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">VII</span>
 <span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL CARRO</span>
 </div>
 </div>
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="Arcana Card" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0uhLNOQOq2mEVbjHI_QfFdazIHo_etly2cfOtVAOZRHp27oKkELZGBWDJDZF_A-r_ipw0tMW-MoEtRPzCiEHmQ_WD-saUFyJJx_epqVsW-amwjMAG_JOvZqYFuc1sDojmdopRZpzv4Q5KNJAOTPakqS6NLFlUH-jstr3Bj23qLrZbyB15mcuVCS4CTE05iAKfxdu_qGyAOT_KdNSpoGFeIulV-5z8KU9_FrK7xkvyGrJJXTIIiaqLpH2Nf--6vUS15gtZQJk1Vmp3A"/>
+<!-- 8 to 20 Placeholders (Simplified with same IDs) -->
+<!-- Card 8: Strength -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(8, '8. La Fuerza', 'Niklas Dahl — Kentetsu', 'https://lh3.googleusercontent.com/aida/ADBb0ujAujzA34v0zKc_yUfKi9YLCY2s-Yei7o3zUPS2b5qE39ZJtchJ1tQV2GL2HFEcIhyuhRaX7rCnZBy0S4Mqxb8LlgiPbaTxopF93Ei1AvmuvZq4ozivYbYHQIlrK0Zcuw08M3JMNCKK3JQa2Fs-CINNv4YGyorzO2BrUraVYcf5YycaV2Hc29JldphFaRmbPceG_Y5d-fIeap13IuDJMu6kFFYXgd0b8J89mx92V_FHeBZjMnt6ZiiCYBIFkZNDtq7xjppTnXi2mg', 'No tan solo se trata de la fuerza física. Representa el dominio de uno mismo, la valentía serena y la capacidad de controlar las emociones sin recurrir a la violencia. Simboliza una fuerza interior basada en la paciencia, la compasión y el equilibrio entre el instinto y la razón.', '&lt;strong&gt;Derecho:&lt;/strong&gt; paciencia, compasión, autocontrol.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; represión emocional, debilidad disfrazada.')">
+<img alt="La Fuerza Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujAujzA34v0zKc_yUfKi9YLCY2s-Yei7o3zUPS2b5qE39ZJtchJ1tQV2GL2HFEcIhyuhRaX7rCnZBy0S4Mqxb8LlgiPbaTxopF93Ei1AvmuvZq4ozivYbYHQIlrK0Zcuw08M3JMNCKK3JQa2Fs-CINNv4YGyorzO2BrUraVYcf5YycaV2Hc29JldphFaRmbPceG_Y5d-fIeap13IuDJMu6kFFYXgd0b8J89mx92V_FHeBZjMnt6ZiiCYBIFkZNDtq7xjppTnXi2mg">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">VIII</span>
 <span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA FUERZA</span>
 </div>
 </div>
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="Arcana Card" class="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ugrGCfRO43qQpax1-oguH5aIDJkUYYRInNdOh1CQs84rGcbB7rFzpBPajEhwGW8tzE72TAbvIeyL9Mp3NUpjlMpMisjuFxvxJ0AaLviFTEvIN2nWp5WTTDfX8ceVUXOWMk5wel6vg-SVygD8MfkIX16ImR-hZ2GkSFM3yIrMYPcazYeCjNOTkvYu_pX354Z8FkLiAyHNwtMrZlvsRccL3uFLjidzZKIrhWzW5nsBFAIDEUIpy98OL7u4_G3DMAQn-U7nSwFFDMO7A"/>
+<!-- Card 9: The Hermit (User provided IMAGE_22) -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(9, '9. El Ermitaño', 'Vivi Ornitier — Drens', 'https://lh3.googleusercontent.com/aida/ADBb0ujIjwdPkm1gKt9eaJTtK4lEn8w6gTeqT7g1vS15NurXG_iatVSWGPBNEkK8pZ4kuSe5VG-jVcB3aBbOIV_APSMWamWgtHZk41gwQf8e7dwHsdJwqvweViiGo1j_9lyswE2iGn_ePx6HeX5A9nZZmB5a3mFcQeUMEfuC3UZNAOhFPg_x9SpV_x2lzzZbH88U1UlesaWbM_h-_fDzIV_XBGvMDVMOkKFG8LknAkTk8uw8DFRP1wl-gprYAX8w_jJG2bZ9_crDddAP', 'Es la retirada voluntaria para encontrar respuestas. La luz que lleva ilumina solo unos pasos: el resto lo descubres caminando. También habla de madurez, paciencia y del camino hacia el conocimiento personal.', '&lt;strong&gt;Derecho:&lt;/strong&gt; introspección, sabiduría, guía interior.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; aislamiento, soledad no elegida.')">
+<img alt="El Ermitaño Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujIjwdPkm1gKt9eaJTtK4lEn8w6gTeqT7g1vS15NurXG_iatVSWGPBNEkK8pZ4WealthyYI8W3tf2X1SnbM8cZpgXP9_CtR0EjZvesXY-RKYPyguC6hs_OgSxy39OM0qChW4Sbq9LYIQlu4aoajl9awhqeNDvBSUGSHmDJeUA3lpqjUQ" style="display: none;">
+<img alt="El Ermitaño Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujIjwdPkm1gKt9eaJTtK4lEn8w6gTeqT7g1vS15NurXG_iatVSWGPBNEkK8pZ4kuSe5VG-jVcB3aBbOIV_APSMWamWgtHZk41gwQf8e7dwHsdJwqvweViiGo1j_9lyswE2iGn_ePx6HeX5A9nZZmB5a3mFcQeUMEfuC3UZNAOhFPg_x9SpV_x2lzzZbH88U1UlesaWbM_h-_fDzIV_XBGvMDVMOkKFG8LknAkTk8uw8DFRP1wl-gprYAX8w_jJG2bZ9_crDddAP">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">IX</span>
 <span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL ERMITAÑO</span>
 </div>
 </div>
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="La Rueda de la Fortuna Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uhSCTqTo61CO8H4x5-g0LKlRf75oh1QHC-Si4rBID-mH2cFr1KxnSCVc-IXOaYaA76eaKorKsNqdAVGJ_B1i4HvhciRq8bqfVhqg6neDnMJn0K3cpCqIGmr_GBfUiiiZXA1Y4jjkmDtuAtwiNdPOs8gHK7j2cmscMuznSyex60PE6QrIJrpbZ8Q3-ZFE_nqv5yZSZCTnXXhsLQY2RjkEwkTVt-tar2GNVRSF-4ZgWg5M7AEUMQey6JlmBZS93Xk1vYsPcd5FKI9"/>
+<!-- Card 10: Wheel of Fortune (User provided IMAGE_25) -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(10, '10. La Rueda de la Fortuna', 'Jur W. Klopp — Reiryoku', 'https://lh3.googleusercontent.com/aida/ADBb0ugiI1-Z1nx21V2heFcpZvIR3EgiiGeZw3blJQObG8f3r_ID39N1E9BtrciI6DCe_CV3oWu23NkpQfxbo332zFpl2IzAQnwEEErjGp2xUMg5zTUHtGpTz8vMm3F2HJg-o-qZSh93dBcRqCI_O2oIaqn5x4fE0uJPyPjiJKZzDgJA8yWcX7mLzXZXMAJEvMLmIz6wywB9ovN9R_w40svcYhvcT2ApnxMxNLaYuJ9lk1D5_I5fSvEo_YILjE_Uts5TkKGcbatIddYN', 'Es el cambio inevitable, el destino y los ciclos de la vida. Simboliza momentos de transformación, giros inesperados y oportunidades que surgen con el movimiento constante del tiempo. También habla de suerte, evolución y de aceptar que todo cambia continuamente.', '&lt;strong&gt;Derecho:&lt;/strong&gt; oportunidades, giros favorables.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; sentir que no tienes control.')">
+<img alt="La Rueda de la Fortuna Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugiI1-Z1nx21V2heFcpZvIR3EgiiGeZw3blJQObG8f3r_ID39N1E9BtrciI6DCe_CV3oWu23NkpQfxbo332zFpl2IzAQnwEEErjGp2xUMg5zTUHtGpTz8vMm3F2HJg-o-qZSh93dBcRqCI_O2oIaqn5x4fE0uJPyPjiJKZzDgJA8yWcX7mLzXZXMAJEvMLmIz6wywB9ovN9R_w40svcYhvcT2ApnxMxNLaYuJ9lk1D5_I5fSvEo_YILjE_Uts5TkKGcbatIddYN">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">X</span>
 <span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA RUEDA DE LA FORTUNA</span>
 </div>
 </div>
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="La Justicia Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uhgcU_IcOnda9y6fkWkWYfcX6M6hk4Sk23gksv2SqZfF0GBB_V7WG5DQTK47GGiZnbq85no6KLT6C4hSS0CPAMfZY5e1wxDrLBAVpXOgZjTXqjt08Odtgqkm-ybAp5wUyLZzlGZ2UlZg9lf_2bkvFoMvN_gurP5mnI7OtobfTuujHuO6pDXWVMCWVO6YZKYm1PKhiIp5kdznA40SFyVRd9ZRiBk8cvQ0xpP_r-zWJ8EDL0fDFwX_bCdozLJwYnm_EL6esV7iPFF6g"/>
+<!-- Card 11: Justice (User provided IMAGE_23) -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(11, '11. La Justicia', 'Arwen Jones — Goaway', 'https://lh3.googleusercontent.com/aida/ADBb0ug2a8VqACagMTyFeL9WPMYZQbRQfWj-WQJTMENBPZhUDzXAgCJj32Kkf8lORYk4MpS0u1DRbD083IbuP7AM2oF_dnA1zwk61pt6gxVgJezzBRh4Suso9vNE2BFu2VWyjdfXxIDy6y1-VnU4OUBB0rkqAEpfaE9Lq_Iw5e-TF-bFbIY_3G7bK9985AW68TPN-i9Oi5YOydkF540px1bUOLmOsHdYsi0QhIs-bGDp7DQu44njyCkTDvaFutIaWLfPQtOFuuUVCtC7zg', 'Simboliza la necesidad de honestidad, responsabilidad kármica, tomar decisiones justas y asumir las consecuencias de acciones pasadas. Ley de causa y efecto en todos los sentidos.', '&lt;strong&gt;Derecho:&lt;/strong&gt; equilibrio, honestidad, decisiones justas.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; juicio severo, rigidez moral.')">
+<img alt="La Justicia Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ug2a8VqACagMTyFeL9WPMYZQbRQfWj-WQJTMENBPZhUDzXAgCJj32Kkf8lORYk4MpS0u1DRbD083IbuP7AM2oF_dnA1zwk61pt6gxVgJezzBRh4Suso9vNE2BFu2VWyjdfXxIDy6y1-VnU4OUBB0rkqAEpfaE9Lq_Iw5e-TF-bFbIY_3G7bK9985AW68TPN-i9Oi5YOydkF540px1bUOLmOsHdYsi0QhIs-bGDp7DQu44njyCkTDvaFutIaWLfPQtOFuuUVCtC7zg">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XI</span>
 <span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA JUSTICIA</span>
 </div>
 </div>
-<!-- Card 12: The Hanged Man -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="El Colgado Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uiootJF9IxWVxjY_VtRRyrD8jrgVCSruEJGuf-RyZUEZmehrUoX8KQP80jrsX3iKj6ya__TLyx1yCNBW3Hoy6AdS4HX2PQGZheOYuTkyavx23xsO9XSv5di24Vc6lpZdYBHkfjQnZMMNXELcYvMN7IFN1UJKbgE4UyxEUHM2bUUyhqgu_Ye0SZCQ82gOwl6A6Cs8jWKHPrSQsJMg2dg1R3zf5AOdvdnjLgRrYo3L-RIybHzKSuRcK8IlrsY8EWiLPSNkrRHk1r7uA"/>
+<!-- Card 12: The Hanged Man (User provided IMAGE_21) -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(12, '12. El Colgado', 'Perpétua Haggard — Ancestry', 'https://lh3.googleusercontent.com/aida/ADBb0ujRY0QWytBbc3DNtgMfI1dc0EHGQfp8AEoeicMVTf9nGnCs5WKgh8A7R0h4Cc5NbEZrtgOed3QtARta2fC1ZAcukUqSo9aSzy-V9Li77GP_iSLemcibru6tGXOWjPYn8UigQLQ6dZc-mpeXKdBPq97-2I3FciZEyoJ8EWkGSaURiKFq2pz6qsC34jQVenYByMh7ngqIhAdUzGmBR6uERyhaP-fZJw99mT2L3FbqVQPe6dKrHrEnS1AT0KVL9b6YwJUmrLt2inla', 'Es la pausa obligada. Rendirse ante los acontecimientos para ver las cosas desde otra perspectiva. A veces, una buena forma de avanzar es sabiendo cómo parar.', '&lt;strong&gt;Derecho:&lt;/strong&gt; nueva perspectiva, aceptación.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; estancamiento, sacrificio inútil.')">
+<img alt="El Colgado Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujRY0QWytBbc3DNtgMfI1dc0EHGQfp8AEoeicMVTf9nGnCs5WKgh8A7R0h4Cc5NbEZrtgOed3QtARta2fC1ZAcukUqSo9aSzy-V9Li77GP_iSLemcibru6tGXOWjPYn8UigQLQ6dZc-mpeXKdBPq97-2I3FciZEyoJ8EWkGSaURiKFq2pz6qsC34jQVenYByMh7ngqIhAdUzGmBR6uERyhaP-fZJw99mT2L3FbqVQPe6dKrHrEnS1AT0KVL9b6YwJUmrLt2inla">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XII</span>
 <span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL COLGADO</span>
 </div>
 </div>
-<!-- Card 13: Death -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="La Muerte Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ujcCBzbZnYNQEfPQkojRHb7C8xqybhrwKQIpaAqIM2QF3kLlD5PXe8k_VT7W_eD2AeMVJxCGsNTlCwWQQzmiyYk6jS-vZS2RnhfX9NYOLsone3OLS6Jg3PwuqVtJLxHBK3rzAviS0swCvYthx_tRCSxwcUx-4v8iDulRcVLoa_3JP5t3VEyXr5XvzeNJdJVkodUXKjtoaRYyC8nr_R3CrM1Sy2Tf8rqzLmB2SNuYWQYWpgOyJccK-L2E-o6hGW7OKNK7kqQ4X8lvg"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
-<div class="absolute bottom-6 left-0 right-0 text-center">
-<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XIII</span>
-<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA MUERTE</span>
-</div>
-</div>
-<!-- Card 14: Temperance -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="La Templanza Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uim7eNLRtNuLj1y_qVQfUcNIR4aQsLIQLMdezHPbqahTQPnUKpRO9e1wHZTPbdja6Lde_PHZ4ktQFgqdhuT1N1vH-QYXN28lsIpttqhc1gMiZOjlZQZOk7QruNFyzqqzXo3ar-HxlYC5d2m1puk_GIQTZExPB39sgWfJWL1mEGPUPw6PpWD5q0wUCtyAJJr8Zj3GHhYfqN37oW1T_F9kMTQ4d9yhuM4eAXrJ4e6_IULX0p478HClRaizmGZHgiNRIiWjwXWZEIS7Q"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
-<div class="absolute bottom-6 left-0 right-0 text-center">
-<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XIV</span>
-<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA TEMPLANZA</span>
-</div>
-</div>
-<!-- Card 15: The Devil -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="The Devil Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uiFYZhsfDB3K4B9-IuQ4s89BxlY6_eN1LZ8_X414lCxZuCvE-UbUrY5v0NbdjmzMw4FbtVlEwf5SwiwVM5dLjNKtDqQ0uwvoP5jY1AYSIeWRSKLrcVOHDwVZnAtsLjjMLayP01peus9aWi4mYF8g6fTHrZsjcgBj-bRQEWO5KJ6o7aG-nHrOSTGkrZcQb_p-M6-9Mfy_DwZufy_qMT6SB0tC-EMHwzlArEVIyud3wFszvLaMnFxLwYq3uPehVyau0Qzh44vnQtqxg"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
-<div class="absolute bottom-6 left-0 right-0 text-center">
-<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XV</span>
-<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL DIABLO</span>
-</div>
-</div>
-<!-- Card 16: The Tower -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="The Tower Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uh8OEu6JPv-b11mRgcKKDv_k60zXLqFXZMluezfhpM-Dk33JuwdpPNPkNA04DIb4eilzZMurKqPkzHp0ixr2GG_eweEjfv41QyWNiambCtT7URsDw6A_bikdlFq_Gp622IWIAIpy6ck3OUv6i0NiVSdk-VR-bhjGX6tNtKGAod7yd2nuqL96DH0SNcSePapm_QCHtH-0UmChWfCZxA0kalT4YPfFbDXd19evZLk_vxnS-xzYroot3EnNw3XlfSjBGmUGqnR_gmDdQ"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
-<div class="absolute bottom-6 left-0 right-0 text-center">
-<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XVI</span>
-<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA TORRE</span>
-</div>
-</div>
-<!-- Card 17: The Star -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="The Star Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uhLsuuF85SvltJGAGr0tu2jEgEhSz2GO2Uq3v9NC__nvpSJPROrfnErCw8BpKpeYUB-MBE54ZTRFo4Zspk8YGB7s19e1KLzCFUnwo1lvI54ZK27neYuWd7S6MYjV_SIgpogCjEH8CKFJ4rA3lrCGt9YcxxuVuLVwWg3ablFI7Im_wGv6mm6tgZVPBK-dLMR_WG4R379eaenY-LS7TGWVAa08LmhhxOvNoKCO7mymNdzVEXK9wRb_e559FaMBX6ojHnnlDyLc6yWKQ"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
-<div class="absolute bottom-6 left-0 right-0 text-center">
-<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XVII</span>
-<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA ESTRELLA</span>
-</div>
-</div>
-<!-- Card 18: The Moon -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="The Moon Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugZlQvOU8Wtc2vlyaHXBXzW3mj00TcFUF1Fm5aCf2s0IuqXppQx_ly5LeHYb5V6SQLBrCseTUvVg2ez9ybiVJwN9yucGkHLuMm09tKz9KgvH8prl2U8jC2OanwIjDsJ_I4CxCegyAusl86fDtnMreihxFdX0xcRyxP_FGSOwwMtRrRQwjIVo9cr_PloPqi30u8xG-cU4z1tP7Js8kwXPAi47xoCjFI-Bcb2qLWad0DCcCqHHd_qOw5OEt9Ek3HFlPxM_FqTMxCP"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
-<div class="absolute bottom-6 left-0 right-0 text-center">
-<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XVIII</span>
-<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA LUNA</span>
-</div>
-</div>
-<!-- Card 19: The Sun -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="The Sun Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uichlB1HF6H9BOAWsJdTTbC2hbmW4zvMR691uZpGgUjmExwfAwLbUAwrsmsY6zOtEJkRxrV3Tu0ZjIZwTfoMaqUm1e1LiwnYka3IqPng5qVKslKiFZUMPBqUzxaHm_gW3bhdWGEHmalN-OS-WoNX2oVSUyRMR7HpxKxhYIavhoTTSLDY8YZwBuw1ElN7ivth8JTcOL16Z2RHyHckiJCwB7I9bU0qoDwttYIOSQlkkuf0q89LbrE8wHxiU48kR5jxkjgcAcnTrVTMw"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
-<div class="absolute bottom-6 left-0 right-0 text-center">
-<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XIX</span>
-<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL SOL</span>
-</div>
-</div>
-<!-- Card 20: Judgement -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="Judgement Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uiXuj7VUesWx-IV1w4GcPkv2qfJU8FgG4jPjqnesnm7cI7zf0a4U_BvyuKq5FjD1x-11eDShC_PAdILNnXdB5_pkWV2Y3wPpPCJusVOSvTruOHKoJwjn_JQJo7J3bHKs_TfhLMWUkR6nRe-h8O_60PwOIyeW1F10mMuU9oPmxh1CbhoK8mzqYy3S-UBzMO5P6KhccfClrjfWbusZDzPSJzR7iAH7Oe4cFoFQ8zaWHDFRCz55cbPYWwzJw-L0nu_MMYKrgs-yTmPEg"/>
-<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
-<div class="absolute bottom-6 left-0 right-0 text-center">
-<span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XX</span>
-<span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL JUICIO</span>
-</div>
-</div>
+<!-- Card 13: Death (User provided IMAGE_24) -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(13, '13. La Muerte', 'Samael — Dirkk', 'https://lh3.googleusercontent.com/aida/ADBb0uircUn6xj-Gem6FFiRLI4An0GCAnJICPOBRTA6cvQxFAuKbi4p8aLxL9dfPf2ZdSK6nJqUuQknvPqErFjPdfI7xAuZgbc7jZ0o71k8xdpLeAPuWBCuoOEw1mo62ODuWIJavdjnBLVVbV2l78u8qI6TfiRQ3b92uqyjjz-mtuHyNYtEYZJBYmScAy79p46tJ4mEhuqplAN9BJOEzdYKJXM9kTzwCvMd-Z_WMHrHvv0VgmcIbx1N60H6FOMXFnrvq_oTSEfeNcQVP', 'Habla del final de una etapa y el comienzo de una transformación profunda. No representa necesariamente una muerte literal, sino cambios inevitables, renovación y la necesidad de dejar atrás lo viejo para dar paso a algo nuevo.', '&lt;strong&gt;Derecho:&lt;/strong&gt; renovación, evolución.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; resistencia al cambio, miedo.')"><img alt="La Muerte Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uircUn6xj-Gem6FFiRLI4An0GCAnJICPOBRTA6cvQxFAuKbi4p8aLxL9dfPf2ZdSK6nJqUuQknvPqErFjPdfI7xAuZgbc7jZ0o71k8xdpLeAPuWBCuoOEw1mo62ODuWIJavdjnBLVVbV2l78u8qI6TfiRQ3b92uqyjjz-mtuHyNYtEYZJBYmScAy79p46tJ4mEhuqplAN9BJOEzdYKJXM9kTzwCvMd-Z_WMHrHvv0VgmcIbx1N60H6FOMXFnrvq_oTSEfeNcQVP"><div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div><div class="absolute bottom-6 left-0 right-0 text-center"><span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XIII</span><span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA MUERTE</span></div></div>
+<!-- Cards 14-20 Placeholders -->
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(14, '14. La Templanza', 'Eulalie Belcourt — Tsuyuri', 'https://lh3.googleusercontent.com/aida/ADBb0uhY9ZpK92XLibxNbggzs-Ag1BTmaCLjLZXPtUSA16Ty-scq2DZDY6QW97wTB_ZrF8U50o1X4zrycERemZ184XPyspeiUyFWmou-7sgGh2nqiYMC61mEqMpfK1qHTEyco7ofL8SitYoe5zysk6m74DEqsIEd9FXflY10AbaIskWNMW9A402vmdGZ9PEhxKqcXXLKIYtQ7iUdBVB9PPk7Wr5RsOiqkAUinrCArEgd78srXMKo-Kw0eeIWCZpkfCTVjeUQzB36fCDahQ', 'Armonía tras la transformación. Equilibrio, la armonía y la calma interior. Simboliza la capacidad de encontrar un punto medio entre emociones, pensamientos y acciones, actuando con paciencia y serenidad.', '&lt;strong&gt;Derecho:&lt;/strong&gt; equilibrio, sanación, integración.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; falta de dirección, tibieza.')"><img alt="La Templanza Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uhY9ZpK92XLibxNbggzs-Ag1BTmaCLjLZXPtUSA16Ty-scq2DZDY6QW97wTB_ZrF8U50o1X4zrycERemZ184XPyspeiUyFWmou-7sgGh2nqiYMC61mEqMpfK1qHTEyco7ofL8SitYoe5zysk6m74DEqsIEd9FXflY10AbaIskWNMW9A402vmdGZ9PEhxKqcXXLKIYtQ7iUdBVB9PPk7Wr5RsOiqkAUinrCArEgd78srXMKo-Kw0eeIWCZpkfCTVjeUQzB36fCDahQ"><div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div><div class="absolute bottom-6 left-0 right-0 text-center"><span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XIV</span><span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA TEMPLANZA</span></div></div>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(15, '15. El Diablo', 'Edmund Haggard — Moutl', 'https://lh3.googleusercontent.com/aida/ADBb0uiGRP6eft03wEfJX5U0B05TNeY3WUAbZ2d74QObLqJAMl9FWzWzl4H1g_JwuweGLv4JcR4VVvuyKxAWqCoXRa_x0whFvB4F7RbLAXsPM_qd_6Owb442Ul336LBqrL8gIWgVU3th27GsTaGoVH5aIFfHCmAo4z1s567EV37bQ0_GvFLvCXMZoP3dwCoNQ44nKOP7PPFCUWirDj95bJQCLWqEti7AW8qpqppsCcMxFqCDlo5q-qZMjVeN_aKBDgPf_fvXFN4oen3dLw', 'Simboliza las ataduras, los deseos intensos y las sombras internas. Representa aquello que puede atraparnos: obsesiones, miedos, dependencias o tentaciones. Las cadenas muchas veces no están cerradas. Sin embargo, también habla de reconocer esas cadenas para poder liberarse de ellas y recuperar el control sobre uno mismo.', '&lt;strong&gt;Derecho:&lt;/strong&gt; reconocer lo oculto, liberar sombras.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; adicción, control, autoengaño.')"><img alt="El Diablo Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uiGRP6eft03wEfJX5U0B05TNeY3WUAbZ2d74QObLqJAMl9FWzWzl4H1g_JwuweGLv4JcR4VVvuyKxAWqCoXRa_x0whFvB4F7RbLAXsPM_qd_6Owb442Ul336LBqrL8gIWgVU3th27GsTaGoVH5aIFfHCmAo4z1s567EV37bQ0_GvFLvCXMZoP3dwCoNQ44nKOP7PPFCUWirDj95bJQCLWqEti7AW8qpqppsCcMxFqCDlo5q-qZMjVeN_aKBDgPf_fvXFN4oen3dLw"><div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div><div class="absolute bottom-6 left-0 right-0 text-center"><span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XV</span><span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL DIABLO</span></div></div>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(16, '16. La Torre', 'Ramsay Klopp — Tatotyto', 'https://lh3.googleusercontent.com/aida/ADBb0uhDJrDURADA2M7lprT_6ecUBSm82GO8DanYR-2Ny5AZhX43QTay3mlaqiaAAZcNe2yF9EGRMuO8sZO-BIGr5kx68bPGIgGga3PuLEKKWcWMxOjtpxq44PKttxj3V4eXD6YHUcAsjXFG_hEzWOMyF7s1QDKnE-MimnAr7pdDMGLcBRXVO1GIgM-djjRAd-CCJqIMD4hECk5kqBq9OTGDcE2dZ4CAG-tt914xPhWgkl-K_Mqw9bjazDMth0UCgRB6KH11PHYCc5kA', 'Ruptura repentina, caos y verdades que derriban lo que parecía estable. Son aquellos cambios bruscos que obligan a reconstruirse desde cero, dejando atrás ilusiones o estructuras falsas. Aunque puede ser una carta intensa, también habla de liberación y transformación necesaria.', '&lt;strong&gt;Derecho:&lt;/strong&gt; liberación, verdad repentina.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; crisis, caos, pérdida.')"><img alt="La Torre Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uhDJrDURADA2M7lprT_6ecUBSm82GO8DanYR-2Ny5AZhX43QTay3mlaqiaAAZcNe2yF9EGRMuO8sZO-BIGr5kx68bPGIgGga3PuLEKKWcWMxOjtpxq44PKttxj3V4eXD6YHUcAsjXFG_hEzWOMyF7s1QDKnE-MimnAr7pdDMGLcBRXVO1GIgM-djjRAd-CCJqIMD4hECk5kqBq9OTGDcE2dZ4CAG-tt914xPhWgkl-K_Mqw9bjazDMth0UCgRB6KH11PHYCc5kA"><div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div><div class="absolute bottom-6 left-0 right-0 text-center"><span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XVI</span><span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA TORRE</span></div></div>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(17, '17. La Estrella', 'Brie Jones — Kazahana', 'https://lh3.googleusercontent.com/aida/ADBb0uiIm3xxL1e2d0aaqQrd1TPohRiNqEuEHUp6c6iOG6a0YuC_BivhIeLe8vlgQNJ8SkQx9ZKIlJZdRaSZpt7pM5vcu07Ffy3P12YKfxNulBpmtHaTODjFt4eoS60aRud2mojK1ciGcSefytFp9RpJcV8TeZMi2_Ysz9loaBco2QMSDgkXcVsUf_t_a61vvARt2XpK-6fVjMQGsI5G4VCeUVvNld1fo1p0BhljO8MQ6GgG3XftazedyLK0YncQ2NtYQahLJnyrsieS', 'Es la esperanza, la inspiración y la calma después del caos. Simboliza fe en el futuro, sanación emocional, una conexión profunda con los sueños y la sensibilidad interior.', '&lt;strong&gt;Derecho:&lt;/strong&gt; esperanza, sanación, fe.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; vulnerabilidad, falta de energía.')"><img alt="La Estrella Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uiIm3xxL1e2d0aaqQrd1TPohRiNqEuEHUp6c6iOG6a0YuC_BivhIeLe8vlgQNJ8SkQx9ZKIlJZdRaSZpt7pM5vcu07Ffy3P12YKfxNulBpmtHaTODjFt4eoS60aRud2mojK1ciGcSefytFp9RpJcV8TeZMi2_Ysz9loaBco2QMSDgkXcVsUf_t_a61vvARt2XpK-6fVjMQGsI5G4VCeUVvNld1fo1p0BhljO8MQ6GgG3XftazedyLK0YncQ2NtYQahLJnyrsieS"><div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div><div class="absolute bottom-6 left-0 right-0 text-center"><span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XVII</span><span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA ESTRELLA</span></div></div>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(18, '18. La Luna', 'Katherine L. — RoseScarlet', 'https://lh3.googleusercontent.com/aida/ADBb0uhmLTsT316JDIgIjMr24VuU5E8oBwIof_LpKYzUzAmjWro15k7nNfyHCDkf0YOsTbNCX_DuJgX8mIAc9y6sqe8ujYESOf8R3HEHYPjdvI4jnMcgQDgGlA6E3HnFOZuDQy-ON_-YYwjNFfJDyvDlC6SBgJR1fjJi0VvQc1sOtUR9X8fkX1BrCbaOX9irVZskaWnSGsG27lGYVGNz71KyGbaZEmEYTJIKmgT7rE5Nd_jzdBgTE3koCcM6uRhgZX9DyzFdlEVPlUp4Bg', 'Es el territorio de lo incierto. Misterio, intuición y aquello que permanece oculto. Habla de emociones profundas, dudas e ilusiones entre la realidad y los temores internos. No todo es lo que parece.', '&lt;strong&gt;Derecho:&lt;/strong&gt; intuición profunda, sensibilidad.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; miedo, engaño.')"><img alt="La Luna Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uhmLTsT316JDIgIjMr24VuU5E8oBwIof_LpKYzUzAmjWro15k7nNfyHCDkf0YOsTbNCX_DuJgX8mIAc9y6sqe8ujYESOf8R3HEHYPjdvI4jnMcgQDgGlA6E3HnFOZuDQy-ON_-YYwjNFfJDyvDlC6SBgJR1fjJi0VvQc1sOtUR9X8fkX1BrCbaOX9irVZskaWnSGsG27lGYVGNz71KyGbaZEmEYTJIKmgT7rE5Nd_jzdBgTE3koCcM6uRhgZX9DyzFdlEVPlUp4Bg"><div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div><div class="absolute bottom-6 left-0 right-0 text-center"><span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XVIII</span><span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">LA LUNA</span></div></div>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(19, '19. El Sol', 'Melody Goldbrown — lyu', 'https://lh3.googleusercontent.com/aida/ADBb0ug9FiMVn2CFVybGWynQbjclvoFXkyPd6QkLTXTa8Asalrq1BV5-fwBvtWxvRoX0Pv0FZ4mn-N-qzL-sYYEl9IHa4y545Nyd6zoy1pD9_KNLDMkpg9zuIri-SIybbAPoWJ6o8p3us9yKsJZ78fQsgs-R7nUmkJevGj0bCm3i-8fasxusbZIpBymUxwtOPvIgU9JcMbYfpg6xvJF6aCO7kmRd88VJCs6ph3yoJD58E14dKq4Re1wJHNKUxb3PZFhqHzRY8pTNl7pHeQ', 'Es la claridad total, la verdad iluminada. Felicidad y éxito. Simboliza vitalidad, alegría, confianza y momentos de plenitud donde todo se ilumina con optimismo.', '&lt;strong&gt;Derecho:&lt;/strong&gt; éxito, alegría, vitalidad.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; ego inflado, exceso de confianza.')"><img alt="El Sol Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ug9FiMVn2CFVybGWynQbjclvoFXkyPd6QkLTXTa8Asalrq1BV5-fwBvtWxvRoX0Pv0FZ4mn-N-qzL-sYYEl9IHa4y545Nyd6zoy1pD9_KNLDMkpg9zuIri-SIybbAPoWJ6o8p3us9yKsJZ78fQsgs-R7nUmkJevGj0bCm3i-8fasxusbZIpBymUxwtOPvIgU9JcMbYfpg6xvJF6aCO7kmRd88VJCs6ph3yoJD58E14dKq4Re1wJHNKUxb3PZFhqHzRY8pTNl7pHeQ"><div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div><div class="absolute bottom-6 left-0 right-0 text-center"><span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XIX</span><span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL SOL</span></div></div>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(20, '20. El Juicio', 'Iggy Callahan — unforg1ven', 'https://lh3.googleusercontent.com/aida/ADBb0uiV9HdOgipy78xrBaVMkP0C7Xv2LkHTI9UruezDmK7gxf8K3voSd4oBlKAdtdxz3ma4Ce81B8Gha5dfSwPkqekXv-pBjQB_dAetE7_U5ixyiYUUI41PQkfslDHTdLeBGDYyelXsLzlXJGhwh2Tldghh5oxEpv5m7zfbyZn8nlLOw_2cfCGwJA7Ns-Ps71nlQbzrsQDcdBAWNCz6aP4e9i6MjrCcX-SrU51cn5AtfiK-iwMpa-huzwcKLRKcgeFZQHIETbaj1sT7', 'Es el despertar. Escuchar la llamada ante la renovación y las segundas oportunidades. Habla de reflexionar sobre el pasado, aprender de él y avanzar hacia una nueva etapa con mayor conciencia.', '&lt;strong&gt;Derecho:&lt;/strong&gt; renovación, llamada interior, propósito.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; culpa, autocrítica.')"><img alt="El Juicio Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uiV9HdOgipy78xrBaVMkP0C7Xv2LkHTI9UruezDmK7gxf8K3voSd4oBlKAdtdxz3ma4Ce81B8Gha5dfSwPkqekXv-pBjQB_dAetE7_U5ixyiYUUI41PQkfslDHTdLeBGDYyelXsLzlXJGhwh2Tldghh5oxEpv5m7zfbyZn8nlLOw_2cfCGwJA7Ns-Ps71nlQbzrsQDcdBAWNCz6aP4e9i6MjrCcX-SrU51cn5AtfiK-iwMpa-huzwcKLRKcgeFZQHIETbaj1sT7"><div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div><div class="absolute bottom-6 left-0 right-0 text-center"><span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XX</span><span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL JUICIO</span></div></div>
 <!-- Card 21: The World -->
-<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover">
-<img alt="The World Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0ugQzMPIWIb4XS6qQKHM26QZ98uowVZuWNsg4Ky8YcwL2NCDT-nq2kf6DLP4TOqMsPUzDvmTD_8mVgC_Jm6DIuqt8JuNLKi3FhSACCNmEjG1kRPm41H32_0HdokRn7DzSsnfM9k7Wtf-Zz6qVNbHcK6SVyWIUHjNSW-nKVizBejTNdBN3Ebl_8q8JDFqIgOzSoy2JZugaK37X3s8n_XDgGWneycVhPn-bG_rUV8WMnuVUOxq51uaANJHns-EBkWFLgdtKokfT_9T"/>
+<div class="group relative cursor-pointer arcana-card-hover transition-all duration-500 border-2 border-primary/60 rounded-xl overflow-hidden aspect-[2/3] bg-surface-container-low hover:scale-105 holographic-hover" onclick="openCardModal(21, '21. El Mundo', 'Akira Ryuketsu — Ambrosial', 'https://lh3.googleusercontent.com/aida/ADBb0uhGvB7no01EQzaWXNVuB_a-KK2aBUZttsK2ySANTx4zJy9magI3t4IR8-izX9Sm3Td4QMn-diMS1qwypzd8uG08wFLNLjVo2SqGWqgA7zvHhhDnfKTCCgSTzrzxOTofRrrRx8eWBNG1_Odcd06YByQ_68170PxBpWPJmcCW0DBQIKteidKTcmCWR1O4dR_LNys_FEGIGZLbv3muUaiyIJ4P5M9IbEizGzwGYzwf861uWeqL94VtFp49_YRYuZmeh4y9PfVxe3QAcQ', 'Simboliza el cumplimiento de un camino, el equilibrio alcanzado y la sensación de haber encontrado el lugar propio en la existencia. Es la culminación. El final… que es también un nuevo comienzo.', '&lt;strong&gt;Derecho:&lt;/strong&gt; logro, plenitud, cierre de ciclo.&lt;br&gt;&lt;strong&gt;Invertido:&lt;/strong&gt; miedo a cerrar etapas.')">
+<img alt="The World Arcana" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" src="https://lh3.googleusercontent.com/aida/ADBb0uhGvB7no01EQzaWXNVuB_a-KK2aBUZttsK2ySANTx4zJy9magI3t4IR8-izX9Sm3Td4QMn-diMS1qwypzd8uG08wFLNLjVo2SqGWqgA7zvHhhDnfKTCCgSTzrzxOTofRrrRx8eWBNG1_Odcd06YByQ_68170PxBpWPJmcCW0DBQIKteidKTcmCWR1O4dR_LNys_FEGIGZLbv3muUaiyIJ4P5M9IbEizGzwGYzwf861uWeqL94VtFp49_YRYuZmeh4y9PfVxe3QAcQ">
 <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
 <div class="absolute bottom-6 left-0 right-0 text-center">
 <span class="font-label-caps text-label-caps text-primary tracking-[0.3em] block mb-2">XXI</span>
 <span class="font-headline-sm text-headline-sm text-on-surface uppercase tracking-[0.15em] px-2">EL MUNDO</span>
 </div>
-</div></section>
-<!-- Detail Reveal Section (Simulated Interaction) -->
-<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-8 bg-surface/90 backdrop-blur-md" id="card-modal">
-<div class="max-w-4xl w-full glass-panel border border-primary/20 rounded-xl overflow-hidden flex flex-col md:flex-row shadow-[0_0_50px_rgba(0,0,0,0.8)]">
-<div class="w-full md:w-1/2 aspect-[2/3] relative">
-<img alt="Detailed Card" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_kkBJF-UZZcbMOR0sG-nsimKxzIkdUsI9pfHe--6qlOonQRlWvK-ZKoAnPmgeznQHhdsz-DRHGAIqKVUEzGy4NBiKoCneKATgmzUEwv6xfcFtwh3ZxRlbl2pzoXFtVwgbSE1uKq0fDjoTKVgtlC4RrkgP9vXS1znx7Jm1VD-tKKisX5J_Wz8NP83yUam8wZ27EKBRETrd1IdaT0Sbqsd_LFe5jNJa0FKIwiu4v43X5EZxTaAVkAw68sBzrLWl-jHX2fpF1K3WKyY"/>
+</div>
+</section>
+<!-- Card Detail Modal -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-4 md:p-8 bg-surface/95 backdrop-blur-xl transition-opacity duration-300 opacity-0" id="card-modal">
+<div class="max-w-5xl w-full glass-panel border border-primary/20 rounded-xl overflow-hidden flex flex-col md:flex-row shadow-[0_0_80px_rgba(0,0,0,0.9)] transform scale-95 transition-transform duration-500 max-h-[90vh] md:max-h-none overflow-y-auto md:overflow-hidden">
+<div class="w-full md:w-5/12 aspect-[2/3] relative flex-shrink-0">
+<img alt="Detailed Card" class="w-full h-full object-cover" id="modal-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgcng9IjgiIGZpbGw9IiNlOGVhZWQiLz48cGF0aCBkPSJNMTcwIDEzMCBsMzAgNDAgbDIwLTE1IGw0MCA1NSBIMTQweiIgZmlsbD0iI2JkYzFjNiIvPjxjaXJjbGUgY3g9IjI1MCIgY3k9IjEyMCIgcj0iMTgiIGZpbGw9IiNiZGMxYzYiLz48L3N2Zz4=">
 <div class="absolute inset-0 ring-1 ring-inset ring-primary/30"></div>
 </div>
-<div class="w-full md:w-1/2 p-12 flex flex-col">
-<div class="flex justify-between items-start mb-8">
+<div class="w-full md:w-7/12 p-8 md:p-14 flex flex-col justify-center">
+<div class="flex justify-between items-start mb-6">
 <div>
-<span class="font-label-caps text-label-caps text-primary tracking-widest block mb-2">ARCANO MAYOR 0</span>
-<h3 class="font-display-lg text-display-lg text-on-surface">EL LOCO</h3>
+<span class="font-label-caps text-label-caps text-primary tracking-widest block mb-1 uppercase" id="modal-user"></span>
+<h3 class="font-display-lg text-4xl md:text-5xl text-on-surface uppercase tracking-tight" id="modal-title"></h3>
 </div>
-<button class="text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined" data-icon="close">close</span>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 -mr-4" onclick="closeCardModal()">
+<span class="material-symbols-outlined text-3xl">close</span>
 </button>
 </div>
-<div class="space-y-6 flex-grow">
+<div class="space-y-8">
 <div>
-<h4 class="font-label-caps text-label-caps text-primary mb-2">SIGNIFICADO GENERAL</h4>
-<p class="font-body-lg text-body-lg text-on-surface-variant">
-                                Representa nuevos comienzos, inocencia y fe en el universo. Es el salto al vacío, la aventura sin prejuicios y el potencial ilimitado de quien no conoce el miedo.
-                            </p>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-3 tracking-wide">Significado: </h4>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed" id="modal-desc"></p>
 </div>
-<div class="grid grid-cols-2 gap-4 pt-4">
-<div>
-<h4 class="font-label-caps text-label-caps text-primary mb-1">ELEMENTO</h4>
-<p class="font-body-md text-body-md">Aire</p>
-</div>
-<div>
-<h4 class="font-label-caps text-label-caps text-primary mb-1">PLANETA</h4>
-<p class="font-body-md text-body-md">Urano</p>
-</div>
-</div>
-<div class="pt-8">
-<button class="w-full border border-primary text-primary py-4 font-label-caps text-label-caps tracking-[0.2em] hover:bg-primary hover:text-on-primary transition-all duration-500 uppercase">
-                                Añadir al Diario
-                            </button>
+<div class="pt-6 border-t border-outline-variant/30">
+<p class="font-body-md text-on-surface leading-relaxed" id="modal-meanings"></p>
 </div>
 </div>
 </div>
@@ -406,22 +391,76 @@
 <!-- BottomNavBar -->
 <nav class="fixed bottom-0 left-0 w-full flex justify-around items-center py-4 px-8 bg-surface-container-lowest/80 backdrop-blur-2xl border-t border-outline-variant/20 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-50">
 <a class="flex flex-col items-center justify-center text-primary drop-shadow-[0_0_8px_rgba(242,202,80,0.6)] scale-110 duration-500 ease-in-out" href="#">
-<span class="material-symbols-outlined" data-icon="auto_stories" data-weight="fill" style='font-variation-settings: "FILL" 1;'>auto_stories</span>
-<span class="font-label-caps text-label-caps">Sanctum</span>
+<span class="material-symbols-outlined" data-icon="auto_awesome" data-weight="fill" style="font-variation-settings: &quot;FILL&quot; 1;">auto_awesome</span>
+<span class="font-label-caps text-label-caps">Arcanos Mayores</span>
 </a>
 <a class="flex flex-col items-center justify-center text-on-tertiary-fixed-variant opacity-60 hover:opacity-100 hover:text-primary transition-opacity" href="#">
 <span class="material-symbols-outlined" data-icon="flare">flare</span>
-<span class="font-label-caps text-label-caps">Divination</span>
+<span class="font-label-caps text-label-caps">Arcanos Menores</span>
 </a>
 <a class="flex flex-col items-center justify-center text-on-tertiary-fixed-variant opacity-60 hover:opacity-100 hover:text-primary transition-opacity" href="#">
 <span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
-<span class="font-label-caps text-label-caps">Lore</span>
+<span class="font-label-caps text-label-caps">Registro</span>
 </a>
 </nav>
-<!-- Scroll Indicator Decoration -->
-<div class="fixed right-12 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 hidden lg:flex">
-<div class="w-px h-32 bg-gradient-to-b from-transparent via-primary/40 to-transparent"></div>
-<span class="font-label-caps text-label-caps text-primary/40 vertical-rl transform rotate-180 tracking-[0.5em]">DESCENSO</span>
+<!-- Right Side Decoration -->
+<script>function openCardModal(index, title, user, img, desc, meanings) {
+        const modal = document.getElementById('card-modal');
+        const modalContent = modal.querySelector('.glass-panel');
+        const modalTitle = document.getElementById('modal-title');
+        
+        document.getElementById('modal-img').src = img;
+        modalTitle.textContent = title;
+        document.getElementById('modal-user').textContent = user;
+        document.getElementById('modal-desc').textContent = desc;
+        // The word "Izquierdo" is replaced with "Invertido" as per request
+        document.getElementById('modal-meanings').innerHTML = meanings.replace(/Izquierdo/g, "Invertido");
+        
+        // Adjust font size for specific long titles to keep them on one line
+        if (title.includes('Los Enamorados')) {
+            modalTitle.classList.add('text-3xl', 'md:text-4xl');
+            modalTitle.classList.remove('text-4xl', 'md:text-5xl');
+        } else {
+            modalTitle.classList.remove('text-3xl', 'md:text-4xl');
+            modalTitle.classList.add('text-4xl', 'md:text-5xl');
+        }
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.classList.add('modal-open');
+        
+        setTimeout(() => {
+            modal.classList.add('opacity-100');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }, 10);
+    }
+
+    function closeCardModal() {
+        const modal = document.getElementById('card-modal');
+        const modalContent = modal.querySelector('.glass-panel');
+        
+        modal.classList.remove('opacity-100');
+        modalContent.classList.remove('scale-100');
+        modalContent.classList.add('scale-95');
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.classList.remove('modal-open');
+        }, 300);
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeCardModal();
+    });
+
+    document.getElementById('card-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'card-modal') closeCardModal();
+    });</script>
+
+
+</body></html>
 <div class="w-px h-32 bg-gradient-to-b from-transparent via-primary/40 to-transparent"></div>
 </div>
 </body></html>
