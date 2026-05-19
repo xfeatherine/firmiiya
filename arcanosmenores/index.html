@@ -1,1 +1,339 @@
+<!DOCTYPE html><html class="dark" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#bdc2ff",
+                    "outline-variant": "#4d4635",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#333539",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#1a1c20",
+                    "surface-variant": "#333539",
+                    "on-secondary": "#1b247f",
+                    "inverse-surface": "#e2e2e8",
+                    "error-container": "#93000a",
+                    "background": "#111317",
+                    "primary-fixed": "#ffe088",
+                    "surface-bright": "#37393e",
+                    "primary-container": "#d4af37",
+                    "secondary-container": "#343d96",
+                    "on-primary-fixed": "#241a00",
+                    "tertiary-fixed": "#e2e2e8",
+                    "on-secondary-container": "#a8afff",
+                    "inverse-primary": "#735c00",
+                    "tertiary-fixed-dim": "#c6c6cc",
+                    "secondary": "#bdc2ff",
+                    "surface-container": "#1e2024",
+                    "on-error": "#690005",
+                    "on-tertiary-container": "#434549",
+                    "on-tertiary": "#2f3035",
+                    "surface": "#111317",
+                    "primary": "#f2ca50",
+                    "on-primary": "#3c2f00",
+                    "on-surface": "#e2e2e8",
+                    "on-secondary-fixed-variant": "#343d96",
+                    "on-background": "#e2e2e8",
+                    "on-surface-variant": "#d0c5af",
+                    "on-secondary-fixed": "#000767",
+                    "outline": "#99907c",
+                    "tertiary-container": "#b2b2b8",
+                    "surface-container-low": "#1a1c20",
+                    "tertiary": "#cdced3",
+                    "secondary-fixed": "#e0e0ff",
+                    "surface-container-high": "#282a2e",
+                    "on-primary-container": "#554300",
+                    "primary-fixed-dim": "#e9c349",
+                    "on-primary-fixed-variant": "#574500",
+                    "surface-dim": "#111317",
+                    "inverse-on-surface": "#2f3035",
+                    "surface-tint": "#e9c349",
+                    "surface-container-lowest": "#0c0e12",
+                    "on-tertiary-fixed-variant": "#45474b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1200px",
+                    "unit": "8px",
+                    "gutter": "24px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "headline-sm": ["EB Garamond"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "display-lg": ["EB Garamond"],
+                    "label-caps": ["Inter"],
+                    "headline-md": ["EB Garamond"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["36px", {"lineHeight": "44px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(12, 14, 18, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(242, 202, 80, 0.4);
+            transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .glass-card:hover {
+            border-color: #f2ca50;
+            box-shadow: 0 0 25px rgba(242, 202, 80, 0.2), inset 0 0 15px rgba(242, 202, 80, 0.1);
+            transform: translateY(-8px) scale(1.02);
+        }
+        .shimmer-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, transparent 0%, rgba(242, 202, 80, 0.05) 50%, transparent 100%);
+            background-size: 200% 200%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.7s;
+        }
+        .glass-card:hover .shimmer-overlay {
+            opacity: 1;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% -200%; }
+            100% { background-position: 200% 200%; }
+        }
+        .metallic-text {
+            background: linear-gradient(to bottom, #ffe088 0%, #f2ca50 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<main class="pt-16 pb-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-screen">
+<!-- Title Section -->
+<div class="text-center mb-16">
+<h1 class="font-display-lg text-display-lg metallic-text uppercase tracking-widest mb-4">ARCANOS MENORES</h1>
+<div class="h-[1px] w-24 bg-primary mx-auto mb-4 opacity-50"></div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+            Explora los misterios de lo cotidiano. Las dieciséis figuras de la corte y sus caminos elementales.
+        </p>
+</div>
+<!-- Bento Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- REY DE BASTOS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Kael Blackthorner — Kaaiser', 'REY DE BASTOS', 'Fuego 🔥', 'El monarca del espíritu creativo, un líder visionario que inspira a otros con su pasión inagotable y carisma. Representa la culminación de la voluntad.', 'Liderazgo natural, visión audaz, emprendimiento y magnanimidad.', 'Arrogancia, impulsividad, un líder que se vuelve tiránico o falto de dirección.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDF_JW__NCHrsCGbRcmtYFAmPNiPjpOOW7V6gCO6NLq48x2XpZ5YhYW_1lNouD2VwvjFdRSL5v9zlZTzN9Yr9dWq-h234LdXIwLab9u6r729QBvUeZnC9JVb0wM9OZ2B0nP5qLLxQuZm_wjqAoEDMjXt2IDis0VFJmSBqmGFQvgPmjZEo4Ks_lxE6t_3coZE5C26NiXGJeLNkJi_XFppb19tVViqm0qhFEOAGpmlWRcTxPOmva9bqqSik_NvKeaKyQLwCunslh5DyM')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF_JW__NCHrsCGbRcmtYFAmPNiPjpOOW7V6gCO6NLq48x2XpZ5YhYW_1lNouD2VwvjFdRSL5v9zlZTzN9Yr9dWq-h234LdXIwLab9u6r729QBvUeZnC9JVb0wM9OZ2B0nP5qLLxQuZm_wjqAoEDMjXt2IDis0VFJmSBqmGFQvgPmjZEo4Ks_lxE6t_3coZE5C26NiXGJeLNkJi_XFppb19tVViqm0qhFEOAGpmlWRcTxPOmva9bqqSik_NvKeaKyQLwCunslh5DyM">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Rey de Bastos</p>
+</div>
+</div>
+<!-- REY DE COPAS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Sebastian L. — Cayden', 'REY DE COPAS', 'Agua 💧', 'El maestro de la inteligencia emocional. Sentado sobre un trono en medio de las aguas, mantiene la calma y el equilibrio incluso en las tormentas.', 'Compasión, estabilidad emocional, sabiduría intuitiva y diplomacia.', 'Inestabilidad, manipulación emocional, vicios o frialdad afectiva.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAUx_qHGtIbd9LuuX-Kh8BQiHOKWtA_9UdDko4K1rCESzrIV9cOCBhsG3Le8dqXgOsJGm4aMnZOeqLZhsRTA-moIX7-9WaQtOBsE4nVA557ikhGzPj3HtXzCCIdLqNWZbDfDdoxcNkRGMyX7fmALmwpe5CMqhf-bvNzF_eep_xTYgN273MPSOkXXHpOmkMBexPwg1udcM607YWIvBAXpY98N6H7EtcOXE6m8EeFdCscrHXG0so_eFYTOYHHIW8zR9_kDrjVMUhmqfI')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUx_qHGtIbd9LuuX-Kh8BQiHOKWtA_9UdDko4K1rCESzrIV9cOCBhsG3Le8dqXgOsJGm4aMnZOeqLZhsRTA-moIX7-9WaQtOBsE4nVA557ikhGzPj3HtXzCCIdLqNWZbDfDdoxcNkRGMyX7fmALmwpe5CMqhf-bvNzF_eep_xTYgN273MPSOkXXHpOmkMBexPwg1udcM607YWIvBAXpY98N6H7EtcOXE6m8EeFdCscrHXG0so_eFYTOYHHIW8zR9_kDrjVMUhmqfI">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Rey de Copas</p>
+</div>
+</div>
+<!-- REY DE ESPADAS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Theodore Selvin — Capuchino', 'REY DE ESPADAS', 'Aire 💨', 'La autoridad intelectual suprema. Es un juez justo, analítico y decidido que utiliza la lógica pura para discernir la verdad de la ilusión.', 'Claridad mental, juicio imparcial, autoridad intelectual y honestidad.', 'Crueldad mental, cinismo, manipulación a través de la palabra o frialdad extrema.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAwlC3awbvBAyYUtDAPgKN2dvdh3u8Ic5GridFUeyqqpRNwws0cxNU55Tv4CmvP-6o_Y9mj16fOpKRRvIFBbs6VniHVMcuhe1BQbaiUx49oR0ibxyeujys8Vr8j8FDrGbeWIUSTIZaFLQXrpDtN1cMAe0QOCTcwjA8eK6t2Jo7zxMYcAwMiL7iQ5DoOtEI7cPhXAiqkCpQN59J9INZhddKuukghXA5nmhXR3jtRlreBJQeNc3J6MTN2d9yWKHmswJzORLlwT6NIJew')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwlC3awbvBAyYUtDAPgKN2dvdh3u8Ic5GridFUeyqqpRNwws0cxNU55Tv4CmvP-6o_Y9mj16fOpKRRvIFBbs6VniHVMcuhe1BQbaiUx49oR0ibxyeujys8Vr8j8FDrGbeWIUSTIZaFLQXrpDtN1cMAe0QOCTcwjA8eK6t2Jo7zxMYcAwMiL7iQ5DoOtEI7cPhXAiqkCpQN59J9INZhddKuukghXA5nmhXR3jtRlreBJQeNc3J6MTN2d9yWKHmswJzORLlwT6NIJew">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Rey de Espadas</p>
+</div>
+</div>
+<!-- REY DE OROS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Antares Ashbury — Korengal', 'REY DE OROS', 'Tierra 🌿', 'El guardián de la abundancia material y el éxito tangible. Un hombre pragmático, generoso y paciente que ha construido un imperio sólido.', 'Riqueza, estabilidad, fiabilidad, éxito profesional y seguridad material.', 'Avaricia, materialismo excesivo, terquedad o mala gestión de los recursos.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAuu9Ajs0iEU8W3o1qbdv6Zd2Qy_DgWHWE0RWMCQqqlJb-WfGpx988KqvYvXMak--XPND9ndvrYWipeL8kbTwEDJIH07us3UGQeKyOyEA_8WJFRPXYQQNFFiY3agt6UYqsOKbj96NBSJOMVyveS2U4ib3GBmwzrhMLORIsX73kSZS3kN6XD6dBIkGiLN8lL8fT42OcbKD2j9Qb1lq74jZS9FhfXhaK-brsjWmlLN5tnAl5mSlYf695_6hFfxgMvhiwgE2NWtgMCvVc')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuu9Ajs0iEU8W3o1qbdv6Zd2Qy_DgWHWE0RWMCQqqlJb-WfGpx988KqvYvXMak--XPND9ndvrYWipeL8kbTwEDJIH07us3UGQeKyOyEA_8WJFRPXYQQNFFiY3agt6UYqsOKbj96NBSJOMVyveS2U4ib3GBmwzrhMLORIsX73kSZS3kN6XD6dBIkGiLN8lL8fT42OcbKD2j9Qb1lq74jZS9FhfXhaK-brsjWmlLN5tnAl5mSlYf695_6hFfxgMvhiwgE2NWtgMCvVc">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Rey de Oros</p>
+</div>
+</div>
+<!-- REINA DE BASTOS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Gwendolyn Bellefleur — lPivoine', 'REINA DE BASTOS', 'Fuego 🔥', 'Una figura magnética, llena de energía y confianza. Representa la calidez del sol y la determinación de quien conoce su propio valor.', 'Confianza, sociabilidad, determinación, magnetismo personal y coraje.', 'Celos, temperamento explosivo, manipulación o agotamiento creativo.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBwH2N_ogA570phDi5oEzFZN_QAKKD6YU0rbU0nmBxyzk_zSTLJgnXi7WN1rE0cvQhIctfZnQ2qf4uR29pAFABkjtYwiQy2PYoE-wRBz2JArFvvuBQKN3mCo2mqz8P7kfolTl5XQhDMWboFMo0DAcfMo1fIRNkl3rtyMvRjHiGcXoskg08jAy3scm8norAluB56fv7QfT9CuxZUBlTa4Ainck2tsGyw6u9iP4M4INODFPewbs5yOUJIM0v4hCdpuc7mdik-X8OKo8s')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwH2N_ogA570phDi5oEzFZN_QAKKD6YU0rbU0nmBxyzk_zSTLJgnXi7WN1rE0cvQhIctfZnQ2qf4uR29pAFABkjtYwiQy2PYoE-wRBz2JArFvvuBQKN3mCo2mqz8P7kfolTl5XQhDMWboFMo0DAcfMo1fIRNkl3rtyMvRjHiGcXoskg08jAy3scm8norAluB56fv7QfT9CuxZUBlTa4Ainck2tsGyw6u9iP4M4INODFPewbs5yOUJIM0v4hCdpuc7mdik-X8OKo8s">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Reina de Bastos</p>
+</div>
+</div>
+<!-- REINA DE COPAS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Lottie Reinhart — Okutank', 'REINA DE COPAS', 'Agua 💧', 'La encarnación de la empatía y la profundidad psíquica. Ella ve dentro del alma y nutre con amor incondicional a quienes la rodean.', 'Intuición, sensibilidad, apoyo emocional, amor incondicional y espiritualidad.', 'Inestabilidad emocional, dependencia, tendencia al drama o evasión de la realidad.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAi4-rRvjVBVTomOrHOWtiqBZg_GjjZI61MKiqQFH5OC7YpcuThXmA1PDOIUnC-BeSFKpJCyS0ayEQIq9CoxCvPIOwjxV3JM6xygB8GEtsHJD9EfcRx2mhkNimp_bujQdDWxxrGVUo8MaGHA3-hkLv97E8sq_TyeWD7YZtV0PG9DjmjYwCSIBDNvvXc-Io6VEHAuWtBcIlj0WT2aloJOhh6QYWTDOywugymXKIsHqxtiuMYoz5rhjlobW6x6OugZ356bRUZwpKogV0')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi4-rRvjVBVTomOrHOWtiqBZg_GjjZI61MKiqQFH5OC7YpcuThXmA1PDOIUnC-BeSFKpJCyS0ayEQIq9CoxCvPIOwjxV3JM6xygB8GEtsHJD9EfcRx2mhkNimp_bujQdDWxxrGVUo8MaGHA3-hkLv97E8sq_TyeWD7YZtV0PG9DjmjYwCSIBDNvvXc-Io6VEHAuWtBcIlj0WT2aloJOhh6QYWTDOywugymXKIsHqxtiuMYoz5rhjlobW6x6OugZ356bRUZwpKogV0">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Reina de Copas</p>
+</div>
+</div>
+<!-- REINA DE ESPADAS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Amelia Crawford — KCrawford', 'REINA DE ESPADAS', 'Aire 💨', 'Una mujer de gran intelecto y verdad cruda. Ha atravesado el dolor y ha salido con una visión clara y sin ilusiones.', 'Independencia, claridad objetiva, sabiduría a través de la experiencia y perspicacia.', 'Frialdad, aislamiento, amargura o comunicación excesivamente crítica.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBVovF-5EQCCQNjEXYZ333yMyUhLDIJQ7MsmsZZkw4S1QiQewur1_-p95LK9FasahL8eNv6i9WWKHTOdkZaflJalOJuuyyPuxunTkqdOms-LBHN0TH0gwdx6xiOcOMEhWcrB07VtjP3oNYag_Jjm2gFefVGYyMxoBPRR_6YkJNxsGNBduBmulhDCrSchPw7ir1e7mvPG1vpYFXNFHGS3VYM23n9Nb8Mn6tF5NjLsmtuI4-K35mnqZPRTR-ztakRipGMYmKBcb8MRY0')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVovF-5EQCCQNjEXYZ333yMyUhLDIJQ7MsmsZZkw4S1QiQewur1_-p95LK9FasahL8eNv6i9WWKHTOdkZaflJalOJuuyyPuxunTkqdOms-LBHN0TH0gwdx6xiOcOMEhWcrB07VtjP3oNYag_Jjm2gFefVGYyMxoBPRR_6YkJNxsGNBduBmulhDCrSchPw7ir1e7mvPG1vpYFXNFHGS3VYM23n9Nb8Mn6tF5NjLsmtuI4-K35mnqZPRTR-ztakRipGMYmKBcb8MRY0">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Reina de Espadas</p>
+</div>
+</div>
+<!-- REINA DE OROS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Sadie Runehart — xMilenaZafiro', 'REINA DE OROS', 'Tierra 🌿', 'La matrona de la naturaleza y el hogar. Combina el pragmatismo con la calidez, asegurando que todo lo que toca florezca y sea sostenible.', 'Nutrición práctica, seguridad financiera, generosidad y conexión con la naturaleza.', 'Enfoque excesivo en lo material, inseguridad, descuido del hogar o estancamiento.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuD4U4SUYeUAfYRfNQ90CJZWeYGzZJy4gYUHdb_ytikpjRiyjTel-jH9FO1YCkxkIzsk6_vN7JvYnls8Q-FjRdMkI5-AB_y_gruak-ZPUdPtPz2m3cEuVSyMstybzkGoFZBEBwTG7Gzftw6Iww2KzVIviP1kInJ8rX5s_4QOg35p7idGWa-UebOyTDcQgXVBI2viafXgxSJrdpMq8Eg1LB7dUbXam-tGPODR-jtzVVo5Oy6K7CKtUs7gdvbhu9Z8GhJl3lyWcDFmjTw')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4U4SUYeUAfYRfNQ90CJZWeYGzZJy4gYUHdb_ytikpjRiyjTel-jH9FO1YCkxkIzsk6_vN7JvYnls8Q-FjRdMkI5-AB_y_gruak-ZPUdPtPz2m3cEuVSyMstybzkGoFZBEBwTG7Gzftw6Iww2KzVIviP1kInJ8rX5s_4QOg35p7idGWa-UebOyTDcQgXVBI2viafXgxSJrdpMq8Eg1LB7dUbXam-tGPODR-jtzVVo5Oy6K7CKtUs7gdvbhu9Z8GhJl3lyWcDFmjTw">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Reina de Oros</p>
+</div>
+</div>
+<!-- CABALLERO DE BASTOS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Ashen Vantrelis — Potato', 'CABALLERO DE BASTOS', 'Fuego 🔥', 'Un espíritu aventurero y audaz que cabalga hacia lo desconocido con pura pasión. Es el movimiento impetuoso de la voluntad.', 'Pasión desbordante, aventura, cambios rápidos y carisma en acción.', 'Temeridad, falta de perseverancia, tendencia a dejar proyectos a medias o arrogancia.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuC1y6-5pljMQn30vYzW9-FWwHYOht86Zo3LdaMg5VXfa5Vcxlr_01JJ1deHwaTMngXHnvo2Nj33NT_39I-R4koU8TV9kicq2p0ja0ozylxifuJ-mQmUWZKy5JxzzfRaozYHAQflVeMePaTMj9XP4Hea-4hWF98qqkBgrWJqljU0GBggOeHCFBIdbb1JhRufviBjOQOx7PnzrrcVs6xY6VV00kIkntIK4jIX4VvukpPoWbc5VPLQX2sc5Atj1LFilbwKeS280pO3aZE')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1y6-5pljMQn30vYzW9-FWwHYOht86Zo3LdaMg5VXfa5Vcxlr_01JJ1deHwaTMngXHnvo2Nj33NT_39I-R4koU8TV9kicq2p0ja0ozylxifuJ-mQmUWZKy5JxzzfRaozYHAQflVeMePaTMj9XP4Hea-4hWF98qqkBgrWJqljU0GBggOeHCFBIdbb1JhRufviBjOQOx7PnzrrcVs6xY6VV00kIkntIK4jIX4VvukpPoWbc5VPLQX2sc5Atj1LFilbwKeS280pO3aZE">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Caballero de Bastos</p>
+</div>
+</div>
+<!-- CABALLERO DE COPAS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Li Xiang — Shinyuu', 'CABALLERO DE COPAS', 'Agua 💧', 'El buscador de sueños y el mensajero del corazón. Avanza suavemente, guiado por la emoción y la búsqueda del ideal romántico.', 'Romanticismo, propuestas creativas, búsqueda del ideal y honestidad emocional.', 'Fantasía excesiva, inconstancia afectiva, tendencia a idealizar o melancolía.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuASISAXYXC6vehDqbZt1Zdqtf29zfrewS7Z3ySt7xm09C0ITbqDwh0pRDxa7_RmCRvw1hakJQs9vL2ktYGOTeUbehmYuGVSIb28M2ZbD2OVBTYnDu3Ht4MoHwus5_qA-nj1jc1A_3VHLfjBIWaHdU_rEop8JO3xro1-Pqtkr_cEnc-Q2USvmGDOLzjUMcpwzChsH6ZvLrM2anc5UKgpkscLXC91wwt8D1-tWqvWiKxoiIW2NjRfQZ0NCWPrm2wv4MlPMcjMzTofbig')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASISAXYXC6vehDqbZt1Zdqtf29zfrewS7Z3ySt7xm09C0ITbqDwh0pRDxa7_RmCRvw1hakJQs9vL2ktYGOTeUbehmYuGVSIb28M2ZbD2OVBTYnDu3Ht4MoHwus5_qA-nj1jc1A_3VHLfjBIWaHdU_rEop8JO3xro1-Pqtkr_cEnc-Q2USvmGDOLzjUMcpwzChsH6ZvLrM2anc5UKgpkscLXC91wwt8D1-tWqvWiKxoiIW2NjRfQZ0NCWPrm2wv4MlPMcjMzTofbig">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Caballero de Copas</p>
+</div>
+</div>
+<!-- CABALLERO DE ESPADAS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Percival Mander — Shinkaa', 'CABALLERO DE ESPADAS', 'Aire 💨', 'Un torbellino de intelecto y decisión. Se lanza a la batalla de las ideas con rapidez mental, sin miedo a confrontar la verdad.', 'Acción rápida, intelecto afilado, valentía intelectual y franqueza.', 'Precipitación, combatividad innecesaria, tacto nulo o frialdad lógica destructiva.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBt9qPP9oc6Ys0y4azCyFOt6QciEVjFT8Bte5XdKvAGpMZYuGc9GzXehW-fK-MVFO2BKw4Nqa8ACKIXVg0b1bQjLG8qh0lyIqLp5KpeEJck0ScLDlHh7PpeWfLiEiHUcCAfhegZnqA0ILDs71gTLsGnmh3Q0nG08dZ-jiiAuVj_jMqwHuQC7xznxSUnGoezvUApLHahyT12BcC6KKvu7taNacpvqn8ju4UxtxsYsRWCNFzLRz6psbGbTPxrmgmyiw9FyR5oGGsvqBM')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt9qPP9oc6Ys0y4azCyFOt6QciEVjFT8Bte5XdKvAGpMZYuGc9GzXehW-fK-MVFO2BKw4Nqa8ACKIXVg0b1bQjLG8qh0lyIqLp5KpeEJck0ScLDlHh7PpeWfLiEiHUcCAfhegZnqA0ILDs71gTLsGnmh3Q0nG08dZ-jiiAuVj_jMqwHuQC7xznxSUnGoezvUApLHahyT12BcC6KKvu7taNacpvqn8ju4UxtxsYsRWCNFzLRz6psbGbTPxrmgmyiw9FyR5oGGsvqBM">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Caballero de Espadas</p>
+</div>
+</div>
+<!-- CABALLERO DE OROS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Drizzt Elerby — Flekt', 'CABALLERO DE OROS', 'Tierra 🌿', 'El más paciente y diligente de los caballeros. No corre, pero nunca se detiene hasta completar su labor con la máxima perfección.', 'Laboriosidad, confiabilidad, realismo, paciencia y ética de trabajo.', 'Inercia, terquedad, excesiva cautela o aburrimiento por rutina.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuC2e_W1wD8-Q0NoxQbTos6vxNnaSXYWaG_kq9JcuLJXQFTkb38naHtrm3G-1-hGBz1aR1x5g7vvMwS-RML8XD7hFueoRD6EtIjujtt7n1TgyhvHpSDpFkl1Gs7E5jg3ap7jLgQI3xK-7JtwzojiGQdR4yvj2LeHUzgIDbHVmzecjeOP2RMGgLw7FnTB2-R45tbZCSyaBpDgPUNaE3AZAQdjo_kd28B-bKmElgKkYQHE25bI_hqPHxe_ccdWn2qD263g1PbKgy9gOEQ')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2e_W1wD8-Q0NoxQbTos6vxNnaSXYWaG_kq9JcuLJXQFTkb38naHtrm3G-1-hGBz1aR1x5g7vvMwS-RML8XD7hFueoRD6EtIjujtt7n1TgyhvHpSDpFkl1Gs7E5jg3ap7jLgQI3xK-7JtwzojiGQdR4yvj2LeHUzgIDbHVmzecjeOP2RMGgLw7FnTB2-R45tbZCSyaBpDgPUNaE3AZAQdjo_kd28B-bKmElgKkYQHE25bI_hqPHxe_ccdWn2qD263g1PbKgy9gOEQ">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Caballero de Oros</p>
+</div>
+</div>
+<!-- SOTA DE BASTOS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Sayt Iskandar — OzDaitoru', 'SOTA DE BASTOS', 'Fuego 🔥', 'El despertar del potencial creativo. Un mensajero entusiasta que trae noticias sobre nuevas pasiones y oportunidades emocionantes.', 'Entusiasmo juvenil, noticias inspiradoras, nuevos inicios y descubrimiento personal.', 'Indecisión, falta de compromiso, noticias que se retrasan o inmadurez.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDDArI2wh9E7lqFsAvyu-6ipuu5RMfvndpUTn6v_UCguOYXGpiqoTfJehFnCMECMiVjObj7eryvC075GCIel-pd84UBz98F_4CzbsnQzGD2qXiWIynH7ScX7-lVt_3GvjdB12CleE-HIsx96GUvxBx9V6cGDGzuYWSq8_kgw-KmjIhLS9I07ibwmFoWTzech3QHq5zb8QPSgJDmEQzTvZYHM4a7uIWb2yCsEsQ0ofUH7qUkeCBQw7uFjryM6JrlcdvDHkfLnQYSIY8')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDArI2wh9E7lqFsAvyu-6ipuu5RMfvndpUTn6v_UCguOYXGpiqoTfJehFnCMECMiVjObj7eryvC075GCIel-pd84UBz98F_4CzbsnQzGD2qXiWIynH7ScX7-lVt_3GvjdB12CleE-HIsx96GUvxBx9V6cGDGzuYWSq8_kgw-KmjIhLS9I07ibwmFoWTzech3QHq5zb8QPSgJDmEQzTvZYHM4a7uIWb2yCsEsQ0ofUH7qUkeCBQw7uFjryM6JrlcdvDHkfLnQYSIY8">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Sota de Bastos</p>
+</div>
+</div>
+<!-- SOTA DE COPAS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Daphne Evans — Abbyse', 'SOTA DE COPAS', 'Agua 💧', 'La voz de la intuición naciente. Un joven soñador que observa el mundo con asombro y está abierto a nuevas revelaciones emocionales.', 'Intuición emergente, noticias de amor, creatividad artística y curiosidad emocional.', 'Hipersensibilidad, timidez excesiva, ilusiones poco realistas o vulnerabilidad emocional.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBMCPxgRVCEGs-4lkqq8b_3zUevLPfi0Bk96tIneFeW9ko5NzKADaEOrXYQ1yyjHOLwGOnkeWm2f676l6L8HjvWFJHVZWr7ZfwutuN-6JFe4oDomJojpiFfyzmzrVpzmtEQd7Yx1Wuv-i0BTuOEnz-N8O8ty0V9OxxHfizHSMB_Tup0dUdX0IWZ6fobI0GaR-C00FaxtGgUH1ZEfcY2TU0eEs3cV3i-vVBvoAHhshMLlVlJLz4gmyJ55vdXeU6h4X0THqypZMgFASs')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMCPxgRVCEGs-4lkqq8b_3zUevLPfi0Bk96tIneFeW9ko5NzKADaEOrXYQ1yyjHOLwGOnkeWm2f676l6L8HjvWFJHVZWr7ZfwutuN-6JFe4oDomJojpiFfyzmzrVpzmtEQd7Yx1Wuv-i0BTuOEnz-N8O8ty0V9OxxHfizHSMB_Tup0dUdX0IWZ6fobI0GaR-C00FaxtGgUH1ZEfcY2TU0eEs3cV3i-vVBvoAHhshMLlVlJLz4gmyJ55vdXeU6h4X0THqypZMgFASs">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Sota de Copas</p>
+</div>
+</div>
+<!-- SOTA DE ESPADAS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Thomas Schulz — Chrysalism', 'SOTA DE ESPADAS', 'Aire 💨', 'La mente ágil y alerta. Siempre lista para aprender, observar y cuestionar lo establecido con una mirada crítica y vivaz.', 'Curiosidad intelectual, observación aguda, noticias inesperadas y claridad mental.', 'Cinismo, indiscreción, desconfianza excesiva o comunicación hiriente.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBzl-ZyKTr6vchno23AN4qfWNmAL4XOeiy3YUc7bNY8vEUHV5AlMYQjedi8zFLxY2SAW9-WCOQGs03cUmr5qsYDGpw09005OScCJLv0Pc9kprYXjHiThbOY6xEB1dyQCgtz9Qwy2HBp1Avh0eSz0LbjGIRZgHkOBd6ODMwT1snnNW8_3ruivbCML7pJPxmMH1Q0XLBl9MknbpOgghQlNOxftd-BtlHCAtr09_KN3dsjYYHfHyS5GXWQf5RA1WCWjrYB6SQd6B32uP8')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzl-ZyKTr6vchno23AN4qfWNmAL4XOeiy3YUc7bNY8vEUHV5AlMYQjedi8zFLxY2SAW9-WCOQGs03cUmr5qsYDGpw09005OScCJLv0Pc9kprYXjHiThbOY6xEB1dyQCgtz9Qwy2HBp1Avh0eSz0LbjGIRZgHkOBd6ODMwT1snnNW8_3ruivbCML7pJPxmMH1Q0XLBl9MknbpOgghQlNOxftd-BtlHCAtr09_KN3dsjYYHfHyS5GXWQf5RA1WCWjrYB6SQd6B32uP8">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Sota de Espadas</p>
+</div>
+</div>
+<!-- SOTA DE OROS -->
+<div class="glass-card relative aspect-[2/3.5] rounded-lg overflow-hidden cursor-pointer group" onclick="openDetail('Vincent Kavanagh — Vaaleth', 'SOTA DE OROS', 'Tierra 🌿', 'El estudiante diligente del mundo material. Representa la semilla del éxito financiero y la ambición práctica de construir algo duradero.', 'Ambición práctica, nuevas oportunidades financieras, estudio y planificación.', 'Falta de concentración, desidia, visión limitada o dificultades con el dinero.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAoeXnpPDfYWWsK81ylGq6XfIiiMw1WvGNfqLCwL22-TZwY-PJmS3xZcYdZpQs1J6YrWWSaGxPoZ21mac9o2vNh-5DheFnXYZzoFX20MnsF2cMxd5J65TbJxqm88BLaQh6TU7XvkpqGBx8XyxzU4VtF-Nkiy4uUOVhl2UWBshVinJcY_OxKRNjQjgOn5ifa8NeDKJ_pBoeUYGafJWei42-biGySiqy5okPdKAtaWaAn-S-br0MuqMrCaNjkQm3lrHayg5py3SOTGoA')">
+<div class="shimmer-overlay"></div>
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoeXnpPDfYWWsK81ylGq6XfIiiMw1WvGNfqLCwL22-TZwY-PJmS3xZcYdZpQs1J6YrWWSaGxPoZ21mac9o2vNh-5DheFnXYZzoFX20MnsF2cMxd5J65TbJxqm88BLaQh6TU7XvkpqGBx8XyxzU4VtF-Nkiy4uUOVhl2UWBshVinJcY_OxKRNjQjgOn5ifa8NeDKJ_pBoeUYGafJWei42-biGySiqy5okPdKAtaWaAn-S-br0MuqMrCaNjkQm3lrHayg5py3SOTGoA">
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-background to-transparent">
+<p class="font-label-caps text-label-caps text-primary text-center uppercase tracking-widest">Sota de Oros</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal -->
+<div class="fixed inset-0 z-[100] bg-background/90 backdrop-blur-2xl flex items-center justify-center p-8 hidden" id="detail-overlay">
+<div class="max-w-5xl w-full flex flex-col md:flex-row gap-12 items-center">
+<!-- Large Card Display -->
+<div class="w-full md:w-1/2 aspect-[2/3.5] glass-card rounded-xl border-primary border-2 shadow-[0_0_50px_rgba(242,202,80,0.3)] flex items-center justify-center relative">
+<img class="w-full h-full object-cover rounded-xl opacity-80" id="modal-img" src="">
+<button class="absolute top-4 right-4 text-primary p-2 hover:scale-110 transition-transform" onclick="document.getElementById('detail-overlay').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Information Panel -->
+<div class="w-full md:w-1/2 text-left">
+<p class="font-label-caps text-body-md text-on-surface-variant mb-1 opacity-80" id="modal-author"></p>
+<h2 class="font-display-lg text-headline-md metallic-text mb-2 uppercase tracking-widest" id="modal-card-name"></h2>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.2em] mb-6" id="modal-suit"></h3>
+<p class="font-body-lg text-body-lg text-on-surface mb-8" id="modal-desc"></p>
+<div class="space-y-6">
+<div class="p-4 rounded-lg bg-surface-container-low border-l-2 border-primary">
+<span class="font-label-caps text-label-caps text-primary block mb-1 uppercase tracking-wider">Derecho:</span>
+<p class="font-body-md text-body-md text-on-surface" id="modal-upright"></p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-low border-l-2 border-outline">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1 uppercase tracking-wider">Invertido:</span>
+<p class="font-body-md text-body-md text-on-surface-variant" id="modal-reversed"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 w-full bg-surface-container-lowest/80 backdrop-blur-2xl border-t border-outline-variant/20 flex justify-around items-center py-4 px-8 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-50">
+<a class="flex flex-col items-center justify-center text-on-tertiary-fixed-variant opacity-60 hover:opacity-100 hover:text-primary transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1">auto_awesome</span>
+<span class="font-label-caps text-label-caps">Arcanos Mayores</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary drop-shadow-[0_0_8px_rgba(242,202,80,0.6)] scale-110 duration-500 ease-in-out" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">flare</span>
+<span class="font-label-caps text-label-caps">Arcanos Menores</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-tertiary-fixed-variant opacity-60 hover:opacity-100 hover:text-primary transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1">menu_book</span>
+<span class="font-label-caps text-label-caps">Registro</span>
+</a>
+</nav>
+<script>
+    function openDetail(author, cardName, suit, desc, upright, reversed, img) {
+        document.getElementById('modal-author').innerText = author;
+        document.getElementById('modal-card-name').innerText = cardName;
+        document.getElementById('modal-suit').innerText = suit;
+        document.getElementById('modal-desc').innerText = desc;
+        document.getElementById('modal-upright').innerText = upright;
+        document.getElementById('modal-reversed').innerText = reversed;
+        document.getElementById('modal-img').src = img;
+        document.getElementById('detail-overlay').classList.remove('hidden');
+    }
+</script>
 
+
+</body></html>
