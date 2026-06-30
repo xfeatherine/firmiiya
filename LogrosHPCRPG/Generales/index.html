@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="es" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HPCRPG - Logros</title>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts for Wizarding Theme -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&amp;family=Spectral:ital,wght@0,300;0,400;0,600;1,400&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="typography">
+    body {
+      font-family: 'Spectral', serif;
+      background-color: transparent; /* Removed gray background */
+      color: #e2e2e2;
+    }
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+  </style>
+<style data-purpose="layout-styling">
+    /* Main container styling with the mosaic border */
+    .mosaic-frame {
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAjyh8XIUzBO8lOQp_YZBhI0ItqywLDihc99UXPMOVdfsHubb0AkA5n67nDilaHDV06VELYz5HBk9__vtvWbN2yDCNo3zP3nAY-OAtxrERr7cVZDbxw-L2HpQ7t4M8giGlZB8XeQ8zZI_qL5t-MPXc4eNQG2000yIhq1so9LLXXfG1uqAiGtlggwbr8ydppRwbZP0OOpEtqGXVYtiLSdVLNfWP-AQ6O8v4kK8BJ1Scv6C6ZCnP-Qt62XDTEDYYLoLipAr2tkGxf0rA');
+      background-size: cover;
+      background-position: center;
+      border: 8px solid #3d2b1f; /* Simulating a thick frame edge */
+      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+      max-width: 1000px;
+      margin: 0 auto; /* Removed top/bottom margin for clean fit */
+      height: 800px; /* Fixed height for consistency */
+      width: 1000px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Left character column */
+    .character-column {
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuColEXYRZfk-x6lJFDfjabNWBHzF1yOCLnJdX7sfRJGfk5C0oOxNYY9yxZoaWie4ZRRTdQAGRlKUgEfaeQUfjjGn9yxRQa1eWC8hc7lzaJA4-7sKcHLlZSVjzhbxlxq1gky3-cigwMCbm3qmiDFZ5GMdnRB81ac5YEB_Wr72XZa_9Lt8ergrdlt1JIdaLFVCTFQI-Tb-4F4xTttjfHno7gObd8GQmwwW3ArJl14Y7B2Q2tVPdz8jjkEN5bxDQZwrHyBsUAx7qLa0X8');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+      z-index: 10;
+    }
+
+    /* Content area styling */
+    .content-glass {
+      background-color: rgba(245, 245, 220, 0.85); /* Parchment color with transparency */
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(184, 134, 11, 0.3);
+      color: #2c1e14;
+      height: 700px; /* Fill the fixed height container */
+      width: 100%;
+      overflow-y: auto;
+    }
+
+    /* Navigation overlay */
+    .nav-overlay {
+      background: linear-gradient(to top, rgba(26, 15, 34, 0.95) 0%, rgba(26, 15, 34, 0.5) 70%, transparent 100%);
+    }
+
+    .nav-button {
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav-button:hover, .nav-button.active {
+      color: #d4af37; /* Gold */
+      border-bottom: 1px solid #d4af37;
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Custom scrollbar for content */
+    .content-glass::-webkit-scrollbar {
+      width: 6px;
+    }
+    .content-glass::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.05);
+    }
+    .content-glass::-webkit-scrollbar-thumb {
+      background: #8b7355;
+      border-radius: 3px;
+    }
+
+    /* Transitions for content switching */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease-out;
+      height: 100%;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-transparent p-0 m-0 overflow-hidden">
+<!-- BEGIN: MainContainer -->
+<main class="mosaic-frame grid grid-cols-1 md:grid-cols-12 rounded-lg shadow-2xl" data-purpose="app-container">
+<!-- BEGIN: LeftColumn (Character & Navigation) -->
+<section class="md:col-span-5 character-column relative flex flex-col justify-end h-full">
+<!-- Overlaid Navigation Menu at bottom of Image -->
+<nav class="nav-overlay p-6 pt-12 text-center" data-purpose="main-navigation">
+<h2 class="text-white font-cinzel text-lg tracking-widest border-b border-purple-900/50 pb-2">GALATEA DE THALASSA</h2>
+<p class="text-white/60 font-spectral italic text-xs mb-4 tracking-widest uppercase">Zelda</p>
+<ul class="flex flex-col gap-3">
+<li class="">
+<button class="nav-button active font-cinzel text-xs uppercase tracking-tighter" id="btn-personaje" onclick="switchTab('personaje')">Logros de Personaje</button>
+</li>
+<li class="">
+<button class="nav-button font-cinzel text-xs uppercase tracking-tighter" id="btn-exploracion" onclick="switchTab('exploracion')">Logros de Exploración</button>
+</li>
+<li class="">
+<button class="nav-button font-cinzel text-xs uppercase tracking-tighter" id="btn-combate" onclick="switchTab('combate')">Logros de Combate</button>
+</li>
+</ul>
+</nav>
+</section>
+<!-- END: LeftColumn -->
+<!-- BEGIN: RightColumn (Content Area) -->
+<section class="md:col-span-7 flex flex-col items-center justify-center h-full bg-transparent p-8" data-purpose="content-display">
+<div class="content-glass p-8 shadow-inner relative">
+<!-- BEGIN: Tab Content - Logros de Personaje -->
+<div class="tab-content active" data-purpose="tab-personaje-content" id="tab-personaje">
+<h3 class="text-2xl font-cinzel border-b-2 border-amber-800/30 pb-2 mb-6">✧ <u>Logros de Personaje:</u></h3>
+<div class="space-y-6">
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ ¡Bienvenido a HPCRPG!</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Crea tu ficha y asiste a tu primera ceremonia de inicio de curso.</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 1 🔑 (Llave)</p>
+</div>
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ Estudiante Novato</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Asiste a tu primera clase.</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 25 EXP</p>
+</div>
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ Estudiante Avanzado</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Asiste a siete clases.</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 50 EXP</p>
+</div>
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ Parte del Equipo</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Participa en una edición de la Copa de Quidditch...</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 25 EXP</p>
+</div>
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ Base Sólida</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Alcanza 50 CO por primera vez...</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 25 EXP</p>
+</div>
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ Mente Afilada</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Alcanza 75 CO por primera vez...</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 50 EXP</p>
+</div>
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ Primer Vuelo Competitivo</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Participa por primera vez en la Carrera Anual de Escoba...</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 25 EXP</p>
+</div>
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ Querido Diario</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Escribe 5 capítulos de tu historia.</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 50 EXP</p>
+</div>
+</div>
+</div>
+<!-- END: Tab Content - Logros de Personaje -->
+<!-- BEGIN: Tab Content - Logros de Exploración -->
+<div class="tab-content" data-purpose="tab-exploracion-content" id="tab-exploracion">
+<h3 class="text-2xl font-cinzel border-b-2 border-amber-800/30 pb-2 mb-6">✧ <u>Logros de Exploración:</u></h3>
+<div class="space-y-6">
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ ¿Cincuenta? … Apenas llevo diez.</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Consigue 10 páginas de la Guía de campo.</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 25 EXP y 1 CO</p>
+</div>
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ Estoy seguro que esto significa algo…</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Consigue 30 páginas de la Guía de campo.</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 50 EXP y 1 CO</p>
+</div>
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ Sabelotodo.</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Consigue 50 páginas de la Guía de campo.</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 100 EXP y 1 CO</p>
+</div>
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ ¡El cofre casi me muerde!</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Logra abrir uno de los cofres alrededor del castillo.</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 25 EXP</p>
+</div>
+<div class="achievement-item">
+<p class="font-bold text-lg mb-1">⊳ ¿Eso es un troll?</p>
+<p class="text-sm italic text-stone-700"><strong>LOGRO:</strong> Asiste a tu primera mazmorra.</p>
+<p class="text-sm font-semibold mt-1 text-amber-900">PREMIO: 25 EXP</p>
+</div>
+</div>
+</div>
+<!-- END: Tab Content - Logros de Exploración -->
+<!-- BEGIN: Tab Content - Logros de Combate -->
+<div class="tab-content" data-purpose="tab-combate-content" id="tab-combate">
+<h3 class="text-2xl font-cinzel border-b-2 border-amber-800/30 pb-2 mb-6">✧ <u>Logros de Combate:</u></h3>
+<div class="flex flex-col items-center justify-center py-20 text-center h-full">
+<div class="text-4xl opacity-20 mb-4">⚔️</div>
+<p class="italic text-stone-500">Próximamente... Registra tus victorias en duelo y encuentros mágicos.</p>
+</div>
+</div>
+<!-- END: Tab Content - Logros de Combate -->
+</div>
+</section>
+<!-- END: RightColumn -->
+</main>
+<!-- END: MainContainer -->
+<script data-purpose="tab-switcher">
+    /**
+     * Logic to switch between achievement tabs
+     * @param {string} tabName - The name of the tab to activate
+     */
+    function switchTab(tabName) {
+      // Hide all contents
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => {
+        content.classList.remove('active');
+      });
+
+      // Deactivate all buttons
+      const buttons = document.querySelectorAll('.nav-button');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      // Show selected content
+      document.getElementById('tab-' + tabName).classList.add('active');
+      
+      // Activate selected button
+      document.getElementById('btn-' + tabName).classList.add('active');
+    }
+  </script>
+</body></html>
