@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>HPCRPG - Requisitos Videncia</title>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts for Wizarding Theme -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&amp;family=Spectral:ital,wght@0,300;0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style data-purpose="typography">
+    body {
+      font-family: 'Spectral', serif;
+      background-color: transparent; /* Removed gray background */
+      color: #e2e2e2;
+    }
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+  </style>
+<style data-purpose="layout-styling">
+    /* Main container styling with the mosaic border */
+    .mosaic-frame {
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAHNywhjCfwVS0u_X06wfIT7il-iuQP3pA6ictiNDTT1S6F5Vw49-aUDbOzc42xWht9Br3b4OKXxA0kBPregEjADSHVoYstdVsS77U2xEDI3mLzylTHGKdvV5oPyDbwNwZRfP18RTLA1FjrxWZBeQb2EvsEDt5t_ncQl7Hrw24VJdl4J5xlPajIx5UygbUaMynscXrcXZSHk_GgZUvZGG95WyKbEi7G1AwlWpuI9eWP_2_600nzDNETlqxhWxRmEAhEatPv03k9gMQ');
+      background-size: cover;
+      background-position: center;
+      border: 8px solid #3d2b1f; /* Simulating a thick frame edge */
+      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+      max-width: 1000px;
+      margin: 0 auto; /* Removed top/bottom margin for clean fit */
+      height: 800px; /* Fixed height for consistency */
+      width: 1000px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Left character column */
+    .character-column {
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBmDBbW_H4Ewd1scPIAUZCgFFDHAgFQyEwfzncWzZJjXVQ8YkZn9CbZrte1XA4wRglT8LaWtPC0vFy7eBwoMAcnWkRUcngvJKdiylthZ25uh402iZeCaDBW3VB06q2X2fA66yCVQCl2pXfLSsjmsPbS1hEorVX8j70PuEg6RwtxNeyMOa7OiylmUzUtqloIPKUrRI62sr3P3N6Oq0bf4Lwe76iIDYqnvb0eqrtLx-H_1Ntbh5_d41YqUeQVglOXKmfz0B-8Qt02iYY');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+      z-index: 10;
+    }
+
+    /* Content area styling */
+    .content-glass {
+      background-color: rgba(245, 245, 220, 0.85); /* Parchment color with transparency */
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(184, 134, 11, 0.3);
+      color: #2c1e14;
+      height: 700px; /* Fill the fixed height container */
+      width: 100%;
+      overflow-y: auto;
+    }
+
+    /* Navigation overlay */
+    .nav-overlay {
+      background: linear-gradient(to top, rgba(26, 15, 34, 0.95) 0%, rgba(26, 15, 34, 0.5) 70%, transparent 100%);
+    }
+
+    /* Custom scrollbar for content */
+    .content-glass::-webkit-scrollbar {
+      width: 6px;
+    }
+    .content-glass::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.05);
+    }
+    .content-glass::-webkit-scrollbar-thumb {
+      background: #8b7355;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-transparent p-0 m-0 overflow-hidden">
+<!-- BEGIN: MainContainer -->
+<main class="mosaic-frame grid grid-cols-1 md:grid-cols-12 rounded-lg shadow-2xl" data-purpose="app-container">
+<!-- BEGIN: LeftColumn (Character & Navigation) -->
+<section class="md:col-span-5 character-column relative flex flex-col justify-end h-full">
+<!-- Overlaid Navigation Menu at bottom of Image -->
+<nav class="nav-overlay p-6 pt-12 text-center" data-purpose="main-navigation">
+<h2 class="text-white font-cinzel text-lg tracking-widest border-b border-purple-900/50 pb-2">GALATEA DE THALASSA</h2>
+<p class="text-white/60 font-spectral italic text-xs mb-4 tracking-widest uppercase">Zelda</p>
+</nav>
+</section>
+<!-- END: LeftColumn -->
+<!-- BEGIN: RightColumn (Content Area) -->
+<section class="md:col-span-7 flex flex-col items-center justify-center h-full bg-transparent p-8" data-purpose="content-display">
+<div class="content-glass p-8 shadow-inner relative">
+<!-- BEGIN: Main Content -->
+<div class="h-full" data-purpose="main-content">
+<h3 class="text-2xl font-cinzel border-b-2 border-amber-800/30 pb-2 mb-6">✧ VIDENCIA — REQUISITOS:</h3>
+<div class="space-y-6">
+<div class="achievement-item border-b border-amber-800/10 pb-4">
+<p class="font-bold text-lg mb-2">⊳ Utilizar una habilidad de este documento en cinco combates y salir victorioso.</p>
+<p class="text-2xl text-amber-900 tracking-widest">
+<a class="hover:text-amber-600 transition-colors" href="https://hpc.forumcommunity.net/?t=63452300&amp;st=1050#entry472448630" target="_blank">✧</a>✧✧✧✧
+</p>
+</div>
+<div class="achievement-item border-b border-amber-800/10 pb-4">
+<p class="font-bold text-lg mb-2">⊳ Consumir al menos 2 Visiones en un mismo combate en tres combates y salir victorioso.</p>
+<p class="text-2xl text-amber-900 tracking-widest">✧✧✧</p>
+</div>
+<div class="achievement-item border-b border-amber-800/10 pb-4">
+<p class="font-bold text-lg">⊳ Utilizar un requisito de combate. <a class="text-amber-900 hover:text-amber-600 transition-colors text-xl" href="https://hpc.forumcommunity.net/?t=63480800&amp;st=45" target="_blank">✧</a></p>
+</div>
+<div class="achievement-item border-b border-amber-800/10 pb-4">
+<p class="font-bold text-lg">⊳ Realizar una aventura referente al desarrollo personal como vidente. <span class="text-amber-900 text-xl">✧</span></p>
+</div>
+<div class="achievement-item">
+<p class="font-bold text-lg">⊳ Escribir una historia referente al desarrollo personal como vidente. <span class="text-amber-900 text-xl">✧</span></p>
+</div>
+</div>
+</div>
+<!-- END: Main Content -->
+</div>
+</section>
+<!-- END: RightColumn -->
+</main>
+<!-- END: MainContainer -->
+
+
+</body></html>
