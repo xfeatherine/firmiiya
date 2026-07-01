@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>HPCRPG - Requisitos de Personaje</title>
+<!-- Tailwind CSS v3 CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts for Wizarding Theme -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&amp;family=Spectral:ital,wght@0,300;0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style data-purpose="typography">
+    body {
+      font-family: 'Spectral', serif;
+      background-color: transparent;
+      color: #e2e2e2;
+    }
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+  </style>
+<style data-purpose="layout-styling">
+    /* Main container styling with the underwater mosaic border */
+    .mosaic-frame {
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVQjTfRBbSbyLedDPngBuvq_lwhJTy1SDrRmotiMIIEXkwyNcE4ptD0GjZIph4dfxchczlrN2zJwhIDVqIiiqcJ9EuQ7Nio8ByTKvAeQKV-yKlJSGpt_0TWTgt6Em4rJgr-e-gJ5U4Qmg_d74ammMO86Y6OMXid9GVHW9Zx_AkBAjMHC527c2lh0z0VQmgS0Qi7_jfC0cVcUKtEv1DkbiWA1oxpbK9puHtcrZw5t-31Gj6-dw6w1Mr20oCvOHOIszRldtLPHLEgxw');
+      background-size: cover;
+      background-position: center;
+      border: 8px solid #1a3a4a; /* Deep oceanic blue frame edge */
+      box-shadow: 0 0 50px rgba(0,0,0,0.8);
+      max-width: 1000px;
+      margin: 0 auto;
+      height: 800px;
+      width: 1000px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Left character column with the mermaid portrait */
+    .character-column {
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCjXCyqraFMJV6QxzZlWGRbc4hfNlsuUKN5CVWFgwDpJ6IzY38zNW3F1GIcabm5ifHWilqth1lzkLq-Djwyk45hv4wEDkRm24b-f1j-MutVM5kQ9zWeU3z8PjLhVj134Eh80LhJXNvLYqybKcp1OnnLJR6sIwYUzENY_dQ6SxjFQm9yLnyhepnKZFw7T1jngifRHjPNWAC348aknvBoQcIy_dEvP5gpiPFo9YvWLlzi16WuOJH1yXx-_7lJiaasFxIzqwTOjhIhLLY');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+      z-index: 10;
+    }
+
+    /* Content area styling with a nautical parchment feel */
+    .content-glass {
+      background-color: rgba(235, 245, 255, 0.85); /* Very light oceanic blue/parchment */
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(20, 80, 120, 0.3);
+      color: #0f2d3d;
+      height: 700px;
+      width: 100%;
+      overflow-y: auto;
+    }
+
+    /* Navigation overlay with oceanic gradients */
+    .nav-overlay {
+      background: linear-gradient(to top, rgba(10, 30, 45, 0.95) 0%, rgba(10, 30, 45, 0.5) 70%, transparent 100%);
+    }
+
+    .nav-button {
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border-bottom: 1px solid transparent;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .nav-button:hover, .nav-button.active {
+      color: #d4af37; /* Gold */
+      border-bottom: 1px solid #d4af37;
+      text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Custom scrollbar for content */
+    .content-glass::-webkit-scrollbar {
+      width: 6px;
+    }
+    .content-glass::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.05);
+    }
+    .content-glass::-webkit-scrollbar-thumb {
+      background: #1a5a8a;
+      border-radius: 3px;
+    }
+
+    /* Transitions for content switching */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease-out;
+      height: 100%;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-transparent p-0 m-0 overflow-hidden">
+<!-- BEGIN: MainContainer -->
+<main class="mosaic-frame grid grid-cols-1 md:grid-cols-12 rounded-lg shadow-2xl" data-purpose="app-container">
+<!-- BEGIN: LeftColumn (Character & Navigation) -->
+<section class="md:col-span-5 character-column relative flex flex-col justify-end h-full">
+<!-- Overlaid Navigation Menu at bottom of Image -->
+<nav class="nav-overlay p-6 pt-12 text-center" data-purpose="main-navigation">
+<h2 class="text-white font-cinzel text-lg tracking-widest border-b border-cyan-900/50 pb-2">GALATEA DE THALASSA</h2>
+<p class="text-white/60 font-spectral italic text-xs mb-4 tracking-widest uppercase">Zelda</p>
+<ul class="flex flex-col gap-3">
+<li class="">
+<button class="nav-button active font-cinzel text-xs uppercase tracking-tighter" id="btn-nereida" onclick="switchTab('nereida')">Nereida</button>
+</li>
+<li class="">
+<button class="nav-button font-cinzel text-xs uppercase tracking-tighter" id="btn-merge" onclick="switchTab('merge')">Merge</button>
+</li>
+</ul>
+</nav>
+</section>
+<!-- END: LeftColumn -->
+<!-- BEGIN: RightColumn (Content Area) -->
+<section class="md:col-span-7 flex flex-col items-center justify-center h-full bg-transparent p-8" data-purpose="content-display">
+<div class="content-glass p-8 shadow-inner relative font-spectral">
+<!-- BEGIN: Tab Content - Nereida -->
+<div class="tab-content active" data-purpose="tab-nereida-content" id="tab-nereida">
+<h3 class="text-2xl font-cinzel border-b-2 border-blue-800/30 pb-2 mb-6 text-blue-900">✧ Nereida — Requisitos:</h3>
+<div class="space-y-4"><div class="requirement-item flex flex-col gap-1 items-start"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium">Aplicar Corrientes sobre 10 objetivos distintos.</p></div><div class="pl-7 text-blue-700 text-sm"><a class="hover:text-blue-900" href="https://hpc.forumcommunity.net/?t=63452300&amp;st=870#entry472368897" target="_blank">✧</a> - <a class="hover:text-blue-900" href="https://hpc.forumcommunity.net/?t=63452300&amp;st=990#entry472433387" target="_blank">✧</a> - ✧ - ✧ - ✧ - ✧ - ✧ - ✧ - ✧ - ✧</div></div><div class="requirement-item flex flex-col gap-1 items-start"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium">Utilizar Burbuja Abisal en 3 ocasiones distintas.</p></div><div class="pl-7 text-blue-700 text-sm">✧ - ✧ - ✧</div></div><div class="requirement-item flex flex-col gap-1 items-start"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium">Recuperar al menos 1500 de Vitalidad mediante Marea Reparadora. <a class="hover:text-blue-900 text-sm ml-2" href="https://hpc.forumcommunity.net/?t=63452300&amp;st=1050#entry472448630" target="_blank">✧</a></p></div></div><div class="requirement-item flex flex-col gap-1 items-start"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium">Aplicar Corriente Descendente a 5 enemigos distintos.</p></div><div class="pl-7 text-blue-700 text-sm">✧ - ✧ - ✧ - ✧ - ✧</div></div><div class="requirement-item flex flex-col gap-1 items-start"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium">Aplicar Corriente Resonante a 5 objetivos distintos.</p></div><div class="pl-7 text-blue-700 text-sm">✧ - ✧ - ✧ - ✧ - ✧</div></div><div class="requirement-item flex flex-col gap-1 items-start"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium">Utilizar Ola de los Navegantes en 5 ocasiones distintas.</p></div><div class="pl-7 text-blue-700 text-sm">✧ - ✧ - ✧ - ✧ - ✧</div></div><div class="requirement-item flex flex-col gap-1 items-start"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium">Ganar un combate utilizando una habilidad de este documento. <a class="hover:text-blue-900 text-sm ml-2" href="https://hpc.forumcommunity.net/?t=63452300&amp;st=1065#entry472455029" target="_blank">✧</a></p></div></div><div class="requirement-item flex flex-col gap-1 items-start border-t border-blue-200 pt-4 mt-2"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium italic">Realizar un desarrollo interpretativo relacionado con el océano, la navegación o criaturas marinas. <span class="text-blue-700 text-sm ml-2 not-italic">✧</span></p></div></div></div>
+</div>
+<!-- END: Tab Content - Nereida -->
+<!-- BEGIN: Tab Content - Merge -->
+<div class="tab-content" data-purpose="tab-merge-content" id="tab-merge"><h3 class="text-2xl font-cinzel border-b-2 border-blue-800/30 pb-2 mb-6 text-blue-900">✧ Merge — Requisitos:</h3><div class="space-y-4"><div class="requirement-item flex flex-col gap-1 items-start"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium">Ganar tres combates utilizando al menos 2 habilidades distintas de este documento. Utilizar Mar de Bolsillo, mantener el domo activo durante al menos 2 rondas en un combate y salir victorioso. <span class="text-blue-700 text-sm ml-2">✧</span></p></div></div><div class="requirement-item flex flex-col gap-1 items-start"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium">Derrotar a tres oponentes utilizando una habilidad de este documento como golpe final.</p></div><div class="pl-7 text-blue-700 text-sm">✧ - ✧ - ✧</div></div><div class="requirement-item flex flex-col gap-1 items-start"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium">Activar Escafandra Arcana y acumular al menos 4 Cargas de Presión en un mismo combate. <a class="hover:text-blue-900 text-sm ml-2" href="https://hpc.forumcommunity.net/?t=63452300&amp;st=1050#entry472448630" target="_blank">✧</a></p></div></div><div class="requirement-item flex flex-col gap-1 items-start"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium">Utilizar Scuba en casillas de agua profunda y ejecutar una habilidad ofensiva en el mismo turno. <span class="text-blue-700 text-sm ml-2">✧</span></p></div></div><div class="requirement-item flex flex-col gap-1 items-start"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium">Usar al Kappa para anticipar/nulificar una acción ofensiva mediante Territorio Natural y salir victorioso. <a class="hover:text-blue-900 text-sm ml-2" href="https://hpc.forumcommunity.net/?t=63452300&amp;st=1065#entry472455029" target="_blank">✧</a></p></div></div><div class="requirement-item flex flex-col gap-1 items-start border-t border-blue-200 pt-4 mt-2"><div class="flex gap-3 items-start"><span class="text-blue-700 mt-1">⊳</span><p class="text-base font-medium italic">Realizar una historia relacionada con la experiencia del personaje en Merge. <span class="text-blue-700 text-sm ml-2 not-italic">✧</span></p></div></div></div></div>
+<!-- END: Tab Content - Merge -->
+</div>
+</section>
+<!-- END: RightColumn -->
+</main>
+<!-- END: MainContainer -->
+<script data-purpose="tab-switcher">
+    /**
+     * Logic to switch between requirement tabs
+     * @param {string} tabName - The name of the tab to activate
+     */
+    function switchTab(tabName) {
+      // Hide all contents
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => {
+        content.classList.remove('active');
+      });
+
+      // Deactivate all buttons
+      const buttons = document.querySelectorAll('.nav-button');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      // Show selected content
+      document.getElementById('tab-' + tabName).classList.add('active');
+      
+      // Activate selected button
+      document.getElementById('btn-' + tabName).classList.add('active');
+    }
+  </script>
+
+
+</body></html>
