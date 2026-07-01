@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&amp;family=Space+Grotesk:wght@500;700&amp;family=Be+Vietnam+Pro:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .wheel-container {
+            perspective: 1000px;
+        }
+
+        .wheel-inner {
+            transition: transform 4s cubic-bezier(0.15, 0, 0.15, 1);
+            transform-style: preserve-3d;
+        }
+
+        .glass-panel {
+            background: rgba(23, 31, 51, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spin-button-shadow {
+            box-shadow: 0 4px 0 0 #005047;
+        }
+
+        .spin-button-active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 0 #005047;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ddb7ff;
+            top: -10px;
+            z-index: 100;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#31394d",
+                        "surface-container-highest": "#2d3449",
+                        "surface-container-low": "#131b2e",
+                        "error-container": "#93000a",
+                        "inverse-surface": "#dae2fd",
+                        "on-primary-container": "#400071",
+                        "primary-fixed": "#f0dbff",
+                        "tertiary": "#ffb783",
+                        "background": "#0b1326",
+                        "primary-fixed-dim": "#ddb7ff",
+                        "outline-variant": "#4d4354",
+                        "on-primary-fixed-variant": "#6900b3",
+                        "on-secondary-fixed": "#00201c",
+                        "on-surface": "#dae2fd",
+                        "on-tertiary-fixed-variant": "#713700",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-high": "#222a3d",
+                        "surface-variant": "#2d3449",
+                        "surface-dim": "#0b1326",
+                        "surface-tint": "#ddb7ff",
+                        "error": "#ffb4ab",
+                        "secondary-fixed-dim": "#3cddc7",
+                        "on-tertiary-container": "#451f00",
+                        "on-primary": "#490080",
+                        "on-tertiary-fixed": "#301400",
+                        "on-secondary-container": "#004d44",
+                        "inverse-on-surface": "#283044",
+                        "surface-container-lowest": "#060e20",
+                        "on-tertiary": "#4f2500",
+                        "on-error": "#690005",
+                        "primary-container": "#b76dff",
+                        "surface": "#0b1326",
+                        "tertiary-container": "#d97722",
+                        "tertiary-fixed": "#ffdcc5",
+                        "on-background": "#dae2fd",
+                        "secondary": "#44e2cd",
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-surface-variant": "#cfc2d6",
+                        "on-secondary": "#003731",
+                        "inverse-primary": "#842bd2",
+                        "secondary-fixed": "#62fae3",
+                        "surface-container": "#171f33",
+                        "primary": "#ddb7ff",
+                        "on-primary-fixed": "#2c0051",
+                        "secondary-container": "#03c6b2",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "outline": "#988d9f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "wheel-margin": "20px",
+                        "xs": "8px",
+                        "xl": "64px",
+                        "md": "24px",
+                        "sm": "16px",
+                        "base": "4px",
+                        "lg": "40px"
+                    },
+                    "fontFamily": {
+                        "label-bold": ["Space Grotesk"],
+                        "spin-display": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-bold": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "spin-display": ["24px", {"lineHeight": "1", "fontWeight": "800"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "800"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface-dim/80 backdrop-blur-xl shadow-sm w-full top-0 sticky flex justify-between items-center px-sm h-16 w-full z-50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container flex items-center justify-center border-2 border-primary">
+<img class="w-full h-full object-cover" data-alt="A close-up high-resolution portrait of a stylish young adult user for a profile avatar. The lighting is dramatic with neon purple and teal accents against a dark background, echoing a premium gaming aesthetic. The style is sharp digital photography with a soft bokeh effect in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4IGgD6N6fADIbV7Rvyq32xPSPmCemlxSQLkVIKHVQuFEfJhws0EIdAI9_0iVk3P_LrCiJot8Uj9jLZbkHYHIbavRIUEmLbfDZtqAebbS6twKw6WPVfgSfJLktFU67Nyryn6fH_Le6Dhxcw9qzEIxdL3tThz75Z0Uxx01nzOJVd_FLPtF9p-Y2Mc7WKIyR-2ORpWhd657ThEBGadQUvnYAkz2s-aeTrGjT1ScNXI0eSbl8-evpcPEsfw"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary dark:text-primary">Fortune Wheel</h1>
+</div>
+<div class="flex items-center bg-surface-container-high px-4 py-2 rounded-full border border-outline-variant/30 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-tertiary mr-2" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-primary font-label-bold text-label-bold">2,450 pts</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col items-center justify-center px-6 pb-24 relative overflow-hidden">
+<!-- Atmospheric Background Shaders (Placeholder Injection) -->
+
+<!-- Winners Ticker -->
+<div class="glass-panel rounded-full px-4 py-2 mb-8 z-10 flex items-center gap-3 border-secondary/20 shadow-lg">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border border-background bg-secondary"></div>
+<div class="w-6 h-6 rounded-full border border-background bg-primary"></div>
+</div>
+<p class="text-[12px] font-label-bold text-on-surface-variant uppercase tracking-widest">
+<span class="text-secondary">@Juan_K</span> GANÓ <span class="text-primary">500 PTS</span> HACE 2M
+            </p>
+</div>
+<!-- Wheel Section -->
+<div class="relative w-full max-w-[340px] aspect-square wheel-container z-10">
+<!-- The Pointer -->
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 z-30 drop-shadow-[0_0_15px_rgba(255,183,131,0.8)]">
+<span class="material-symbols-outlined text-tertiary text-5xl" style="font-variation-settings: 'FILL' 1;">arrow_drop_down</span>
+</div>
+<!-- The Wheel Graphics -->
+<div class="wheel-inner w-full h-full rounded-full border-[12px] border-surface-bright shadow-[0px_20px_50px_rgba(0,0,0,0.5)] overflow-hidden relative" id="wheel">
+<svg class="w-full h-full rotate-[-22.5deg]" viewbox="0 0 100 100">
+<!-- Segment 1: 50 pts -->
+<path d="M50 50 L100 50 A50 50 0 0 1 85.35 85.35 Z" fill="#ddb7ff"></path>
+<!-- Segment 2: 100 pts -->
+<path d="M50 50 L85.35 85.35 A50 50 0 0 1 50 100 Z" fill="#171f33"></path>
+<!-- Segment 3: 500 pts -->
+<path d="M50 50 L50 100 A50 50 0 0 1 14.64 85.35 Z" fill="#44e2cd"></path>
+<!-- Segment 4: Jackpot -->
+<path d="M50 50 L14.64 85.35 A50 50 0 0 1 0 50 Z" fill="#ffb4ab"></path>
+<!-- Segment 5: Try Again -->
+<path d="M50 50 L0 50 A50 50 0 0 1 14.64 14.64 Z" fill="#ddb7ff"></path>
+<!-- Segment 6: 20 pts -->
+<path d="M50 50 L14.64 14.64 A50 50 0 0 1 50 0 Z" fill="#171f33"></path>
+<!-- Segment 7: 200 pts -->
+<path d="M50 50 L50 0 A50 50 0 0 1 85.35 14.64 Z" fill="#44e2cd"></path>
+<!-- Segment 8: Bonus -->
+<path d="M50 50 L85.35 14.64 A50 50 0 0 1 100 50 Z" fill="#ffb783"></path>
+</svg>
+<!-- Labels Container (Fixed rotation) -->
+<div class="absolute inset-0 pointer-events-none text-on-surface font-label-bold text-[10px]">
+<!-- Labels would be positioned here using transforms -->
+<div class="absolute top-[15%] left-1/2 -translate-x-1/2 rotate-[0deg]">BONUS</div>
+<div class="absolute top-[25%] right-[15%] rotate-[45deg]">50 PTS</div>
+<div class="absolute top-1/2 right-[10%] -translate-y-1/2 rotate-[90deg]">100 PTS</div>
+<div class="absolute bottom-[25%] right-[15%] rotate-[135deg]">500 PTS</div>
+<div class="absolute bottom-[15%] left-1/2 -translate-x-1/2 rotate-[180deg]">JACKPOT</div>
+<div class="absolute bottom-[25%] left-[15%] rotate-[225deg]">TRY AGAIN</div>
+<div class="absolute top-1/2 left-[10%] -translate-y-1/2 rotate-[270deg]">20 PTS</div>
+<div class="absolute top-[25%] left-[15%] rotate-[315deg]">200 PTS</div>
+</div>
+<!-- Center Hub -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-surface-dim rounded-full border-4 border-outline-variant flex items-center justify-center z-20 shadow-xl">
+<div class="w-8 h-8 rounded-full bg-primary/20 animate-pulse"></div>
+</div>
+</div>
+</div>
+<!-- Spin Button Area -->
+<div class="mt-12 w-full max-w-[280px] z-10">
+<button class="w-full py-5 bg-secondary text-on-secondary font-spin-display text-spin-display rounded-2xl uppercase tracking-widest transition-all spin-button-shadow hover:brightness-110 active:spin-button-active" id="spin-btn">
+                GIRAR
+            </button>
+<p class="text-center mt-4 text-on-surface-variant font-label-bold opacity-60">COSTO: 100 PTS</p>
+</div>
+</main>
+<!-- Winning Modal (Hidden by default) -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-6" id="win-modal">
+<div class="absolute inset-0 bg-background/90 backdrop-blur-xl"></div>
+<div class="relative glass-panel w-full max-w-sm rounded-[32px] p-8 text-center border-primary shadow-[0_0_100px_rgba(221,183,255,0.3)]">
+<div class="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6 floating">
+<span class="material-symbols-outlined text-primary text-6xl" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-primary mb-2" id="win-title">¡Felicidades!</h2>
+<p class="font-headline-lg text-headline-lg text-on-surface mb-6" id="win-amount">+500 PTS</p>
+<p class="text-on-surface-variant mb-8">Tus puntos han sido añadidos a tu balance actual.</p>
+<button class="w-full py-4 bg-surface-bright text-primary font-label-bold rounded-xl border border-primary/30 hover:bg-surface-container-highest transition-colors" onclick="closeModal()">
+                CONTINUAR
+            </button>
+</div>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-surface-container-low/90 dark:bg-surface-container-low/90 border-t border-outline-variant/10 backdrop-blur-2xl shadow-[0px_-4px_20px_rgba(0,0,0,0.3)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:translate-y-1 duration-100 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="auto_mode" style="font-variation-settings: 'FILL' 1;">auto_mode</span>
+<span class="font-label-bold text-label-bold mt-1">Play</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:translate-y-1 duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="redeem">redeem</span>
+<span class="font-label-bold text-label-bold mt-1">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:translate-y-1 duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-bold text-label-bold mt-1">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:translate-y-1 duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-bold text-label-bold mt-1">Profile</span>
+</a>
+</nav>
+<script>
+        const wheel = document.getElementById('wheel');
+        const spinBtn = document.getElementById('spin-btn');
+        const winModal = document.getElementById('win-modal');
+        const winAmount = document.getElementById('win-amount');
+        const winTitle = document.getElementById('win-title');
+
+        let currentRotation = 0;
+        let isSpinning = false;
+
+        const segments = [
+            { label: 'Bonus', color: '#ffb783' },
+            { label: '50 Puntos', color: '#ddb7ff' },
+            { label: '100 Puntos', color: '#171f33' },
+            { label: '500 Puntos', color: '#44e2cd' },
+            { label: '¡JACKPOT!', color: '#ffb4ab' },
+            { label: 'Intenta de nuevo', color: '#ddb7ff' },
+            { label: '20 Puntos', color: '#171f33' },
+            { label: '200 Puntos', color: '#44e2cd' }
+        ];
+
+        spinBtn.addEventListener('click', () => {
+            if (isSpinning) return;
+
+            isSpinning = true;
+            spinBtn.disabled = true;
+            spinBtn.classList.add('opacity-50');
+
+            // Random rotation (at least 5 full circles + random segment)
+            const randomExtra = Math.floor(Math.random() * 360);
+            const spinDegrees = 1800 + randomExtra; 
+            currentRotation += spinDegrees;
+
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+            // Logic to determine winner after animation ends (4s)
+            setTimeout(() => {
+                const actualDegrees = currentRotation % 360;
+                // Calculate which segment is at the top (accounting for pointer position)
+                // 360 / 8 = 45 degrees per segment. Pointer is at 0 deg (top).
+                // Formula: (360 - (degrees % 360)) / 45
+                const segmentIndex = Math.floor(((360 - (actualDegrees % 360)) % 360) / 45);
+                const winner = segments[segmentIndex];
+
+                showResult(winner);
+            }, 4000);
+        });
+
+        function showResult(prize) {
+            winAmount.innerText = prize.label;
+            
+            if (prize.label.includes('JACKPOT')) {
+                winTitle.innerText = "¡INCREÍBLE!";
+                createConfetti();
+            } else if (prize.label.includes('Intenta')) {
+                winTitle.innerText = "¡Vaya!";
+                winTitle.style.color = '#988d9f';
+            } else {
+                winTitle.innerText = "¡Has ganado!";
+                winTitle.style.color = '#ddb7ff';
+            }
+
+            winModal.classList.remove('hidden');
+            winModal.classList.add('flex');
+        }
+
+        function closeModal() {
+            winModal.classList.add('hidden');
+            winModal.classList.remove('flex');
+            isSpinning = false;
+            spinBtn.disabled = false;
+            spinBtn.classList.remove('opacity-50');
+            // Remove any leftover confetti
+            document.querySelectorAll('.confetti-piece').forEach(p => p.remove());
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + 'vw';
+                piece.style.backgroundColor = i % 2 === 0 ? '#ddb7ff' : '#44e2cd';
+                piece.style.animationDelay = Math.random() * 2 + 's';
+                piece.style.opacity = Math.random();
+                document.body.appendChild(piece);
+            }
+        }
+    </script>
+</body></html>
