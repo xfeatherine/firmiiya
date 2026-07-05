@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;family=Manrope:wght@400;500&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        try {
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "tertiary-fixed": "#e3e2e2",
+                            "inverse-primary": "#6b5585",
+                            "inverse-on-surface": "#372b46",
+                            "on-secondary-fixed-variant": "#574500",
+                            "primary-fixed-dim": "#d6bcf4",
+                            "surface-container-highest": "#3b304a",
+                            "secondary": "#e9c349",
+                            "on-background": "#eedcff",
+                            "outline": "#958e99",
+                            "on-tertiary-container": "#8a8b8b",
+                            "surface-variant": "#3b304a",
+                            "secondary-fixed-dim": "#e9c349",
+                            "on-primary-fixed": "#25113e",
+                            "on-surface": "#eedcff",
+                            "surface-container-high": "#30253f",
+                            "surface-container-lowest": "#130921",
+                            "on-secondary-fixed": "#241a00",
+                            "secondary-fixed": "#ffe088",
+                            "on-surface-variant": "#ccc4cf",
+                            "surface-container": "#251a34",
+                            "primary-fixed": "#eedbff",
+                            "on-primary": "#3b2754",
+                            "on-secondary": "#3c2f00",
+                            "tertiary-container": "#232424",
+                            "on-error-container": "#ffdad6",
+                            "primary-container": "#2e1a47",
+                            "on-primary-container": "#9981b5",
+                            "tertiary-fixed-dim": "#c6c6c6",
+                            "outline-variant": "#4a454e",
+                            "secondary-container": "#af8d11",
+                            "on-tertiary": "#2f3131",
+                            "on-tertiary-fixed": "#1a1c1c",
+                            "surface-tint": "#d6bcf4",
+                            "on-primary-fixed-variant": "#523d6c",
+                            "tertiary": "#c6c6c6",
+                            "inverse-surface": "#eedcff",
+                            "error-container": "#93000a",
+                            "background": "#000000",
+                            "primary": "#d6bcf4",
+                            "surface": "#190e27",
+                            "on-error": "#690005",
+                            "error": "#ffb4ab",
+                            "on-tertiary-fixed-variant": "#464747",
+                            "surface-bright": "#40344f",
+                            "surface-dim": "#190e27",
+                            "surface-container-low": "#211630",
+                            "on-secondary-container": "#342800"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                        "spacing": {
+                            "md": "16px",
+                            "xl": "48px",
+                            "gutter": "24px",
+                            "xs": "4px",
+                            "lg": "24px",
+                            "container-max": "1200px",
+                            "sm": "8px",
+                            "unit": "4px"
+                        },
+                        "fontFamily": {
+                            "headline-lg": ["Playfair Display"],
+                            "body-md": ["Manrope"],
+                            "body-sm": ["Manrope"],
+                            "label-caps": ["Space Grotesk"],
+                            "headline-xl": ["Playfair Display"]
+                        },
+                        "fontSize": {
+                            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "0em", "fontWeight": "600"}],
+                            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                            "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                            "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                        }
+                    },
+                },
+            }
+        } catch (_e) {}
+    }catch(_e){}</script>
+<style>
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+        .text-box-stars {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .star-sm {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #d6bcf4;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+        .star-md {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #e9c349;
+            border-radius: 50%;
+            animation: twinkle 4s infinite ease-in-out;
+            box-shadow: 0 0 4px #e9c349;
+        }
+    </style>
+</head><body class="font-body-md selection:bg-secondary/30 relative w-full tent-drapes min-h-screen bg-black text-on-surface flex justify-center">
+<div class="stardust pointer-events-none absolute inset-0 overflow-hidden" id="stardust"></div>
+<div class="absolute inset-0 cosmic-nebula pointer-events-none"></div>
+<!-- Main Content Canvas - Adjusted for specific resolution constraint (handled via max-w and aspect conceptually) -->
+<main class="relative z-10 w-full max-w-[889px] flex flex-col items-center px-4 md:px-8 pb-24 mx-auto pt-12 min-h-[1449px]">
+<div class="text-center mb-8 relative z-20">
+<h1 class="font-headline-xl text-headline-xl text-primary text-shadow-glow leading-tight mb-2">El Tarot de Thalassa</h1>
+<h2 class="font-headline-lg text-secondary/90 italic text-2xl mt-2 tracking-wide">La Senda es Tuya</h2>
+</div>
+<!-- The Seer & Cards -->
+<div class="relative w-full flex flex-col items-center mt-4">
+<!-- Enhanced Cosmic Decorations -->
+<div class="absolute -top-12 left-0 w-full flex justify-between px-10 opacity-70 pointer-events-none z-30">
+<div class="flex flex-col items-center gap-2">
+<div class="w-[1px] h-12 bg-gradient-to-b from-transparent to-secondary/50"></div>
+<span class="material-symbols-outlined text-secondary text-3xl animate-pulse drop-shadow-[0_0_8px_rgba(233,195,73,0.8)]">star</span>
+</div>
+<div class="flex flex-col items-center gap-2 mt-8">
+<div class="w-[1px] h-8 bg-gradient-to-b from-transparent to-primary/50"></div>
+<span class="material-symbols-outlined text-primary text-xl drop-shadow-[0_0_5px_rgba(214,188,244,0.8)]">flare</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-[1px] h-16 bg-gradient-to-b from-transparent to-secondary/50"></div>
+<span class="material-symbols-outlined text-secondary text-4xl animate-pulse drop-shadow-[0_0_10px_rgba(233,195,73,0.8)]">star</span>
+</div>
+</div>
+<!-- The Seer Image - Maintained arch -->
+<div class="relative w-full rounded-t-[250px] overflow-hidden border-t border-x border-primary/30 shadow-[0_0_80px_rgba(46,26,71,0.8)] candlelight-flicker">
+<img alt="The Seer" class="w-full h-[600px] md:h-[800px] object-cover opacity-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGGzkyMhTqnwXwTNZmSXlunaLznbGjsP5bmAqCsZYQ26YUj9sydy50FF23EGK_IuD43JMnBJRMvC3GBFrxUOgHW-Htm4IpwC8ftN6H_QKmyWT5rtkyaK2x3vpMXN_7oXDUWwSJDnsD09YC0Zlol8Bs8b4T4kxwD9RrkMFJ62Vf3svu7_ubrbdSOkWybcNDKzcy08ruB2zVm2Wea6na_2yNwtJQNaYrDgN-esZFYHDllMP4xaZPHrJyhDgyCRQsm5U2Fw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+</div>
+<!-- Card Spread Interaction -->
+<div class="relative z-20 flex gap-4 md:gap-8 justify-center -mt-32 md:-mt-48 w-full px-4">
+<!-- Past -->
+<div class="group relative w-24 h-40 md:w-36 md:h-60 rounded-2xl flex items-center justify-center shadow-lg border border-secondary/40 bg-surface-container hover:-translate-y-4 transition-all duration-700 cursor-pointer overflow-hidden">
+<img alt="Tarot Back" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABh-PZvq8k8SGcwfXaaHeYr9i-w-jt5H6TLNkNrdXX2Lu_QfvgYJ3W4Nvio6wEefr8kcJ12wMr1ya_XXbGg_diDkQlHZv1xOJz1yEklZLoeDAbUWXm0eH6Q0j5AYV1WB9FoxxOVN5KVbHfbm1EY4xYDts74bajH27jgREG3Iz_EmGEDvVbrc_L3BxsmtYfxpRcHVlwsYF3sG7WJZAL7uOqJbQ5FwMiDx4sUUuqJY_GNejE3YZal25q"/>
+<div class="relative text-center z-10 bg-background/60 p-2 rounded-lg backdrop-blur-md border border-secondary/30">
+<span class="material-symbols-outlined text-secondary text-2xl block" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</div>
+<!-- Present (Active) -->
+<a class="block group relative w-28 h-44 md:w-40 md:h-64 rounded-2xl flex items-center justify-center shadow-[0_0_40px_rgba(233,195,73,0.4)] border-2 border-secondary bg-surface-container hover:-translate-y-4 hover:shadow-[0_0_60px_rgba(233,195,73,0.8)] hover:scale-105 transition-all duration-700 cursor-pointer overflow-hidden z-20" href="https://imgur.com/a/GFzYNqd" target="_blank">
+<img alt="Tarot Back" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-screen max-w-4xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABh-PZvq8k8SGcwfXaaHeYr9i-w-jt5H6TLNkNrdXX2Lu_QfvgYJ3W4Nvio6wEefr8kcJ12wMr1ya_XXbGg_diDkQlHZv1xOJz1yEklZLoeDAbUWXm0eH6Q0j5AYV1WB9FoxxOVN5KVbHfbm1EY4xYDts74bajH27jgREG3Iz_EmGEDvVbrc_L3BxsmtYfxpRcHVlwsYF3sG7WJZAL7uOqJbQ5FwMiDx4sUUuqJY_GNejE3YZal25q"/>
+<div class="relative text-center z-10 bg-background/60 p-3 rounded-lg backdrop-blur-md border border-secondary/30">
+<span class="material-symbols-outlined text-secondary text-4xl block mb-2" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+</div>
+</a>
+<!-- Future -->
+<div class="group relative w-24 h-40 md:w-36 md:h-60 rounded-2xl flex items-center justify-center shadow-lg border border-secondary/40 bg-surface-container hover:-translate-y-4 transition-all duration-700 cursor-pointer overflow-hidden">
+<img alt="Tarot Back" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABh-PZvq8k8SGcwfXaaHeYr9i-w-jt5H6TLNkNrdXX2Lu_QfvgYJ3W4Nvio6wEefr8kcJ12wMr1ya_XXbGg_diDkQlHZv1xOJz1yEklZLoeDAbUWXm0eH6Q0j5AYV1WB9FoxxOVN5KVbHfbm1EY4xYDts74bajH27jgREG3Iz_EmGEDvVbrc_L3BxsmtYfxpRcHVlwsYF3sG7WJZAL7uOqJbQ5FwMiDx4sUUuqJY_GNejE3YZal25q"/>
+<div class="relative text-center z-10 bg-background/60 p-2 rounded-lg backdrop-blur-md border border-secondary/30">
+<span class="material-symbols-outlined text-secondary text-2xl block" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Story Box -->
+<div class="w-full mt-16 relative z-20">
+<div class="bg-surface-container/60 backdrop-blur-md rounded-[22px] overflow-hidden flex flex-col border border-primary/20 shadow-[0_0_40px_rgba(0,0,0,0.8)] relative">
+<div class="text-box-stars" id="textBoxStars"></div>
+<div class="p-6 md:p-8 flex justify-between items-center border-b border-primary/20 bg-gradient-to-r from-transparent via-primary-container/30 to-transparent relative z-10">
+<h2 class="font-headline-lg text-primary text-2xl md:text-3xl text-shadow-glow">✧ Lectura de Cartas</h2>
+</div>
+<div class="p-6 md:p-10 relative z-10">
+<h3 class="font-headline-lg text-secondary text-xl md:text-2xl mb-4">Caleb Dekarios:</h3>
+<div class="font-body-md text-on-surface-variant leading-relaxed text-base md:text-lg space-y-4"><p class="">El Lago de la Dama permanecía inmóvil bajo la tibia luz de la tarde, como si el agua hubiese decidido contener incluso el más leve de sus suspiros para no perturbar la paz que envolvía aquel rincón de Avalon. Bajo la superficie, allí donde el mundo parecía filtrarse a través de un cristal líquido, Galatea flotaba con la naturalidad de quien había nacido para pertenecer a aquel lugar. Su largo cabello rubio se deshacía en ondas que seguían el lento compás del agua, sus ojos permanecían entreabiertos, perdidos en algún pensamiento imposible de alcanzar desde la orilla, mientras los rayos del sol descendían convertidos en columnas doradas que iluminaban el fondo con una claridad casi sagrada. No escuchaba el viento, ni los pájaros, ni el rumor lejano del bosque. Durante aquellos instantes solo existía el lago y ella, unidos por un silencio tan íntimo que cualquier otra presencia parecía incapaz de romperlo.</p><p class="">Muy lejos de aquella calma, Caleb recorría el viejo puente de madera con el corazón demasiado acelerado para alguien que únicamente pretendía encontrar a una compañera. Amelia le había indicado dónde buscarla y él había obedecido casi por instinto, aunque desde que había abandonado el castillo una incómoda sensación le oprimía el pecho. Su último encuentro con Raymond seguía muy presente en su cabeza, igual que las palabras que ambos habían intercambiado, igual que aquella misión familiar que parecía crecer sobre sus hombros a cada paso que daba, hasta el punto de convertir el futuro en una maraña imposible de desenredar.</p><p class="">Fue entonces cuando el agua comenzó a agitarse.</p><p class="">La superficie se abrió con suavidad y una figura ascendió desde las profundidades como si el propio lago la hubiese moldeado entre sus corrientes. Durante apenas un segundo, Caleb no vio a Galatea. Vio una silueta femenina emergiendo del agua con una belleza imposible, el cabello flotando a su alrededor y la piel cubierta por el brillo de las gotas que descendían lentamente por sus hombros. Todo cuanto había escuchado acerca de aquel lago regresó de golpe a su memoria, historias de criaturas que atraían a los incautos con una sonrisa antes de arrastrarlos al fondo, relatos suficientes para que su mano reaccionara antes que su razón y su varita apareciera apuntando directamente hacia ella.</p><p class="">—¡No me controlarás!</p><p class="">El grito resonó entre los árboles mientras se tapaba los oídos con la otra mano, como si de esa forma pudiera protegerse de un supuesto canto hipnótico que jamás llegó a existir.</p><p class="">Galatea, sorprendida, retrocedió apenas unos centímetros dentro del agua. Durante unos instantes no comprendió qué estaba ocurriendo. Solo cuando la voz le resultó familiar y distinguió el rostro del muchacho tras aquella postura defensiva, una expresión de desconcierto sustituyó cualquier posible preocupación.</p><p class="">—Caleb... no temas.</p><p class="">Aquellas pocas palabras bastaron para romper el hechizo que solo existía dentro de la imaginación del joven. Poco a poco descendió la varita, avergonzado al reconocer a la muchacha completamente empapada frente a él, sintiendo cómo el peso de la tensión abandonaba lentamente sus hombros.</p><p class="">—Ga... ¿Galatea?</p><p class="">Ella asintió con una pequeña sonrisa, acercándose a la orilla hasta impulsarse con ambos brazos para sentarse sobre el borde de piedra, dejando que el agua resbalara lentamente de sus ropas mientras lo observaba con esa serenidad tan característica que parecía contagiar incluso al aire que los rodeaba.</p><p class="">—Sí, soy yo. ¿Me buscabas?</p><p class="">Caleb descendió hasta la orilla para sentarse frente a ella. Aún respiraba algo agitado.</p><p class="">—Perdón si te asusté.</p><p class="">Galatea negó con la cabeza con una tranquilidad casi maternal.</p><p class="">—No es nada. Está bien mantenerse alerta.</p><p class="">El muchacho sonrió con cierta timidez.</p><p class="">—Sí... claro. Aunque deberías tener cuidado con este lago. Especialmente con las criaturas... y los cadáveres.</p><p class="">Aquella afirmación habría resultado inquietante para cualquiera, pero Galatea simplemente dirigió la vista hacia el agua con una confianza imposible de fingir.</p><p class="">—El agua es mi amiga. No hay nada que temer.</p><p class="">Caleb no respondió inmediatamente. Era evidente que había acudido allí por un motivo mucho más importante que una simple advertencia. Se tomó unos segundos para ordenar sus pensamientos antes de hablar.</p><p class="">—Vengo de parte de Amelia Crawford.</p><p class="">Los ojos de Galatea brillaron con un interés inmediato.</p><p class="">—¿Oh? Cuéntame más.</p><p class="">Entonces Caleb comenzó a explicarle cómo había acudido a Amelia buscando respuestas que nadie más parecía poder darle, cómo había intentado comprender ciertas cuestiones relacionadas con el futuro y cómo la muchacha había terminado pronunciando un único nombre.</p><p class="">Galatea.</p><p class="">"La otra cara de la moneda."</p><p class="">Aquellas palabras seguían resonando dentro de él incluso mientras las repetía.</p><p class="">—Necesito una guía... un rastro que pueda seguir.</p><p class="">Galatea lo escuchó sin interrumpirlo ni una sola vez. No existía juicio alguno en su mirada, únicamente una atención sincera, de esa clase que hacía sentir a cualquiera que sus problemas realmente mereían ser escuchados. Cuando Caleb terminó, ella permaneció unos segundos en silencio antes de responder.</p><p class="">—Solo di lo que te diga el corazón, Caleb.</p><p class="">Él bajó la vista.</p><p class="">—Estoy conociendo a alguien... y también estoy inmerso en una profunda misión familiar. Es un pasado roto que necesito reparar. Sé que lo haré... pero necesito saber si voy por el camino correcto.</p><p class="">Galatea comprendió entonces que aquellas dos cuestiones no estaban separadas en absoluto. Eran el mismo nudo visto desde dos extremos distintos.</p><p class="">Con un leve movimiento de su varita atrajo hasta sus manos la baraja de tarot que descansaba junto a sus pertenencias. Las cartas acudieron a ella como si conocieran perfectamente el lugar al que pertenecían. Las sostuvo con ambas manos durante unos segundos antes de comenzar a mezclarlas despacio, sin prisas, dejando que cada movimiento encontrara su propio ritmo.</p><p class="">—Vamos paso a paso, Caleb. Pero necesito que concretes la pregunta.</p><p class="">Él respiró hondo.</p><p class="">—¿Es una persona en la que podré confiar a corto y largo plazo?</p><p class="">Galatea asintió.</p><p class="">—Genial.</p><p class="">Extendió entonces las cartas frente a él.</p><p class="">—Elige tres.</p><p class="">Caleb dejó que la intuición guiara sus dedos. Una... dos... tres.</p><p class="">En el mismo instante en que las cartas quedaron separadas del resto, Galatea sintió cómo el lago parecía desaparecer a su alrededor. Su mirada volvió a desenfocarse durante apenas un instante y una figura masculina comenzó a tomar forma en algún rincón de su mente. No distinguía el rostro, únicamente la certeza de que aquel desconocido estaba íntimamente ligado a la lectura que estaba a punto de comenzar.</p><p class="">Cuando volvió completamente en sí, giró la primera carta.</p><p class="">El Emperador.</p><p class="">Percival Mander aparecía representando aquella figura de autoridad y equilibrio.</p><p class="">—Representa el orden necesario para sostener aquello que queréis construir. Puede hablar de una base sólida, de una confianza que aún está creciendo o de un vínculo destinado a fortalecerse con el tiempo. Lo importante es que tus sentimientos permanecican ordenados para que esa relación también pueda hacerlo.</p><p class="">Caleb asintió despacio.</p><p class="">Después apareció la segunda carta.</p><p class="">La Justicia.</p><p class="">Sobre ella, Logan observaba desde el centro del arcano con una expresión tan firme como imparcial.</p><p class="">Galatea sonrió levemente.</p><p class="">—Curiosamente, esta carta no responde exactamente a la pregunta que has formulado. Está respondiendo a la duda que escondes detrás de ella. Me dice que dejarte dominar por la desconfianza no es el camino. Si deseas que ese vínculo exista, también tendrás que construirlo tú.</p><p class="">Las palabras atravesaron a Caleb con una precisión incómoda. Sin querer, recordó a Raymond, recordó aquella conversación reciente y comprendió que Galatea acababa de señalar exactamente el lugar donde nacían todas sus inseguridades.</p><p class="">Solo quedaba una carta.</p><p class="">La joven apoyó con suavidad la yema de sus dedos sobre ella antes de girarla.</p><p class="">El Colgado.</p><p class="">Perpetua Haggard aparecía suspendida cabeza abajo sobre un paisaje rocoso.</p><p class="">Caleb frunció ligeramente el ceño.</p><p class="">—¿Eso... no parece bueno?</p><p class="">Galatea negó con calma.</p><p class="">—No. Lo que veo aquí no es un mal augurio. Veo miedo.</p><p class="">Aquella palabra escapó de sus labios con una suavidad que contrastaba con la fuerza con la que golpeó el corazón del muchacho.</p><p class="">—Veo que estás demasiado obsesionado con esa misión familiar. Si permites que todo cuanto hagas nazca únicamente de esa obsesión, terminarás utilizando a las personas como herramientas para alcanzar un objetivo... y ese vínculo acabará rompiéndose antes incluso de empezar. Las conexiones verdaderas nacen del afecto, de la confianza y del deseo sincero de caminar junto a alguien. No del miedo ni de la necesidad. Si esa persona debe ayudarte, será porque así lo decida su propio corazón. Si fuerzas ese camino, terminarás alejándola de ti.</p><p class="">Durante varios segundos ninguno de los dos habló.</p><p class="">El silencio del lago volvió a envolverlos, aunque esta vez ya no era un silencio vacío, sino uno cargado de significado.</p><p class="">Caleb comprendía, quizá por primera vez desde hacía mucho tiempo, que existían batallas que no podían ganarse mediante estrategias ni planes cuidadosamente preparados. Algunas personas no aparecían para ser utilizadas como piezas dentro de un tablero, sino para caminar libremente a tu lado si tú eras capaz de ofrecerles un lugar donde permanecer.</p><p class="">Aquella era la verdadera respuesta que había ido buscando.</p><p class="">Y Galatea sonrió al verlo entenderlo sin necesidad de decir una sola palabra más.</p></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Footer (Shared) -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-white/10 flex justify-around py-4 px-2">
+<button class="flex flex-col items-center text-secondary">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="text-[10px] uppercase mt-1">Oracle</span>
+</button>
+<button class="flex flex-col items-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="text-[10px] uppercase mt-1">Journal</span>
+</button>
+<button class="flex flex-col items-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="text-[10px] uppercase mt-1">Meanings</span>
+</button>
+</footer>
+<!-- Interactive Atmosphere Script -->
+<script>
+        // Create ambient flickering stardust
+        function createStardust() {
+            const container = document.getElementById('stardust');
+            for(let i = 0; i < 400; i++) {
+                const star = document.createElement('div');
+                star.className = 'absolute bg-primary/60 rounded-full';
+                const size = Math.random() * 4;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.opacity = Math.random();
+                star.style.animation = `flicker ${2 + Math.random() * 5}s infinite ease-in-out`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(star);
+            }
+        }
+        
+        // Add CSS keyframes for flicker
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes flicker {
+                0%, 100% { opacity: 0.1; transform: scale(0.8); }
+                50% { opacity: 0.8; transform: scale(1.2); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add stars to text box
+        function createTextBoxStars() {
+            const container = document.getElementById('textBoxStars');
+            if(!container) return;
+            for(let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                const isMedium = Math.random() > 0.8;
+                star.className = isMedium ? 'star-md' : 'star-sm';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                container.appendChild(star);
+            }
+        }
+
+        window.onload = () => {
+            createStardust();
+            createTextBoxStars();
+        };
+    </script></body></html>
