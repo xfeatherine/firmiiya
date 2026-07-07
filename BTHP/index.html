@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Astral Oracle - Story</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Manrope:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#d7baff",
+                        "on-primary-container": "#4e2484",
+                        "on-background": "#e2e2e2",
+                        "error": "#ffb4ab",
+                        "on-tertiary-container": "#3a3a50",
+                        "on-surface": "#e2e2e2",
+                        "inverse-surface": "#e2e2e2",
+                        "on-secondary": "#3a3000",
+                        "tertiary-fixed-dim": "#c6c4df",
+                        "inverse-primary": "#714aaa",
+                        "on-tertiary": "#2f2e43",
+                        "on-primary": "#411478",
+                        "on-error": "#690005",
+                        "primary-fixed": "#eddcff",
+                        "on-surface-variant": "#ccc3d3",
+                        "inverse-on-surface": "#2f3131",
+                        "on-primary-fixed": "#290055",
+                        "surface": "#121414",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#d7baff",
+                        "tertiary-fixed": "#e2e0fc",
+                        "surface-container-low": "#1a1c1c",
+                        "on-tertiary-fixed": "#1a1a2e",
+                        "secondary-container": "#ffdb3c",
+                        "background": "#121414",
+                        "secondary": "#fff9ef",
+                        "on-secondary-fixed-variant": "#544600",
+                        "surface-variant": "#333535",
+                        "on-tertiary-fixed-variant": "#45455b",
+                        "on-secondary-container": "#725f00",
+                        "secondary-fixed-dim": "#e9c400",
+                        "outline-variant": "#4a4451",
+                        "on-primary-fixed-variant": "#593090",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-container": "#1e2020",
+                        "surface-bright": "#38393a",
+                        "outline": "#968e9c",
+                        "surface-container-highest": "#333535",
+                        "primary-container": "#bd93f9",
+                        "surface-container-lowest": "#0d0e0f",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-high": "#282a2b",
+                        "tertiary-container": "#a6a4be",
+                        "on-secondary-fixed": "#221b00",
+                        "surface-tint": "#d7baff",
+                        "surface-dim": "#121414",
+                        "tertiary": "#c6c4df"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-sm": ["Manrope"],
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #090a0f;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            overflow: hidden;
+        }
+
+        .star-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star-layer::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 2px; height: 2px;
+            background: transparent;
+            box-shadow: 
+                10vw 20vh #fff, 20vw 80vh #fff, 30vw 40vh #fff, 40vw 90vh #fff, 50vw 10vh #fff,
+                60vw 60vh #fff, 70vw 30vh #fff, 80vw 70vh #fff, 90vw 20vh #fff, 15vw 50vh #fff,
+                25vw 15vh #fff, 35vw 75vh #fff, 45vw 35vh #fff, 55vw 85vh #fff, 65vw 45vh #fff,
+                75vw 95vh #fff, 85vw 55vh #fff, 95vw 5vh #fff, 5vw 65vh #fff, 98vw 85vh #fff,
+                42vw 22vh #fff, 12vw 88vh #fff, 78vw 12vh #fff, 82vw 82vh #fff, 32vw 92vh #fff;
+            animation: twinkle 4s infinite alternate;
+        }
+
+        .star-layer:nth-child(2)::after {
+            width: 3px; height: 3px;
+            box-shadow: 
+                15vw 25vh #fff, 85vw 85vh #fff, 45vw 15vh #fff, 65vw 65vh #fff, 25vw 45vh #fff,
+                75vw 15vh #fff, 35vw 85vh #fff, 95vw 45vh #fff, 5vw 35vh #fff, 55vw 95vh #fff;
+            animation: twinkle 3s infinite alternate-reverse;
+        }
+        
+        .star-layer:nth-child(3)::after {
+            width: 1px; height: 1px;
+            box-shadow: 
+                8vw 12vh #fff, 18vw 82vh #fff, 28vw 32vh #fff, 38vw 92vh #fff, 48vw 22vh #fff,
+                58vw 52vh #fff, 68vw 22vh #fff, 78vw 62vh #fff, 88vw 12vh #fff, 12vw 42vh #fff;
+            animation: twinkle 5s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: transparent;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .hanging-star {
+            position: absolute;
+            top: -10px;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #ffe16d);
+            opacity: 0.6;
+            transform-origin: top center;
+        }
+
+        .hanging-star::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 2px #ffe16d;
+            animation: pulse-star var(--duration) ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-star {
+            0% { transform: translateX(-50%) scale(0.8); opacity: 0.5; }
+            100% { transform: translateX(-50%) scale(1.2); opacity: 1; box-shadow: 0 0 12px 4px #ffe16d; }
+        }
+
+        .glass-panel {
+            background: rgba(26, 28, 28, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 225, 109, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        }
+        
+        .golden-border {
+            border: 1px solid rgba(255, 225, 109, 0.4);
+            box-shadow: inset 0 0 20px rgba(255, 225, 109, 0.05);
+        }
+
+        .narrative-text {
+            color: #e2e2e2;
+            line-height: 1.8;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.125rem;
+        }
+        
+        .narrative-text p {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body class="text-on-background font-body-md selection:bg-primary/30 min-h-screen flex flex-col items-center">
+<div class="cosmic-bg">
+<div class="star-layer"></div>
+<div class="star-layer"></div>
+<div class="star-layer"></div>
+</div>
+<div class="star-field">
+<div class="hanging-star" style="left: 10%; height: 120px; --duration: 2s; animation-delay: 0.5s;"></div>
+<div class="hanging-star" style="left: 25%; height: 80px; --duration: 3s; animation-delay: 1.2s;"></div>
+<div class="hanging-star" style="left: 40%; height: 150px; --duration: 2.5s; animation-delay: 0.2s;"></div>
+<div class="hanging-star" style="left: 60%; height: 90px; --duration: 4s; animation-delay: 2.1s;"></div>
+<div class="hanging-star" style="left: 75%; height: 140px; --duration: 3.2s; animation-delay: 0.8s;"></div>
+<div class="hanging-star" style="left: 90%; height: 110px; --duration: 2.8s; animation-delay: 1.5s;"></div>
+</div>
+<main class="w-full max-w-[600px] flex flex-col items-center px-4 py-12 relative z-10">
+<!-- Hero Image -->
+<div class="w-full relative mb-12 rounded-xl overflow-hidden golden-border shadow-2xl">
+<div class="absolute inset-0 bg-gradient-to-t from-[#121414] to-transparent z-10 h-1/3 bottom-0 top-auto"></div>
+<img alt="Mystical Vision" class="w-full h-auto object-cover opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfvQ-JFC-CHm8XinMVp3I3Tv1yLCfzmKl1JeTw8NB8bBf8kOErIUkEXmafnj6JEWo1uNpMmi9xKoPHMXWM6dWEQht5APxpS3HaMVXSMHLEoUaMntVFSOS_4hPtlnwJVhYRJvnqXTPp12-DBElmzrNplSZ8XqkSnQ5EDsg1uDmUbiLp9BJGFmptfrafwudlbS0g1ZEXCnxxRwTCo7yWzsLmE15d0dONsIeqgX3f-phzNZ8WTAo-C5lsu1ibJMgqFgXJmqc"/>
+</div>
+<!-- Linking Element -->
+<div class="relative z-20 -mt-24 mb-10">
+<div class="w-24 h-36 rounded-xl overflow-hidden border-2 border-[#ffe16d] shadow-[0_10px_30px_rgba(0,0,0,0.5),0_0_15px_rgba(255,225,109,0.4)] transform hover:scale-105 transition-transform duration-500 relative after:absolute after:inset-0 after:border-2 after:border-[#ffe16d]/30 after:rounded-xl after:pointer-events-none">
+<img alt="Tarot Card Back" class="w-full h-full object-cover rounded-xl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAq31K9vd4TZs-37bVr30Hu4qt-R9GFyheJOZFzCni6tIwX26Sccb6rmIUXaSaeNPS97cLzYCgzZz5HUbVTMNhHcyZ-mYep0OhDCs4kAbQTylOab0Pi3bVLNOXKQ8wDWBSE7ctAeHvs4sblBeQD8WnwdkXWraAvrpJNg3nlaJdPDChu4ZavDMabUXbyaUwxOl2wVsjm97YVoQopPM4chlouOZJdhBlXdouJjunjajjCveoxDsHjlu_IiA"/>
+</div>
+</div>
+<!-- Narrative Container -->
+<article class="glass-panel w-full rounded-2xl p-8 md:p-12 relative flex flex-col">
+<!-- Decorative Corners -->
+<div class="absolute top-4 left-4 text-[#ffe16d] opacity-50">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+</div>
+<div class="absolute top-4 right-4 text-[#ffe16d] opacity-50">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+</div>
+<div class="absolute bottom-4 left-4 text-[#ffe16d] opacity-50">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+</div>
+<div class="absolute bottom-4 right-4 text-[#ffe16d] opacity-50">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+</div>
+<div class="text-center mb-10">
+<h2 class="font-headline-md text-secondary-fixed mb-2 tracking-widest uppercase text-sm opacity-80">La Senda es Tuya</h2>
+<h1 class="font-headline-xl text-primary text-3xl md:text-5xl mb-6 tracking-wide">Tarot de Thalassa</h1>
+<div class="flex items-center justify-center gap-4">
+<div class="h-px bg-gradient-to-r from-transparent via-[#ffe16d] to-transparent w-24"></div>
+<span class="material-symbols-outlined text-[#ffe16d] text-sm">star</span>
+<div class="h-px bg-gradient-to-r from-transparent via-[#ffe16d] to-transparent w-24"></div>
+</div>
+</div>
+<div class="narrative-text flex-grow"><p class="text-justify">El Lago de la Dama permanecía inmóvil bajo la tibia luz de la tarde, como si el agua hubiese decidido contener incluso el más leve de sus suspiros para no perturbar la paz que envolvía aquel rincón de Avalon. Bajo la superficie, allí donde el mundo parecía filtrarse a través de un cristal líquido, Galatea flotaba con la naturalidad de quien había nacido para pertenecer a aquel lugar. Su largo cabello rubio se deshacía en ondas que seguían el lento compás del agua, sus ojos permanecían entreabiertos, perdidos en algún pensamiento imposible de alcanzar desde la orilla, mientras los rayos del sol descendían convertidos en columnas doradas que iluminaban el fondo con una claridad casi sagrada. No escuchaba el viento, ni los pájaros, ni el rumor lejano del bosque. Durante aquellos instantes solo existía el lago y ella, unidos por un silencio tan íntimo que cualquier otra presencia parecía incapaz de romperlo.</p><p class="text-justify">Muy lejos de aquella calma, Caleb recorría el viejo puente de madera con el corazón demasiado acelerado para alguien que únicamente pretendía encontrar a una compañera. Amelia le había indicado dónde buscarla y él había obedecido casi por instinto, aunque desde que había abandonado el castillo una incómoda sensación le oprimía el pecho. Su último encuentro con Raymond seguía muy presente en su cabeza, igual que las palabras que ambos habían intercambiado, igual que aquella misión familiar que parecía crecer sobre sus hombros a cada paso que daba, hasta el punto de convertir el futuro en una maraña imposible de desenredar.</p><p class="text-justify">Fue entonces cuando el agua comenzó a agitarse.</p><p class="text-justify">La superficie se abrió con suavidad y una figura ascendió desde las profundidades como si el propio lago la hubiese moldeado entre sus corrientes. Durante apenas un segundo, Caleb no vio a Galatea. Vio una silueta femenina emergiendo del agua con una belleza imposible, el cabello flotando a su alrededor y la piel cubierta por el brillo de las gotas que descendían lentamente por sus hombros. Todo cuanto había escuchado acerca de aquel lago regresó de golpe a su memoria, historias de criaturas que atraían a los incautos con una sonrisa antes de arrastrarlos al fondo, relatos suficientes para que su mano reaccionara antes que su razón y su varita apareiera apuntando directamente hacia ella.</p><p class="text-justify">—¡No me controlarás!</p><p class="text-justify">El grito resonó entre los árboles mientras se tapaba los oídos con la otra mano, como si de esa forma pudiera protegerse de un supuesto canto hipnótico que jamás llegó a existir.</p><p class="text-justify">Galatea, sorprendida, retrocedió apenas unos centímetros dentro del agua. Durante unos instantes no comprendió qué estaba ocurriendo. Solo cuando la voz le resultó familiar y distinguió el rostro del muchacho tras aquella postura defensiva, una expresión de desconcierto sustituyó cualquier posible preocupación.</p><p class="text-justify">—Caleb... no temas.</p><p class="text-justify">Aquellas pocas palabras bastaron para romper el hechizo que solo existía dentro de la imaginación del joven. Poco a poco descendió la varita, avergonzado al reconocer a la muchacha completamente empapada frente a él, sintiendo cómo el peso de la tensión abandonaba lentamente sus hombros.</p><p class="text-justify">—Ga... ¿Galatea?</p><p class="text-justify">Ella asintió con una pequeña sonrisa, acercándose a la orilla hasta impulsarse con ambos brazos para sentarse sobre el borde de piedra, dejando que el agua resbalara lentamente de sus ropas mientras lo observaba con esa serenidad tan característica que parecía contagiar incluso al aire que los rodeaba.</p><p class="text-justify">—Sí, soy yo. ¿Me buscabas?</p><p class="text-justify">Caleb descendió hasta la orilla para sentarse frente a ella. Aún respiraba algo agitado.</p><p class="text-justify">—Perdón si te asusté.</p><p class="text-justify">Galatea negó con la cabeza con una tranquilidad casi maternal.</p><p class="text-justify">—No es nada. Está bien mantenerse alerta.</p><p class="text-justify">El muchacho sonrió con cierta timidez.</p><p class="text-justify">—Sí... claro. Aunque deberías tener cuidado con este lago. Especialmente con las criaturas... y los cadáveres.</p><p class="text-justify">Aquella afirmación habría resultado inquietante para cualquiera, pero Galatea simplemente dirigió la vista hacia el agua con una confianza imposible de fingir.</p><p class="text-justify">—El agua es mi amiga. No hay nada que temer.</p><p class="text-justify">Caleb no respondió inmediatamente. Era evidente que había acudido allí por un motivo mucho más importante que una simple advertencia. Se tomó unos segundos para ordenar sus pensamientos antes de hablar.</p><p class="text-justify">—Vengo de parte de Amelia Crawford.</p><p class="text-justify">Los ojos de Galatea brillaron con un interés inmediato.</p><p class="text-justify">—¿Oh? Cuéntame más.</p><p class="text-justify">Entonces Caleb comenzó a explicarle cómo había acudido a Amelia buscando respuestas que nadie más parecía poder darle, cómo había intentado comprender ciertas cuestiones relacionadas con el futuro y cómo la muchacha había terminado pronunciando un único nombre.</p><p class="text-justify">Galatea.</p><p class="text-justify">"La otra cara de la moneda."</p><p class="text-justify">Aquellas palabras seguían resonando dentro de él incluso mientras las repetía.</p><p class="text-justify">—Necesito una guía... un rastro que pueda seguir.</p><p class="text-justify">Galatea lo escuchó sin interrumpirlo ni una sola vez. No existía juicio alguno en su mirada, únicamente una atención sincera, de esa clase que hacía sentir a cualquiera que sus problemas realmente mereían ser escuchados. Cuando Caleb terminó, ella permaneció unos segundos en silencio antes de responder.</p><p class="text-justify">—Solo di lo que te diga el corazón, Caleb.</p><p class="text-justify">Él bajó la vista.</p><p class="text-justify">—Estoy conociendo a alguien... y también estoy inmerso en una profunda misión familiar. Es un pasado roto que necesito reparar. Sé que lo haré... pero necesito saber si voy por el camino correcto.</p><p class="text-justify">Galatea comprendió entonces que aquellas dos cuestiones no estaban separadas en absoluto. Eran el mismo nudo visto desde dos extremos distintos.</p><p class="text-justify">Con un leve movimiento de su varita atrajo hasta sus manos la baraja de tarot que descansaba junto a sus pertenencias. Las cartas acudieron a ella como si conocieran perfectamente el lugar al que pertenecían. Las sostuvo con ambas manos durante unos segundos antes de comenzar a mezclarlas despacio, sin prisas, dejando que cada movimiento encontrara su propio ritmo.</p><p class="text-justify">—Vamos paso a paso, Caleb. Pero necesito que concretes la pregunta.</p><p class="text-justify">Él respiró hondo.</p><p class="text-justify">—¿Es una persona en la que podré confiar a corto y largo plazo?</p><p class="text-justify">Galatea asintió.</p><p class="text-justify">—Genial.</p><p class="text-justify">Extendió entonces las cartas frente a él. —Elige tres.</p><p class="text-justify">Caleb dejó que la intuición guiara sus dedos. Una... dos... tres.</p><p class="text-justify">En el mismo instante en que las cartas quedaron separadas del resto, Galatea sintió cómo el lago parecía desaparecer a su alrededor. Su mirada volvió a desenfocarse durante apenas un instante y una figura masculina comienza a tomar forma en algún rincón de su mente. No distinguía el rostro, únicamente la certeza de que aquel desconocido estaba íntimamente ligado a la lectura que estaba a punto de comenzar.</p><p class="text-justify">Cuando volvió completamente en sí, giró la primera carta.</p><p class="text-justify">El Emperador.</p><p class="text-justify">Percival Mander aparecía representando aquella figura de autoridad y equilibrio.</p><p class="text-justify">—Representa el orden necesario para sostener aquello que queréis construir. Puede hablar de una base sólida, de una confianza que aún está creciendo o de un vínculo destinado a fortalecerse con el tiempo. Lo importante es que tus sentimientos permanecican ordenados para que esa relación también pueda hacerlo.</p><p class="text-justify">Caleb asintió despacio.</p><p class="text-justify">Después apareció la segunda carta.</p><p class="text-justify">La Justicia.</p><p class="text-justify">Sobre ella, Logan observaba desde el centro del arcano con una expresión tan firme como imparcial.</p><p class="text-justify">Galatea sonrió levemente.</p><p class="text-justify">—Curiosamente, esta carta no responde exactamente a la pregunta que has formulado. Está respondiendo a la duda que escondes detrás de ella. Me dice que dejarte dominar por la desconfianza no es el camino. Si deseas que ese vínculo exista, también tendrás que construirlo tú.</p><p class="text-justify">Las palabras atravesaron a Caleb con una precisión incómoda. Sin querer, recordó a Raymond, recordó aquella conversación reciente y comprendió que Galatea acababa de señalar exactamente el lugar donde nacían todas sus inseguridades.</p><p class="text-justify">Solo quedaba una carta.</p><p class="text-justify">La joven apoyó con suavidad la yema de sus dedos sobre ella antes de girarla.</p><p class="text-justify">El Colgado.</p><p class="text-justify">Perpetua Haggard aparecía suspendida cabeza abajo sobre un paisaje rocoso.</p><p class="text-justify">Caleb frunció ligeramente el ceño.</p><p class="text-justify">—¿Eso... no parece bueno?</p><p class="text-justify">Galatea negó con calma.</p><p class="text-justify">—No. Lo que veo aquí no es un mal augio. Veo miedo.</p><p class="text-justify">Aquella palabra escapó de sus labios con una suavidad que contrastaba con la fuerza con la que golpeó el corazón del muchacho.</p><p class="text-justify">—Veo que estás demasiado obsesionado con esa misión familiar. Si permites que todo cuanto hagas nazca únicamente de esa obsesión, terminarás utilizando a las personas como herramientas para alcanzar un objetivo... y ese vínculo acabará rompiéndose antes incluso de empezar. Las conexiones verdaderas nacen del afecto, de la confianza y del deseo sincero de caminar junto a alguien. No del miedo ni de la necesidad. Si esa persona debe ayudarte, será porque así lo decida su propio corazón. Si fuerzas ese camino, terminarás alejándola de ti.</p><p class="text-justify">Durante varios segundos ninguno de los dos habló.</p><p class="text-justify">El silencio del lago volvió a envolverlos, aunque esta vez ya no era un silencio vacío, sino uno cargado de significado.</p><p class="text-justify">Caleb comprendía, quizá por primera vez desde hacía mucho tiempo, que existían batallas que no podían ganarse mediante estrategias ni planes cuidadosamente preparados. Algunas personas no aparecían para ser utilizadas como piezas dentro de un tablero, sino para caminar libremente a tu lado si tú eras capaz de ofrecerles un lugar donde permanecer.</p><p class="text-justify">Aquella era la verdadera respuesta que había ido buscando.</p><p class="text-justify">Y Galatea sonrió al verlo entenderlo sin necesidad de decir una sola palabra más.</p></div>
+<div class="mt-12 flex justify-center pb-4">
+<div class="h-px bg-gradient-to-r from-transparent via-[#d7baff] to-transparent w-full max-w-[250px]"></div>
+</div>
+</article>
+</main>
+</body></html>
